@@ -3,7 +3,7 @@ export function ProfilePortrait() {
     <div
       className="
         relative
-        aspect-[4/3]
+        aspect-4/3
         w-full
         min-w-0
         overflow-hidden
