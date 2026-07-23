@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-terminal: 'Share Tech Mono', monospace;
+  --font-heading: 'Rajdhani', sans-serif;
+  --color-terminal-green: #9ebc5a;
+  --color-terminal-bright: #c8e879;
+  --color-terminal-amber: #c9a35e;
+  --color-terminal-danger: #b34e3e;
+  --color-panel: #090c0a;
+  --color-metal: #34322d;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    color: #b6c68a;
+    background:
+      radial-gradient(circle at top, rgba(55, 62, 44, 0.18), transparent 38%),
+      linear-gradient(#080a08, #030403);
+    font-family: var(--font-terminal);
+    font-synthesis: none;
+    text-rendering: geometricPrecision;
+  }
+  button, a { font: inherit; }
+}
+
+.projects-carousel-mask {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  perspective: 1400px;
+  perspective-origin: 50% 48%;
+}
+
+.projects-carousel-mask::before,
+.projects-carousel-mask::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 15;
+  width: 18%;
+  pointer-events: none;
+}
+
+.projects-carousel-mask::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #080c09 10%,
+    rgba(8, 12, 9, 0.85) 40%,
+    transparent
+  );
+}
+
+.projects-carousel-mask::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #080c09 10%,
+    rgba(8, 12, 9, 0.85) 40%,
+    transparent
+  );
+}
+
+.projects-carousel-scene {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 310px;
+  height: 340px;
+  transform: translate(-50%, -50%);
+  transform-style: preserve-3d;
+}
+
+.projects-carousel-wheel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 900ms cubic-bezier(0.22, 0.75, 0.18, 1);
+}
+
+.projects-carousel-card {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 310px;
+  height: 340px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition:
+    opacity 600ms ease,
+    filter 600ms ease;
+}
+
+.projects-carousel-card:not(.projects-carousel-card-active) {
+  opacity: 0.42;
+  filter: brightness(0.55) saturate(0.65);
+}
+
+.projects-carousel-card-active {
+  opacity: 1;
+  filter: brightness(1) saturate(1);
+}
+
+.projects-carousel-card-active > div {
+  border-color: #899758;
+  box-shadow:
+    0 0 0 1px rgba(172, 198, 93, 0.15),
+    0 0 24px rgba(130, 158, 70, 0.18),
+    inset 0 0 30px rgba(111, 137, 58, 0.05);
+}
+
+.projects-carousel-card:hover {
+  filter: brightness(1.05);
+}
+
+.project-preview {
+  display: grid;
+  height: 105px;
+  place-items: center;
+  overflow: hidden;
+  border: 2px solid #454b3e;
+  background-size: 16px 16px;
+}
+
+.project-preview span {
+  border: 1px solid currentColor;
+  padding: 6px 10px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.project-preview-red {
+  color: #ef6a50;
+  background-color: #170604;
+  background-image:
+    linear-gradient(rgba(173, 48, 28, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(173, 48, 28, 0.28) 1px, transparent 1px);
+}
+
+.project-preview-blue {
+  color: #77bcd9;
+  background-color: #061117;
+  background-image:
+    linear-gradient(rgba(57, 120, 145, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57, 120, 145, 0.28) 1px, transparent 1px);
+}
+
+.project-preview-green {
+  color: #a5d85e;
+  background-color: #071304;
+  background-image:
+    linear-gradient(rgba(72, 131, 36, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(72, 131, 36, 0.28) 1px, transparent 1px);
+}
+
+.project-preview-amber {
+  color: #e1b34f;
+  background-color: #171004;
+  background-image:
+    linear-gradient(rgba(161, 114, 28, 0.28) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(161, 114, 28, 0.28) 1px, transparent 1px);
+}
+
+@media (max-width: 700px) {
+  .projects-carousel-mask {
+    height: 390px;
+    perspective: 1000px;
+  }
+
+  .projects-carousel-scene,
+  .projects-carousel-card {
+    width: 270px;
+    height: 330px;
+  }
+
+  .projects-carousel-card {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-carousel-wheel {
+    transition: none;
+  }
+}
+
+@layer utilities {
+  .metal-border {
+    border: 5px ridge #3b3933;
+    box-shadow: inset 0 0 0 2px #020302, inset 0 0 18px #000, 0 3px 10px rgba(0,0,0,.6);
+  }
+  .metal-border-thick {
+    border: 6px ridge #3a3832;
+    box-shadow: inset 0 0 0 2px #020302, 0 -6px 20px rgba(0,0,0,.85);
+  }
+  .terminal-screen {
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.015), transparent 60%),
+      #090c0a;
+  }
+  .scanlines {
+    background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(255,255,255,.03) 3px);
+    mix-blend-mode: screen;
+  }
+  .pixel-grid {
+    background-image:
+      linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
+      linear-gradient(rgba(255,255,255,.01) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+  .heartbeat {
+    background: linear-gradient(90deg, transparent 0 4%, #9ebc5a 4% 5%, transparent 5% 22%, #9ebc5a 22% 24%, transparent 24% 34%, #9ebc5a 34% 35%, transparent 35% 48%, #9ebc5a 48% 50%, transparent 50% 100%);
+  }
+  .portrait-silhouette {
+    clip-path: polygon(35% 4%, 60% 0, 73% 12%, 80% 28%, 73% 45%, 68% 58%, 82% 69%, 90% 100%, 10% 100%, 17% 69%, 31% 58%, 26% 45%, 20% 28%, 25% 12%);
+  }
+  .screen-grid {
+    background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+  .skill-fill {
+    background: repeating-linear-gradient(90deg, #9ebc5a 0 5px, transparent 5px 7px);
+  }
+}
+
+@keyframes heartbeat-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes heartbeat-scan {
+  from {
+    left: -15%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.heartbeat-track {
+  animation: heartbeat-scroll 2.3s linear infinite;
+}
+
+.heartbeat-line {
+  filter: drop-shadow(0 0 5px rgba(159, 201, 107, 0.8));
+}
+
+.heartbeat-scan {
+  animation: heartbeat-scan 1.8s linear infinite;
+}
+
+@keyframes portraitPulse {
+  0% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+}
+
+@keyframes portraitScan {
+  0% {
+    top: -20%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes portraitFog {
+  0% {
+    transform: translateX(-8%) translateY(0%);
+    opacity: 0.18;
+  }
+  50% {
+    transform: translateX(8%) translateY(-2%);
+    opacity: 0.28;
+  }
+  100% {
+    transform: translateX(-8%) translateY(0%);
+    opacity: 0.18;
+  }
+}
+
+.portrait-bg-pulse {
+  background:
+    radial-gradient(circle at center, rgba(150, 175, 90, 0.28) 0%, rgba(70, 80, 45, 0.14) 35%, rgba(0, 0, 0, 0) 75%),
+    linear-gradient(180deg, rgba(32, 40, 24, 0.85) 0%, rgba(8, 12, 9, 0.96) 100%);
+  animation: portraitPulse 3.4s ease-in-out infinite;
+}
+
+.portrait-scan {
+  background: linear-gradient(
+    to bottom,
+    rgba(170, 205, 90, 0),
+    rgba(170, 205, 90, 0.22),
+    rgba(170, 205, 90, 0)
+  );
+  filter: blur(2px);
+  animation: portraitScan 3s linear infinite;
+}
+
+.portrait-fog {
+  background:
+    radial-gradient(circle at 25% 40%, rgba(120, 150, 70, 0.12), transparent 35%),
+    radial-gradient(circle at 70% 60%, rgba(120, 150, 70, 0.08), transparent 40%);
+  filter: blur(14px);
+  animation: portraitFog 5.5s ease-in-out infinite;
+}
+
+@keyframes portraitNoise {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-1%, 1%);
+  }
+
+  40% {
+    transform: translate(1%, -1%);
+  }
+
+  60% {
+    transform: translate(-1%, 0);
+  }
+
+  80% {
+    transform: translate(1%, 1%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.portrait-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
+  animation: portraitNoise 0.25s steps(2) infinite;
+}

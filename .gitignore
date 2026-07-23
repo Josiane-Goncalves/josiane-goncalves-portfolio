@@ -1,0 +1,118 @@
+# Dependências
+node_modules/
+.pnpm-store/
+
+# Build
+dist/
+build/
+out/
+
+# Vite
+.vite/
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# Variáveis de ambiente
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Mantém um exemplo versionado
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Cobertura de testes
+coverage/
+.nyc_output/
+
+# Testes E2E
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Editores
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+
+# Sistema operacional
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+
+# Arquivos temporários
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# Certificados e chaves
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+
+# Arquivos compactados gerados localmente
+*.zip
+*.tar
+*.tar.gz
+
+# Deploy
+.vercel/
+.netlify/
+
+# Firebase
+.firebase/
+firebase-debug.log*
+
+# Storybook
+storybook-static/
+
+# SonarQube
+.scannerwork/
+
+# Arquivos locais do projeto
+local/
+private/
