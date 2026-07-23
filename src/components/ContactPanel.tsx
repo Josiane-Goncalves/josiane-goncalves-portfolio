@@ -19,7 +19,12 @@ const contacts = [
     value: "github.com/cairon-henrique-60",
     href: "https://github.com/cairon-henrique-60",
   },
-  { icon: "◎", label: "WEBSITE", value: "caironhenrique.dev", href: "#" },
+  {
+    icon: "◎",
+    label: "WEBSITE",
+    value: "caironhenrique.dev",
+    href: "https://portfolio-dino-system.vercel.app/",
+  },
 ];
 
 export function ContactPanel() {
