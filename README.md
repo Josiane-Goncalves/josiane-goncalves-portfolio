@@ -8,8 +8,6 @@ The project transforms a traditional developer portfolio into an interactive ter
 
 ![Portfolio preview](./public/images/portfolio-preview.png)
 
-> Add a screenshot of the application at `public/images/portfolio-preview.png`.
-
 ## Live Demo
 
 [Open the portfolio](https://your-portfolio-url.com)
