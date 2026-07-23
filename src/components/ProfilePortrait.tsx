@@ -10,8 +10,8 @@ export function ProfilePortrait() {
         border-2 border-[#6f735d]
         bg-[#0a0d0a]
 
-        max-[1350px]:aspect-[5/4]
-        max-[1180px]:aspect-[4/3]
+        max-[1350px]:aspect-5/4
+        max-[1180px]:aspect-4/3
         max-[560px]:aspect-square
       "
     >
