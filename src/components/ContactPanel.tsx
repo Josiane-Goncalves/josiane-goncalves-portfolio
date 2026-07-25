@@ -23,7 +23,7 @@ const contacts = [
     icon: "◎",
     label: "WEBSITE",
     value: "caironhenrique.dev",
-    href: "https://portfolio-dino-system.vercel.app/",
+    href: "https://chg-dev-portfolio.vercel.app/",
   },
 ];
 
