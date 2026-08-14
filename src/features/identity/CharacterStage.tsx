@@ -1,16 +1,10 @@
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
 
-type CharacterAsset = {
-  src: string;
-  alt: string;
-};
+import aliaMascot from "../../assets/characters/alia-mascot.png";
+import josianeCharacter from "../../assets/characters/josiane-character.png";
 
-type CharacterStageProps = {
-  asset?: CharacterAsset;
-};
-
-export function CharacterStage({ asset }: CharacterStageProps) {
+export function CharacterStage() {
   const { t } = useTranslation();
   const titleId = useId();
 
@@ -32,31 +26,30 @@ export function CharacterStage({ asset }: CharacterStageProps) {
 
       <div className="character-stage__viewport">
         <div className="character-stage__asset-layer">
-          {asset ? (
-            <img
-              alt={asset.alt}
-              className="character-stage__asset"
-              data-asset-state="ready"
-              draggable={false}
-              src={asset.src}
-            />
-          ) : (
-            <div
-              aria-label={t("shell.characterPlaceholder")}
-              className="character-stage__placeholder"
-              data-asset-state="pending"
-              role="img"
-            >
-              <span aria-hidden="true" className="character-stage__silhouette" />
-              <strong aria-hidden="true">JG</strong>
-              <span>{t("shell.assetPending")}</span>
-            </div>
-          )}
+          <img
+            alt={t("shell.characterAlt")}
+            className="character-stage__asset"
+            data-asset-state="ready"
+            draggable={false}
+            src={josianeCharacter}
+          />
         </div>
 
-        <div aria-hidden="true" className="character-stage__notebook">
-          <span>JG // DEV</span>
-        </div>
+        <figure
+          aria-label={`A.L.I.A. ${t("alia.fullName")}`}
+          className="character-stage__alia"
+        >
+          <img
+            alt=""
+            className="character-stage__alia-image"
+            draggable={false}
+            src={aliaMascot}
+          />
+          <figcaption className="character-stage__alia-label">
+            <strong>A.L.I.A.</strong>
+            <small>{t("alia.fullName")}</small>
+          </figcaption>
+        </figure>
       </div>
 
       <div aria-hidden="true" className="character-stage__bracket character-stage__bracket--top" />

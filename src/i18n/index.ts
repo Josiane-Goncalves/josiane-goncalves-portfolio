@@ -391,6 +391,8 @@ const resources = {
         location: "Uberlândia // MG // Brasil",
         operativeName: "Operadora Josiane Gonçalves",
         visualChannel: "Canal visual",
+        characterAlt:
+          "Representação estilizada de Josiane Gonçalves segurando um notebook.",
         characterPlaceholder: "Espaço reservado para a personagem de Josiane Gonçalves",
         assetPending: "Asset visual pendente",
         stageReady: "Palco pronto",
@@ -792,6 +794,8 @@ const resources = {
         location: "Uberlândia // MG // Brazil",
         operativeName: "Operator Josiane Gonçalves",
         visualChannel: "Visual channel",
+        characterAlt:
+          "Stylized representation of Josiane Gonçalves holding a laptop.",
         characterPlaceholder: "Reserved space for Josiane Gonçalves character artwork",
         assetPending: "Visual asset pending",
         stageReady: "Stage ready",
