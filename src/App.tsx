@@ -10,37 +10,24 @@ import { SystemStatus } from "./features/status/SystemStatus";
 
 function App() {
   return (
-    <AppShell>
-      <section
-        className="grid grid-cols-[minmax(220px,.8fr)_minmax(480px,2fr)_minmax(260px,.9fr)] items-stretch gap-4 max-[1280px]:grid-cols-[minmax(240px,.8fr)_minmax(480px,1.8fr)] max-[840px]:grid-cols-1"
-        id="profile"
-      >
-        <IdentityBrief />
-        <CharacterStage />
-        <aside className="max-[1280px]:col-span-full">
-          <SystemStatus />
-        </aside>
-      </section>
-
-      <section className="mt-4" id="projects">
+    <AppShell
+      alia={<AliaModule />}
+      certifications={<CertificationsPanel />}
+      characterStage={<CharacterStage />}
+      identity={<IdentityBrief />}
+      systemStatus={<SystemStatus />}
+    >
+      <section id="projects">
         <MissionFiles />
       </section>
 
-      <section className="mt-4 grid grid-cols-2 items-start gap-4 max-[840px]:grid-cols-1">
-        <div id="skills">
+      <section className="app-shell__engineering">
+        <div id="stack">
           <EngineeringMatrix />
         </div>
-        <div id="experience">
+        <div id="engineering-log">
+          <span aria-hidden="true" className="app-shell__anchor" id="experience" />
           <EngineeringLog />
-        </div>
-      </section>
-
-      <section className="mt-4 grid grid-cols-2 items-stretch gap-4 max-[840px]:grid-cols-1">
-        <div id="alia">
-          <AliaModule />
-        </div>
-        <div id="certifications">
-          <CertificationsPanel />
         </div>
       </section>
     </AppShell>

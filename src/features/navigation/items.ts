@@ -1,13 +1,11 @@
 export const navigationItems = [
   { code: "01", href: "#profile", labelKey: "common.profile" },
-  { code: "02", href: "#projects", labelKey: "missions.title" },
-  { code: "03", href: "#skills", labelKey: "engineering.title" },
-  { code: "04", href: "#experience", labelKey: "engineering.logTitle" },
-  { code: "05", href: "#alia", labelKey: "alia.title" },
+  { code: "02", href: "#projects", labelKey: "common.projects" },
   {
-    code: "06",
-    href: "#certifications",
-    labelKey: "certifications.title",
+    code: "03",
+    href: "#engineering-log",
+    labelKey: "engineering.logTitle",
   },
-  { code: "07", href: "#contact", labelKey: "common.contact" },
+  { code: "04", href: "#experience", labelKey: "common.experience" },
+  { code: "05", href: "#stack", labelKey: "shell.coreStack" },
 ] as const;

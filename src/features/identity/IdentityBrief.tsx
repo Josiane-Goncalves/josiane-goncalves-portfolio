@@ -1,48 +1,38 @@
+import { useId } from "react";
 import { useTranslation } from "react-i18next";
 
-import { HudPanel } from "../../components/HudPanel";
-
-const primaryStack = ["REACT", "TYPESCRIPT", "NODE.JS", "APIs", "POSTGRESQL"];
+const primaryStack = ["React", "TypeScript", "Node.js", "APIs", "PostgreSQL"];
 
 export function IdentityBrief() {
   const { t } = useTranslation();
+  const nameId = useId();
 
   return (
-    <HudPanel
-      className="h-full"
-      eyebrow={t("shell.operativeRecord")}
-      title={t("shell.identityBrief")}
-      variant="system"
-    >
-      <div className="flex h-full min-h-80 flex-col justify-between gap-8">
-        <div>
-          <p className="font-heading text-[clamp(1.8rem,3vw,3rem)] font-bold uppercase leading-[.95] tracking-[.04em] text-[var(--color-text)]">
-            JOSIANE
-            <span className="block text-[var(--color-system-bright)]">
-              GONÇALVES
-            </span>
-          </p>
-          <p className="mt-5 border-l-2 border-system-lime pl-3 text-sm uppercase leading-6 tracking-[.08em] text-[var(--color-text-muted)]">
-            {t("profile.role")}
-          </p>
-        </div>
+    <section aria-labelledby={nameId} className="identity-brief">
+      <span className="identity-brief__eyebrow">
+        {t("shell.operativeRecord")}
+      </span>
+      <h1 className="identity-brief__name" id={nameId}>
+        <span>JOSIANE</span>{" "}
+        <span>GONÇALVES</span>
+      </h1>
+      <p className="identity-brief__role">{t("profile.role")}</p>
 
-        <div>
-          <span className="mb-3 block font-terminal text-xs uppercase tracking-[.16em] text-[var(--color-text-muted)]">
-            {t("shell.coreStack")}
+      <p
+        aria-label={t("shell.coreStack")}
+        className="identity-brief__stack"
+      >
+        {primaryStack.map((technology, index) => (
+          <span key={technology}>
+            {index > 0 && <span aria-hidden="true"> • </span>}
+            {technology}
           </span>
-          <ul className="flex flex-wrap gap-2" aria-label={t("shell.coreStack")}>
-            {primaryStack.map((technology) => (
-              <li
-                className="border border-system-lime/30 bg-system-lime/5 px-2 py-1 font-terminal text-xs tracking-[.08em] text-[var(--color-system-bright)]"
-                key={technology}
-              >
-                {technology}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </HudPanel>
+        ))}
+      </p>
+
+      <span className="identity-brief__signature">
+        {t("shell.identitySignature")}
+      </span>
+    </section>
   );
 }
