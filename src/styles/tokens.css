@@ -1,11 +1,51 @@
 :root {
-  --hud-system-lime: #a3e635;
-  --hud-mission-amber: #f2b84b;
-  --hud-alia-violet: #a78bfa;
-  --hud-surface-deep: #030604;
-  --hud-surface-panel: #090d0a;
-  --hud-border: #354238;
-  --hud-text: #dbe7cf;
-  --hud-text-muted: #8f9b8a;
-  --hud-focus: #d8ff72;
+  color-scheme: dark;
+
+  /* Semantic color system */
+  --color-background: #040706;
+  --color-surface: #090e0b;
+  --color-surface-elevated: #101713;
+  --color-surface-translucent: rgb(9 14 11 / 94%);
+  --color-border: #536158;
+  --color-border-muted: #2e3932;
+
+  --color-system: #9dcc50;
+  --color-system-bright: #c7eb7b;
+  --color-mission: #d6a64d;
+  --color-mission-bright: #f1ca79;
+  --color-ai: #a38bd8;
+  --color-ai-bright: #cbb9ef;
+
+  --color-text: #edf2eb;
+  --color-text-muted: #a6b0a8;
+  --color-danger: #e27568;
+  --color-focus: #d6f58e;
+
+  /* Typography roles use resilient local system stacks. */
+  --font-display: "Arial Narrow", "Roboto Condensed", "Segoe UI", sans-serif;
+  --font-interface: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-technical: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --text-display: clamp(2rem, 5vw, 4.5rem);
+  --text-title: clamp(1.25rem, 2vw, 1.75rem);
+  --text-body: 1rem;
+  --text-interface: 0.75rem;
+  --line-body: 1.65;
+
+  /* Motion and elevation */
+  --motion-fast: 140ms;
+  --motion-standard: 220ms;
+  --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --shadow-elevated: 0 20px 50px rgb(0 0 0 / 32%);
+
+  /* Compatibility aliases while legacy components are migrated. */
+  --hud-system-lime: var(--color-system);
+  --hud-mission-amber: var(--color-mission);
+  --hud-alia-violet: var(--color-ai);
+  --hud-surface-deep: var(--color-background);
+  --hud-surface-panel: var(--color-surface);
+  --hud-border: var(--color-border-muted);
+  --hud-text: var(--color-text);
+  --hud-text-muted: var(--color-text-muted);
+  --hud-focus: var(--color-focus);
 }

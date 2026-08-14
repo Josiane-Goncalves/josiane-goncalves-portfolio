@@ -196,6 +196,7 @@ const resources = {
       alia: {
         title: "A.L.I.A.",
         subsystem: "Subsistema de engenharia assistida por IA",
+        supportMode: "Apoio supervisionado",
         description:
           "Ferramenta de apoio ao processo de engenharia para organizar análise, alternativas e verificações. Não substitui decisões técnicas nem validação humana.",
         supportAreas: "Áreas de apoio",
@@ -432,6 +433,7 @@ const resources = {
       alia: {
         title: "A.L.I.A.",
         subsystem: "AI-assisted engineering subsystem",
+        supportMode: "Supervised support",
         description:
           "A support tool for organizing engineering analysis, alternatives and checks. It does not replace technical decisions or human validation.",
         supportAreas: "Support areas",

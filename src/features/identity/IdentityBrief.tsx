@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { Panel } from "../../components/Panel";
+import { HudPanel } from "../../components/HudPanel";
 
 const primaryStack = ["REACT", "TYPESCRIPT", "NODE.JS", "APIs", "POSTGRESQL"];
 
@@ -8,29 +8,33 @@ export function IdentityBrief() {
   const { t } = useTranslation();
 
   return (
-    <Panel className="h-full" title={t("shell.identityBrief")}>
+    <HudPanel
+      className="h-full"
+      eyebrow={t("shell.operativeRecord")}
+      title={t("shell.identityBrief")}
+      variant="system"
+    >
       <div className="flex h-full min-h-80 flex-col justify-between gap-8">
         <div>
-          <span className="text-[10px] tracking-[.22em] text-mission-amber">
-            {t("shell.operativeRecord")}
-          </span>
-          <p className="mt-3 font-heading text-[clamp(1.8rem,3vw,3rem)] font-bold uppercase leading-[.9] tracking-[.04em] text-[var(--hud-text)]">
+          <p className="font-heading text-[clamp(1.8rem,3vw,3rem)] font-bold uppercase leading-[.95] tracking-[.04em] text-[var(--color-text)]">
             JOSIANE
-            <span className="block text-system-lime">GONÇALVES</span>
+            <span className="block text-[var(--color-system-bright)]">
+              GONÇALVES
+            </span>
           </p>
-          <p className="mt-5 border-l-2 border-system-lime pl-3 text-sm uppercase leading-5 tracking-[.1em] text-[var(--hud-text-muted)]">
+          <p className="mt-5 border-l-2 border-system-lime pl-3 text-sm uppercase leading-6 tracking-[.08em] text-[var(--color-text-muted)]">
             {t("profile.role")}
           </p>
         </div>
 
         <div>
-          <span className="mb-3 block text-[10px] tracking-[.2em] text-[var(--hud-text-muted)]">
+          <span className="mb-3 block font-terminal text-xs uppercase tracking-[.16em] text-[var(--color-text-muted)]">
             {t("shell.coreStack")}
           </span>
           <ul className="flex flex-wrap gap-2" aria-label={t("shell.coreStack")}>
             {primaryStack.map((technology) => (
               <li
-                className="border border-system-lime/25 bg-system-lime/5 px-2 py-1 text-[10px] tracking-[.1em] text-system-lime"
+                className="border border-system-lime/30 bg-system-lime/5 px-2 py-1 font-terminal text-xs tracking-[.08em] text-[var(--color-system-bright)]"
                 key={technology}
               >
                 {technology}
@@ -39,6 +43,6 @@ export function IdentityBrief() {
           </ul>
         </div>
       </div>
-    </Panel>
+    </HudPanel>
   );
 }

@@ -25,10 +25,10 @@ export function MissionCard({ active, mission, onSelect }: MissionCardProps) {
       type="button"
     >
       <span className="flex items-center justify-between gap-3">
-        <span className="text-[10px] tracking-[.2em] text-mission-amber">
+        <span className="font-terminal text-xs tracking-[.16em] text-[var(--color-mission-bright)]">
           {mission.code}
         </span>
-        <span className="text-[9px] uppercase tracking-[.12em] text-[var(--hud-text-muted)]">
+        <span className="font-terminal text-xs uppercase tracking-[.1em] text-[var(--color-text-muted)]">
           {t(`missions.status.${mission.status}`)}
         </span>
       </span>

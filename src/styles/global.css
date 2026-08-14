@@ -1,20 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
 @import './motion.css';
 @import './tokens.css';
 @import 'tailwindcss';
 
 @theme {
-  --font-terminal: 'Share Tech Mono', monospace;
-  --font-heading: 'Rajdhani', sans-serif;
-  --color-terminal-green: #9ebc5a;
-  --color-terminal-bright: #c8e879;
-  --color-terminal-amber: #c9a35e;
-  --color-terminal-danger: #b34e3e;
-  --color-panel: #090c0a;
-  --color-metal: #34322d;
-  --color-system-lime: var(--hud-system-lime);
-  --color-mission-amber: var(--hud-mission-amber);
-  --color-alia-violet: var(--hud-alia-violet);
+  --font-terminal: var(--font-technical);
+  --font-heading: var(--font-display);
+  --color-terminal-green: var(--color-system);
+  --color-terminal-bright: var(--color-system-bright);
+  --color-terminal-amber: var(--color-mission);
+  --color-terminal-danger: var(--color-danger);
+  --color-panel: var(--color-surface);
+  --color-metal: var(--color-border);
+  --color-system-lime: var(--color-system);
+  --color-mission-amber: var(--color-mission);
+  --color-alia-violet: var(--color-ai);
 }
 
 @layer base {
@@ -24,18 +23,178 @@
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-    color: #b6c68a;
+    color: var(--color-text);
     background:
-      radial-gradient(circle at top, rgba(55, 62, 44, 0.18), transparent 38%),
-      linear-gradient(#080a08, #030403);
-    font-family: var(--font-terminal);
+      radial-gradient(circle at top, color-mix(in srgb, var(--color-system) 7%, transparent), transparent 38%),
+      linear-gradient(var(--color-surface), var(--color-background));
+    font-family: var(--font-interface);
+    font-size: var(--text-body);
+    line-height: var(--line-body);
     font-synthesis: none;
-    text-rendering: geometricPrecision;
+    text-rendering: optimizeLegibility;
   }
   button, a { font: inherit; }
-  :where(button, a, [tabindex]):focus-visible {
+  :where(a, button, input, select, textarea, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
     outline: 2px solid var(--hud-focus);
     outline-offset: 3px;
+  }
+}
+
+.hud-panel {
+  --panel-accent: var(--color-border);
+  position: relative;
+  min-width: 0;
+  border: 1px solid color-mix(in srgb, var(--panel-accent) 52%, var(--color-border-muted));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--panel-accent) 4%, transparent), transparent 38%),
+    var(--color-surface-translucent);
+  box-shadow: var(--shadow-elevated);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+
+.hud-panel::before,
+.hud-panel::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 44px;
+  border-top: 2px solid var(--panel-accent);
+  pointer-events: none;
+}
+
+.hud-panel::before {
+  top: -1px;
+  left: 18px;
+}
+
+.hud-panel::after {
+  right: 18px;
+  bottom: -1px;
+}
+
+.hud-panel[data-variant="system"] {
+  --panel-accent: var(--color-system);
+}
+
+.hud-panel[data-variant="mission"] {
+  --panel-accent: var(--color-mission);
+}
+
+.hud-panel[data-variant="ai"] {
+  --panel-accent: var(--color-ai);
+}
+
+.hud-panel__corner {
+  position: absolute;
+  z-index: 1;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+}
+
+.hud-panel__corner--start {
+  top: 6px;
+  left: 6px;
+  border-top: 1px solid var(--panel-accent);
+  border-left: 1px solid var(--panel-accent);
+}
+
+.hud-panel__corner--end {
+  right: 6px;
+  bottom: 6px;
+  border-right: 1px solid var(--panel-accent);
+  border-bottom: 1px solid var(--panel-accent);
+}
+
+.hud-panel__header {
+  position: relative;
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid color-mix(in srgb, var(--panel-accent) 24%, var(--color-border-muted));
+  padding: 16px 20px;
+}
+
+.hud-panel__eyebrow {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-text-muted);
+  font-family: var(--font-technical);
+  font-size: var(--text-interface);
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.hud-panel__title {
+  margin: 0;
+  color: var(--panel-accent);
+  font-family: var(--font-display);
+  font-size: var(--text-title);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.hud-panel__accessory {
+  flex: none;
+}
+
+.hud-panel__body {
+  position: relative;
+  padding: 20px;
+}
+
+.hud-panel__body--flush {
+  padding: 0;
+}
+
+.status-badge {
+  --status-accent: var(--color-text-muted);
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid color-mix(in srgb, var(--status-accent) 48%, var(--color-border-muted));
+  background: color-mix(in srgb, var(--status-accent) 7%, transparent);
+  padding: 4px 9px;
+  color: var(--status-accent);
+  font-family: var(--font-technical);
+  font-size: var(--text-interface);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.status-badge[data-status="operational"] {
+  --status-accent: var(--color-system-bright);
+}
+
+.status-badge[data-status="documenting"] {
+  --status-accent: var(--color-mission-bright);
+}
+
+.status-badge[data-status="mapping"] {
+  --status-accent: var(--color-ai-bright);
+}
+
+.status-badge__indicator {
+  line-height: 1;
+}
+
+@media (max-width: 540px) {
+  .hud-panel__header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hud-panel__body {
+    padding: 16px;
   }
 }
 

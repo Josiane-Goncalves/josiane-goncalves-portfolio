@@ -24,14 +24,14 @@ export function MissionFiles() {
         >
           {t("missions.title")}
         </h2>
-        <span className="text-[9px] uppercase tracking-[.18em] text-[var(--hud-text-muted)]">
+        <span className="font-terminal text-xs uppercase tracking-[.14em] text-[var(--color-text-muted)]">
           02 / 03 {t("missions.defined")}
         </span>
       </div>
 
       <div className="grid grid-cols-[300px_minmax(0,1fr)] gap-4 p-4 max-[900px]:grid-cols-1">
         <div>
-          <span className="mb-3 block text-[10px] uppercase tracking-[.18em] text-[var(--hud-text-muted)]">
+          <span className="mb-3 block font-terminal text-xs uppercase tracking-[.14em] text-[var(--color-text-muted)]">
             {t("missions.index")}
           </span>
           <div className="grid gap-2">
@@ -48,7 +48,7 @@ export function MissionFiles() {
               aria-label={t("missions.thirdSlot")}
               className="border border-dashed border-[var(--hud-border)] p-4 text-[var(--hud-text-muted)]"
             >
-              <span className="text-[10px] tracking-[.2em]">MF-03</span>
+              <span className="font-terminal text-xs tracking-[.16em]">MF-03</span>
               <strong className="mt-3 block text-xs uppercase tracking-[.12em]">
                 {t("missions.thirdSlot")}
               </strong>

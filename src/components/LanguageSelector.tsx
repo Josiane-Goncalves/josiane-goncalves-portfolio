@@ -13,7 +13,7 @@ export function LanguageSelector() {
   return (
     <div
       aria-label={t("common.languageSelector")}
-      className="flex items-center gap-1 border border-[#3e4731] bg-[#080c09] p-1 text-[10px]"
+      className="flex items-center gap-1 border border-[var(--color-border)] bg-[var(--color-surface)] p-1 font-terminal text-xs"
       role="group"
     >
       <button
@@ -22,14 +22,14 @@ export function LanguageSelector() {
         onClick={() => handleChangeLanguage("pt")}
         className={`px-2 py-1 transition ${
           currentLanguage === "pt"
-            ? "bg-[#9fbd58] text-[#080c09]"
-            : "text-[#9fbd58] hover:bg-[#182016]"
+            ? "bg-[var(--color-system-bright)] text-[var(--color-background)]"
+            : "text-[var(--color-system-bright)] hover:bg-[var(--color-surface-elevated)]"
         }`}
       >
         PT
       </button>
 
-      <span className="text-[#4f5b39]">/</span>
+      <span aria-hidden="true" className="text-[var(--color-border)]">/</span>
 
       <button
         type="button"
@@ -37,8 +37,8 @@ export function LanguageSelector() {
         onClick={() => handleChangeLanguage("en")}
         className={`px-2 py-1 transition ${
           currentLanguage === "en"
-            ? "bg-[#9fbd58] text-[#080c09]"
-            : "text-[#9fbd58] hover:bg-[#182016]"
+            ? "bg-[var(--color-system-bright)] text-[var(--color-background)]"
+            : "text-[var(--color-system-bright)] hover:bg-[var(--color-surface-elevated)]"
         }`}
       >
         EN

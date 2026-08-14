@@ -15,12 +15,12 @@ export function CharacterStage() {
 
       <div className="relative z-10 flex items-center justify-between border-b border-system-lime/20 px-4 py-3">
         <h2
-          className="text-xs uppercase tracking-[.18em] text-system-lime"
+          className="font-terminal text-sm uppercase tracking-[.14em] text-[var(--color-system-bright)]"
           id={titleId}
         >
           {t("shell.operativeName")}
         </h2>
-        <span className="text-[10px] tracking-[.18em] text-mission-amber">
+        <span className="font-terminal text-xs tracking-[.14em] text-[var(--color-mission-bright)]">
           {t("shell.visualChannel")}
         </span>
       </div>
@@ -40,14 +40,14 @@ export function CharacterStage() {
             <strong className="block font-heading text-[clamp(5rem,12vw,10rem)] font-bold leading-none tracking-[-.08em] text-system-lime/25">
               JG
             </strong>
-            <span className="mt-4 block text-[10px] uppercase tracking-[.24em] text-[var(--hud-text-muted)]">
+            <span className="mt-4 block font-terminal text-xs uppercase tracking-[.18em] text-[var(--color-text-muted)]">
               {t("shell.assetPending")}
             </span>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-3 left-4 right-4 z-10 flex justify-between text-[9px] tracking-[.16em] text-[var(--hud-text-muted)]">
+      <div className="absolute bottom-3 left-4 right-4 z-10 flex justify-between font-terminal text-xs tracking-[.12em] text-[var(--color-text-muted)]">
         <span>FRAME // 01</span>
         <span className="text-system-lime">{t("shell.stageReady")}</span>
       </div>

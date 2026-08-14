@@ -1,42 +1,38 @@
-import { useId } from "react";
 import { useTranslation } from "react-i18next";
 
+import { HudPanel } from "../../components/HudPanel";
+import { StatusBadge } from "../../components/StatusBadge";
 import { certifications } from "../../data/engineering";
 
 export function CertificationsPanel() {
   const { t } = useTranslation();
-  const titleId = useId();
 
   return (
-    <section
-      aria-labelledby={titleId}
-      className="h-full border border-mission-amber/30 bg-[rgba(3,6,4,.94)] p-5"
+    <HudPanel
+      className="h-full"
+      headerAccessory={
+        <StatusBadge status="pending">
+          {t("certifications.verificationPending")}
+        </StatusBadge>
+      }
+      title={t("certifications.title")}
+      variant="neutral"
     >
-      <h2
-        className="font-heading text-xl font-semibold uppercase tracking-[.14em] text-mission-amber"
-        id={titleId}
-      >
-        {t("certifications.title")}
-      </h2>
-
       {certifications.length === 0 ? (
-        <div className="mt-6 border border-dashed border-[var(--hud-border)] p-5">
-          <span className="text-[9px] uppercase tracking-[.18em] text-mission-amber">
-            {t("certifications.verificationPending")}
-          </span>
-          <p className="mt-3 text-sm leading-6 text-[var(--hud-text-muted)]">
+        <div className="border border-dashed border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5">
+          <p className="text-base leading-7 text-[var(--color-text-muted)]">
             {t("certifications.empty")}
           </p>
         </div>
       ) : (
         <ul className="mt-6 grid gap-3">
           {certifications.map(({ id, translationKey }) => (
-            <li className="border border-[var(--hud-border)] p-4" key={id}>
+            <li className="border border-[var(--color-border-muted)] p-4" key={id}>
               {t(`certifications.items.${translationKey}`)}
             </li>
           ))}
         </ul>
       )}
-    </section>
+    </HudPanel>
   );
 }
