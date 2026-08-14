@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 export function LanguageSelector() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const currentLanguage = i18n.language.startsWith("en") ? "en" : "pt";
 
@@ -11,9 +11,14 @@ export function LanguageSelector() {
   }
 
   return (
-    <div className="flex items-center gap-1 border border-[#3e4731] bg-[#080c09] p-1 text-[10px]">
+    <div
+      aria-label={t("common.languageSelector")}
+      className="flex items-center gap-1 border border-[#3e4731] bg-[#080c09] p-1 text-[10px]"
+      role="group"
+    >
       <button
         type="button"
+        aria-pressed={currentLanguage === "pt"}
         onClick={() => handleChangeLanguage("pt")}
         className={`px-2 py-1 transition ${
           currentLanguage === "pt"
@@ -28,6 +33,7 @@ export function LanguageSelector() {
 
       <button
         type="button"
+        aria-pressed={currentLanguage === "en"}
         onClick={() => handleChangeLanguage("en")}
         className={`px-2 py-1 transition ${
           currentLanguage === "en"

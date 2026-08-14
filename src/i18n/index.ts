@@ -28,10 +28,12 @@ const resources = {
         selectCategory: "Selecione uma categoria",
         previousProject: "Projeto anterior",
         nextProject: "Próximo projeto",
+        goToProject: "Ir para o projeto",
+        languageSelector: "Selecionar idioma",
       },
 
       profile: {
-        role: "Desenvolvedor de Software",
+        role: "Desenvolvedora de Software Júnior",
         description:
           "Apaixonado por construir aplicações robustas, escaláveis e eficientes. Focado em código limpo, arquitetura de software e experiências digitais de qualidade.",
         country: "Brasil",
@@ -113,6 +115,126 @@ const resources = {
             "Laboratório de arquitetura, segurança e observabilidade para microsserviços.",
         },
       },
+
+      missions: {
+        title: "Mission Files",
+        index: "Índice de missões",
+        selectedMission: "Missão selecionada",
+        defined: "definidas",
+        engineeringEvidence: "Evidências de engenharia",
+        technologies: "Tecnologias",
+        technologiesPending: "Tecnologias aguardando confirmação.",
+        thirdSlot: "Terceiro projeto a definir",
+        status: {
+          documenting: "Em documentação",
+          pending: "Evidência pendente",
+        },
+        evidence: {
+          requirements: "Requisitos",
+          architecture: "Arquitetura",
+          apis: "APIs e integrações",
+          data: "Banco de dados",
+          tests: "Testes e TDD",
+          documentation: "Documentação",
+          security: "Segurança",
+          deploy: "Deploy",
+        },
+        items: {
+          pulseOps: {
+            title: "PulseOps",
+            summary:
+              "Arquivo reservado para a documentação técnica validada do PulseOps. Nenhuma decisão de arquitetura ou resultado será publicado sem confirmação.",
+          },
+          pradoEmDia: {
+            title: "Prado em Dia",
+            summary:
+              "Arquivo reservado para a documentação técnica validada do Prado em Dia. Requisitos, responsabilidades e evidências ainda serão confirmados.",
+          },
+        },
+      },
+
+      engineering: {
+        title: "Engineering Matrix",
+        logTitle: "Engineering Log",
+        coreTechnologies: "Tecnologias principais",
+        coverage: "Áreas de engenharia",
+        verificationPending: "Verificação pendente",
+        logEmpty:
+          "Histórico profissional verificado aguardando conteúdo confirmado.",
+        status: {
+          mapping: "Evidência em mapeamento",
+        },
+        tracks: {
+          requirements: "Requisitos",
+          architecture: "Arquitetura",
+          apis: "APIs e integrações",
+          data: "Banco de dados",
+          tests: "Testes e TDD",
+          documentation: "Documentação",
+          security: "Segurança",
+          deploy: "Deploy",
+        },
+      },
+
+      systemStatus: {
+        title: "System Status",
+        status: {
+          operational: "Operacional",
+          documenting: "Em documentação",
+          pending: "Pendente",
+        },
+        items: {
+          interface: "Interface",
+          languages: "Idiomas PT/EN",
+          missions: "Mission Files",
+          evidence: "Evidências técnicas",
+          visualAsset: "Asset da personagem",
+          contacts: "Canais de contato",
+        },
+      },
+
+      alia: {
+        title: "A.L.I.A.",
+        subsystem: "Subsistema de engenharia assistida por IA",
+        description:
+          "Ferramenta de apoio ao processo de engenharia para organizar análise, alternativas e verificações. Não substitui decisões técnicas nem validação humana.",
+        supportAreas: "Áreas de apoio",
+        humanReview: "Toda saída requer revisão humana.",
+        noAutonomy: "Nenhuma decisão autônoma ou interface de chatbot está ativa.",
+        workflows: {
+          requirements: "Análise de requisitos",
+          architecture: "Exploração de arquitetura",
+          tests: "Apoio a testes",
+          documentation: "Apoio à documentação",
+        },
+      },
+
+      certifications: {
+        title: "Certifications",
+        verificationPending: "Verificação pendente",
+        empty:
+          "Credenciais verificadas aguardando conteúdo confirmado para publicação.",
+      },
+
+      shell: {
+        primaryNavigation: "Navegação principal",
+        mobileNavigation: "Navegação móvel",
+        skipToContent: "Pular para o conteúdo",
+        commandIndex: "Índice de comando",
+        systemOnline: "Sistema online",
+        identityBrief: "Identidade",
+        operativeRecord: "Registro da operadora",
+        coreStack: "Stack principal",
+        operativeName: "Operadora Josiane Gonçalves",
+        visualChannel: "Canal visual",
+        characterPlaceholder: "Espaço reservado para a personagem de Josiane Gonçalves",
+        assetPending: "Asset visual pendente",
+        stageReady: "Palco pronto",
+        contactHud: "HUD de contatos",
+        contactPending: "Canais aguardando validação",
+        contactChannels: "Canais de contato",
+        pending: "PENDENTE",
+      },
     },
   },
 
@@ -142,10 +264,12 @@ const resources = {
         selectCategory: "Select a category",
         previousProject: "Previous project",
         nextProject: "Next project",
+        goToProject: "Go to project",
+        languageSelector: "Select language",
       },
 
       profile: {
-        role: "Software Developer",
+        role: "Junior Software Developer",
         description:
           "Passionate about building robust, scalable and efficient applications. Focused on clean code, software architecture and high-quality digital experiences.",
         country: "Brazil",
@@ -226,6 +350,126 @@ const resources = {
           description:
             "Architecture, security and observability laboratory for microservices.",
         },
+      },
+
+      missions: {
+        title: "Mission Files",
+        index: "Mission index",
+        selectedMission: "Selected mission",
+        defined: "defined",
+        engineeringEvidence: "Engineering evidence",
+        technologies: "Technologies",
+        technologiesPending: "Technologies awaiting confirmation.",
+        thirdSlot: "Third project to be defined",
+        status: {
+          documenting: "Being documented",
+          pending: "Evidence pending",
+        },
+        evidence: {
+          requirements: "Requirements",
+          architecture: "Architecture",
+          apis: "APIs and integrations",
+          data: "Database",
+          tests: "Tests and TDD",
+          documentation: "Documentation",
+          security: "Security",
+          deploy: "Deployment",
+        },
+        items: {
+          pulseOps: {
+            title: "PulseOps",
+            summary:
+              "Reserved file for validated PulseOps technical documentation. No architecture decision or outcome will be published without confirmation.",
+          },
+          pradoEmDia: {
+            title: "Prado em Dia",
+            summary:
+              "Reserved file for validated Prado em Dia technical documentation. Requirements, responsibilities and evidence are still awaiting confirmation.",
+          },
+        },
+      },
+
+      engineering: {
+        title: "Engineering Matrix",
+        logTitle: "Engineering Log",
+        coreTechnologies: "Core technologies",
+        coverage: "Engineering areas",
+        verificationPending: "Verification pending",
+        logEmpty:
+          "Verified professional history is awaiting confirmed content.",
+        status: {
+          mapping: "Evidence mapping in progress",
+        },
+        tracks: {
+          requirements: "Requirements",
+          architecture: "Architecture",
+          apis: "APIs and integrations",
+          data: "Database",
+          tests: "Tests and TDD",
+          documentation: "Documentation",
+          security: "Security",
+          deploy: "Deployment",
+        },
+      },
+
+      systemStatus: {
+        title: "System Status",
+        status: {
+          operational: "Operational",
+          documenting: "Being documented",
+          pending: "Pending",
+        },
+        items: {
+          interface: "Interface",
+          languages: "PT/EN languages",
+          missions: "Mission Files",
+          evidence: "Technical evidence",
+          visualAsset: "Character asset",
+          contacts: "Contact channels",
+        },
+      },
+
+      alia: {
+        title: "A.L.I.A.",
+        subsystem: "AI-assisted engineering subsystem",
+        description:
+          "A support tool for organizing engineering analysis, alternatives and checks. It does not replace technical decisions or human validation.",
+        supportAreas: "Support areas",
+        humanReview: "Every output requires human review.",
+        noAutonomy: "No autonomous decisions or chatbot interface are active.",
+        workflows: {
+          requirements: "Requirements analysis",
+          architecture: "Architecture exploration",
+          tests: "Testing support",
+          documentation: "Documentation support",
+        },
+      },
+
+      certifications: {
+        title: "Certifications",
+        verificationPending: "Verification pending",
+        empty:
+          "Verified credentials are awaiting confirmed content for publication.",
+      },
+
+      shell: {
+        primaryNavigation: "Primary navigation",
+        mobileNavigation: "Mobile navigation",
+        skipToContent: "Skip to content",
+        commandIndex: "Command index",
+        systemOnline: "System online",
+        identityBrief: "Identity",
+        operativeRecord: "Operator record",
+        coreStack: "Core stack",
+        operativeName: "Operator Josiane Gonçalves",
+        visualChannel: "Visual channel",
+        characterPlaceholder: "Reserved space for Josiane Gonçalves character artwork",
+        assetPending: "Visual asset pending",
+        stageReady: "Stage ready",
+        contactHud: "Contact HUD",
+        contactPending: "Channels awaiting verification",
+        contactChannels: "Contact channels",
+        pending: "PENDING",
       },
     },
   },

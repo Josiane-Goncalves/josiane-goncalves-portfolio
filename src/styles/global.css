@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+@import './motion.css';
+@import './tokens.css';
 @import 'tailwindcss';
 
 @theme {
@@ -10,6 +12,9 @@
   --color-terminal-danger: #b34e3e;
   --color-panel: #090c0a;
   --color-metal: #34322d;
+  --color-system-lime: var(--hud-system-lime);
+  --color-mission-amber: var(--hud-mission-amber);
+  --color-alia-violet: var(--hud-alia-violet);
 }
 
 @layer base {
@@ -28,6 +33,10 @@
     text-rendering: geometricPrecision;
   }
   button, a { font: inherit; }
+  :where(button, a, [tabindex]):focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 3px;
+  }
 }
 
 .projects-carousel-mask {
@@ -185,12 +194,6 @@
 
   .projects-carousel-card {
     transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .projects-carousel-wheel {
-    transition: none;
   }
 }
 

@@ -1,32 +1,5 @@
+import { systemLogs } from "../data/portfolio";
 import { Panel } from "./Panel";
-
-const logs = [
-  {
-    time: "20:42",
-    type: "SYSTEM",
-    message: "Portfolio terminal initialized",
-  },
-  {
-    time: "20:43",
-    type: "PROJECT",
-    message: "WMS Control module loaded",
-  },
-  {
-    time: "20:44",
-    type: "SKILL",
-    message: "React and TypeScript status: operational",
-  },
-  {
-    time: "20:45",
-    type: "NETWORK",
-    message: "GitHub connection established",
-  },
-  {
-    time: "20:46",
-    type: "STATUS",
-    message: "Developer available for new missions",
-  },
-];
 
 export function SystemLogPanel() {
   return (
@@ -35,9 +8,9 @@ export function SystemLogPanel() {
         <div className="absolute inset-0 opacity-20 bg-[linear-gradient(rgba(145,180,78,.08)_1px,transparent_1px)] bg-size-[100%_18px]" />
 
         <div className="relative grid gap-2">
-          {logs.map((log, index) => (
+          {systemLogs.map((log) => (
             <div
-              key={`${log.time}-${index}`}
+              key={log.id}
               className="grid grid-cols-[42px_70px_1fr] gap-2 border-b border-[#29301f] pb-2 text-[10px] leading-4"
             >
               <span className="text-[#68754a]">{log.time}</span>

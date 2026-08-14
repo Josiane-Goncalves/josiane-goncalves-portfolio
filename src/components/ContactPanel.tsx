@@ -1,41 +1,15 @@
+import { contacts } from "../data/portfolio";
 import { Panel } from "./Panel";
-
-const contacts = [
-  {
-    icon: "✉",
-    label: "EMAIL",
-    value: "caironhenrique60@gmail.com",
-    href: "mailto:caironhenrique60@gmail.com",
-  },
-  {
-    icon: "in",
-    label: "LINKEDIN",
-    value: "linkedin.com/in/caironhenrique",
-    href: "https://www.linkedin.com/in/cairon-henrique-b88375224/",
-  },
-  {
-    icon: "GH",
-    label: "GITHUB",
-    value: "github.com/cairon-henrique-60",
-    href: "https://github.com/cairon-henrique-60",
-  },
-  {
-    icon: "◎",
-    label: "WEBSITE",
-    value: "caironhenrique.dev",
-    href: "https://chg-dev-portfolio.vercel.app/",
-  },
-];
 
 export function ContactPanel() {
   return (
     <Panel title="CONTACT">
       <div className="grid grid-cols-2 gap-3 max-[560px]:grid-cols-1">
-        {contacts.map(({ icon, label, value, href }) => (
+        {contacts.map(({ id, icon, label, value, href }) => (
           <a
             className="flex min-h-16 items-center gap-3.5 border-2 border-ridge border-[#383a33] bg-[#0c0e0c] p-3 no-underline transition duration-200 hover:-translate-y-0.5 hover:border-[#727c4c]"
             href={href}
-            key={label}
+            key={id}
             target="_blank"
             rel="noreferrer"
           >

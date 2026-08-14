@@ -175,6 +175,7 @@ export function ProjectsPanel() {
                 type="button"
                 onClick={() => goToProject(index)}
                 aria-label={`${t("common.goToProject")} ${projectTitle}`}
+                aria-current={index === activeIndex ? "true" : undefined}
                 className={`h-1.5 transition-all duration-300 ${
                   index === activeIndex
                     ? "w-8 bg-[#b9d261] shadow-[0_0_8px_rgba(185,210,97,.8)]"

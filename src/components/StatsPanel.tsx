@@ -1,3 +1,4 @@
+import { portfolioStats } from "../data/portfolio";
 import { Panel } from "./Panel";
 import { HeartRateGraph } from "./HeartRateGraph";
 
@@ -27,25 +28,12 @@ export function StatsPanel() {
 
       <Panel title="PORTFOLIO STATS">
         <div className="grid gap-2 text-xs">
-          <div className="flex justify-between">
-            <span>PROJECTS</span>
-            <strong>06</strong>
-          </div>
-
-          <div className="flex justify-between">
-            <span>YEARS EXP.</span>
-            <strong>4+</strong>
-          </div>
-
-          <div className="flex justify-between">
-            <span>TECH STACK</span>
-            <strong>10+</strong>
-          </div>
-
-          <div className="flex justify-between">
-            <span>SATISFACTION</span>
-            <strong>100%</strong>
-          </div>
+          {portfolioStats.map(({ id, label, value }) => (
+            <div className="flex justify-between" key={id}>
+              <span>{label}</span>
+              <strong>{value}</strong>
+            </div>
+          ))}
         </div>
       </Panel>
     </div>

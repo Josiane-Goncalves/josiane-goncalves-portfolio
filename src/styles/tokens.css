@@ -1,0 +1,11 @@
+:root {
+  --hud-system-lime: #a3e635;
+  --hud-mission-amber: #f2b84b;
+  --hud-alia-violet: #a78bfa;
+  --hud-surface-deep: #030604;
+  --hud-surface-panel: #090d0a;
+  --hud-border: #354238;
+  --hud-text: #dbe7cf;
+  --hud-text-muted: #8f9b8a;
+  --hud-focus: #d8ff72;
+}

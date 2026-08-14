@@ -1,17 +1,7 @@
 import { useTranslation } from "react-i18next";
 
+import { experiences } from "../data/portfolio";
 import { Panel } from "./Panel";
-
-const experiences = [
-  {
-    id: "pda",
-    period: "2022 — PRESENT",
-  },
-  {
-    id: "softwareOperations",
-    period: "2020 — 2022",
-  },
-] as const;
 
 export function ExperiencePanel() {
   const { t } = useTranslation();
@@ -19,20 +9,18 @@ export function ExperiencePanel() {
   return (
     <Panel title={t("common.experience")}>
       <div className="grid gap-4">
-        {experiences.map((item) => {
-          const translationPath = `experience.items.${item.id}`;
+        {experiences.map((experienceId) => {
+          const translationPath = `experience.items.${experienceId}`;
 
           return (
             <article
               className="relative border-l border-[#5f6843] pl-4.5"
-              key={item.id}
+              key={experienceId}
             >
               <span className="absolute -left-1 top-1 h-1.75 w-1.75 bg-terminal-green shadow-[0_0_8px_#9ebc5a]" />
 
               <time className="text-xs text-terminal-green">
-                {t(`${translationPath}.period`, {
-                  defaultValue: item.period,
-                })}
+                {t(`${translationPath}.period`)}
               </time>
 
               <h3 className="mb-0.5 mt-1 text-[15px] text-[#d3ae69]">
