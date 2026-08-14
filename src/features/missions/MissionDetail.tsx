@@ -1,77 +1,110 @@
+import { useId } from "react";
 import { useTranslation } from "react-i18next";
 
-import type { Mission } from "../../data/missions";
+import { StatusBadge, type StatusTone } from "../../components/StatusBadge";
+import type { Mission, MissionStatus } from "../../data/missions";
 
 type MissionDetailProps = {
+  detailId: string;
   mission: Mission;
+  onClose: () => void;
 };
 
-export function MissionDetail({ mission }: MissionDetailProps) {
+const statusTones: Record<MissionStatus, StatusTone> = {
+  documenting: "documenting",
+  inDevelopment: "operational",
+  operational: "operational",
+  paused: "pending",
+  caseStudy: "mapping",
+  planned: "pending",
+};
+
+export function MissionDetail({
+  detailId,
+  mission,
+  onClose,
+}: MissionDetailProps) {
   const { t } = useTranslation();
+  const headingId = useId();
   const translationPath = `missions.items.${mission.translationKey}`;
+  const title = t(`${translationPath}.title`);
 
   return (
-    <article aria-live="polite" className="min-w-0 border border-mission-amber/25 bg-[#050806] p-5">
-      <div className="flex items-start justify-between gap-5 border-b border-mission-amber/20 pb-4 max-[640px]:flex-col">
+    <article
+      aria-label={t("missions.detailLabel", { title })}
+      aria-live="polite"
+      className="mission-detail"
+      id={detailId}
+      role="region"
+    >
+      <div aria-hidden="true" className="mission-detail__scan" />
+
+      <header className="mission-detail__header">
         <div>
-          <span className="font-terminal text-xs tracking-[.16em] text-[var(--color-mission-bright)]">
+          <span className="mission-detail__code">
             {mission.code} // {t("missions.selectedMission")}
           </span>
-          <h3 className="mt-2 font-heading text-[clamp(2rem,5vw,4rem)] font-bold uppercase leading-none tracking-[.03em] text-[var(--hud-text)]">
-            {t(`${translationPath}.title`)}
+          <h3 className="mission-detail__title" id={headingId}>
+            {title}
           </h3>
         </div>
-        <span className="border border-system-lime/25 px-3 py-2 font-terminal text-xs uppercase tracking-[.12em] text-[var(--color-system-bright)]">
+
+        <button
+          aria-label={t("missions.closeFile", { title })}
+          className="mission-detail__close"
+          onClick={onClose}
+          type="button"
+        >
+          <span aria-hidden="true">×</span>
+          {t("missions.close")}
+        </button>
+      </header>
+
+      <div className="mission-detail__meta">
+        <span>{t("missions.recordStatus")}</span>
+        <StatusBadge status={statusTones[mission.status]}>
           {t(`missions.status.${mission.status}`)}
-        </span>
+        </StatusBadge>
       </div>
 
-      <p className="max-w-3xl border-l-2 border-mission-amber pl-4 text-sm leading-6 text-[var(--hud-text-muted)]">
+      <p className="mission-detail__summary">
         {t(`${translationPath}.summary`)}
       </p>
 
-      <div className="mt-7">
-        <h4 className="text-xs uppercase tracking-[.18em] text-mission-amber">
-          {t("missions.engineeringEvidence")}
-        </h4>
-        <ul className="mt-3 grid grid-cols-2 gap-2 max-[640px]:grid-cols-1">
-          {mission.evidence.map(({ area, status }) => (
-            <li
-              className="flex min-h-12 items-center justify-between gap-3 border border-[var(--hud-border)] px-3 py-2"
-              key={area}
-            >
-              <span className="font-terminal text-xs uppercase tracking-[.1em] text-[var(--color-text)]">
-                {t(`missions.evidence.${area}`)}
-              </span>
-              <span className="font-terminal text-xs uppercase tracking-[.08em] text-[var(--color-text-muted)]">
-                {t(`missions.status.${status}`)}
-              </span>
-            </li>
-          ))}
-        </ul>
+      <div className="mission-detail__sections">
+        {mission.sections.map((section) => (
+          <section className="mission-detail__section" key={section}>
+            <h4>{t(`missions.sections.${section}`)}</h4>
+            <p>{t(`${translationPath}.sections.${section}`)}</p>
+          </section>
+        ))}
       </div>
 
-      <div className="mt-7 border-t border-[var(--hud-border)] pt-4">
-        <span className="font-terminal text-xs uppercase tracking-[.12em] text-[var(--color-text-muted)]">
-          {t("missions.technologies")}
-        </span>
-        {mission.technologies.length > 0 ? (
-          <ul className="mt-3 flex flex-wrap gap-2">
+      {mission.technologies.length > 0 ? (
+        <section className="mission-detail__section mission-detail__technology-section">
+          <h4>{t("missions.technologies")}</h4>
+          <ul className="mission-detail__technologies">
             {mission.technologies.map((technology) => (
-              <li
-                className="border border-system-lime/25 px-2 py-1 font-terminal text-xs text-[var(--color-system-bright)]"
-                key={technology}
-              >
-                {technology}
-              </li>
+              <li key={technology}>{technology}</li>
             ))}
           </ul>
-        ) : (
-          <p className="mt-2 text-xs text-[var(--hud-text-muted)]">
-            {t("missions.technologiesPending")}
-          </p>
-        )}
-      </div>
+        </section>
+      ) : null}
+
+      {mission.repositoryUrl || mission.liveUrl ? (
+        <div className="mission-detail__links">
+          {mission.repositoryUrl ? (
+            <a href={mission.repositoryUrl} rel="noreferrer" target="_blank">
+              {t("missions.viewRepository")}
+            </a>
+          ) : null}
+          {mission.liveUrl ? (
+            <a href={mission.liveUrl} rel="noreferrer" target="_blank">
+              {t("missions.openSystem")}
+            </a>
+          ) : null}
+        </div>
+      ) : null}
     </article>
   );
 }

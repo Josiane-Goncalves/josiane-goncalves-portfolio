@@ -1351,3 +1351,543 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
   animation: portraitNoise 0.25s steps(2) infinite;
 }
+
+/* Mission Files ---------------------------------------------------------- */
+
+.mission-files {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-mission) 42%, var(--color-border-muted));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-mission) 5%, transparent), transparent 28%),
+    var(--color-surface-translucent);
+  box-shadow: var(--shadow-elevated);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+}
+
+.mission-files::before,
+.mission-files::after {
+  position: absolute;
+  z-index: 2;
+  width: 72px;
+  height: 2px;
+  background: var(--color-mission-bright);
+  content: "";
+  pointer-events: none;
+}
+
+.mission-files::before {
+  top: 0;
+  left: 24px;
+}
+
+.mission-files::after {
+  right: 24px;
+  bottom: 0;
+}
+
+.mission-files__header {
+  display: flex;
+  min-height: 82px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-mission) 30%, var(--color-border-muted));
+  padding: 16px 24px;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-mission) 8%, transparent), transparent 42%),
+    color-mix(in srgb, var(--color-surface-elevated) 84%, transparent);
+}
+
+.mission-files__eyebrow,
+.mission-files__count,
+.mission-files__index-label {
+  color: var(--color-text-muted);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.mission-files__header h2 {
+  margin-top: 4px;
+  color: var(--color-mission-bright);
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mission-files__count {
+  flex: none;
+  border-left: 2px solid var(--color-mission);
+  padding-left: 12px;
+  color: var(--color-mission-bright);
+}
+
+.mission-files__layout {
+  display: grid;
+  grid-template-columns: minmax(270px, 330px) minmax(0, 1fr);
+  min-height: 570px;
+}
+
+.mission-files__index {
+  position: relative;
+  z-index: 1;
+  border-right: 1px solid color-mix(in srgb, var(--color-mission) 24%, var(--color-border-muted));
+  padding: 20px;
+  background: color-mix(in srgb, var(--color-background) 72%, transparent);
+}
+
+.mission-files__index-label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.mission-files__list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+}
+
+.mission-card {
+  position: relative;
+  display: grid;
+  width: 100%;
+  min-height: 158px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-mission) 24%, var(--color-border-muted));
+  padding: 15px 16px;
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--color-mission) 4%, transparent), transparent 56%),
+    var(--color-surface);
+  color: var(--color-text);
+  text-align: left;
+  transition:
+    border-color var(--motion-standard) var(--motion-ease),
+    background-color var(--motion-standard) var(--motion-ease),
+    transform var(--motion-fast) var(--motion-ease);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+}
+
+.mission-card::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--color-mission);
+  content: "";
+  opacity: 0.22;
+  transition: opacity var(--motion-standard) var(--motion-ease);
+}
+
+.mission-card:hover {
+  border-color: color-mix(in srgb, var(--color-mission-bright) 58%, var(--color-border));
+  transform: translateX(2px);
+}
+
+.mission-card:hover::before,
+.mission-card[data-active]::before {
+  opacity: 1;
+}
+
+.mission-card[data-active] {
+  border-color: var(--color-mission);
+  background:
+    linear-gradient(115deg, color-mix(in srgb, var(--color-mission) 12%, transparent), transparent 62%),
+    var(--color-surface-elevated);
+  box-shadow: inset 10px 0 24px color-mix(in srgb, var(--color-mission) 7%, transparent);
+}
+
+.mission-card__topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mission-card__code,
+.mission-card__status,
+.mission-card__technologies,
+.mission-card__action {
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.mission-card__code {
+  color: var(--color-mission-bright);
+}
+
+.mission-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.mission-card__title {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.mission-card__summary {
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 8px;
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.mission-card__technologies {
+  margin-top: 12px;
+  color: var(--color-system-bright);
+}
+
+.mission-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 13px;
+  border-top: 1px solid var(--color-border-muted);
+  padding-top: 9px;
+  color: var(--color-mission-bright);
+}
+
+.mission-files__workspace {
+  min-width: 0;
+  padding: 20px;
+  background:
+    linear-gradient(color-mix(in srgb, var(--color-border-muted) 20%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-border-muted) 20%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.mission-files__idle {
+  display: grid;
+  min-height: 100%;
+  place-content: center;
+  justify-items: center;
+  border: 1px dashed color-mix(in srgb, var(--color-mission) 28%, var(--color-border-muted));
+  padding: 32px;
+  background: color-mix(in srgb, var(--color-background) 80%, transparent);
+  color: var(--color-mission-bright);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.mission-files__idle p {
+  max-width: 420px;
+  margin-top: 12px;
+  color: var(--color-text-muted);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+}
+
+.mission-files__idle-reticle {
+  width: 76px;
+  height: 76px;
+  margin-bottom: 20px;
+  border: 1px solid color-mix(in srgb, var(--color-mission) 50%, transparent);
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 49%, var(--color-mission) 50%, transparent 51%),
+    linear-gradient(transparent 49%, var(--color-mission) 50%, transparent 51%);
+  animation: mission-reticle-pulse 3.5s ease-in-out infinite;
+}
+
+.mission-detail {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-mission) 34%, var(--color-border-muted));
+  padding: 24px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--color-mission) 7%, transparent), transparent 30%),
+    color-mix(in srgb, var(--color-background) 94%, transparent);
+  animation: mission-file-open var(--motion-standard) var(--motion-ease) both;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+.mission-detail__scan {
+  position: absolute;
+  z-index: 0;
+  top: -24%;
+  right: 0;
+  left: 0;
+  height: 18%;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--color-mission) 8%, transparent), transparent);
+  animation: mission-detail-scan 5.5s linear infinite;
+  pointer-events: none;
+}
+
+.mission-detail__header,
+.mission-detail__meta,
+.mission-detail__summary,
+.mission-detail__sections,
+.mission-detail__technology-section,
+.mission-detail__links {
+  position: relative;
+  z-index: 1;
+}
+
+.mission-detail__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-mission) 26%, var(--color-border-muted));
+  padding-bottom: 18px;
+}
+
+.mission-detail__code {
+  color: var(--color-mission-bright);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.mission-detail__title {
+  margin-top: 7px;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(2.3rem, 5vw, 4.8rem);
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.mission-detail__close {
+  display: inline-flex;
+  min-height: 40px;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--color-border-muted);
+  padding: 8px 11px;
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+
+.mission-detail__close:hover {
+  border-color: var(--color-mission);
+  color: var(--color-mission-bright);
+}
+
+.mission-detail__close span {
+  font-size: 1.25rem;
+  line-height: 0;
+}
+
+.mission-detail__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  color: var(--color-text-muted);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.mission-detail__summary {
+  max-width: 760px;
+  margin-top: 24px;
+  border-left: 2px solid var(--color-mission);
+  padding-left: 16px;
+  color: var(--color-text);
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.mission-detail__sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.mission-detail__section {
+  border-top: 1px solid color-mix(in srgb, var(--color-mission) 26%, var(--color-border-muted));
+  padding: 14px 14px 16px;
+  background: color-mix(in srgb, var(--color-surface) 72%, transparent);
+}
+
+.mission-detail__section h4 {
+  color: var(--color-mission-bright);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.mission-detail__section p {
+  margin-top: 9px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.mission-detail__technology-section {
+  margin-top: 14px;
+}
+
+.mission-detail__technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  list-style: none;
+}
+
+.mission-detail__technologies li {
+  border: 1px solid color-mix(in srgb, var(--color-system) 30%, var(--color-border-muted));
+  padding: 5px 8px;
+  color: var(--color-system-bright);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+}
+
+.mission-detail__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.mission-detail__links a {
+  border: 1px solid var(--color-mission);
+  padding: 9px 12px;
+  color: var(--color-mission-bright);
+  font-family: var(--font-terminal);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+@keyframes mission-file-open {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mission-detail-scan {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(760%);
+  }
+}
+
+@keyframes mission-reticle-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .mission-files__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-files__index {
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-mission) 24%, var(--color-border-muted));
+  }
+
+  .mission-files__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .mission-files__workspace {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 680px) {
+  .mission-files__header,
+  .mission-detail__header,
+  .mission-detail__meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mission-files__header {
+    padding: 16px;
+  }
+
+  .mission-files__count {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .mission-files__index,
+  .mission-files__workspace {
+    padding: 14px;
+  }
+
+  .mission-files__list,
+  .mission-detail__sections {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-files__workspace {
+    min-height: 380px;
+  }
+
+  .mission-detail {
+    padding: 18px;
+  }
+
+  .mission-detail__close {
+    width: 100%;
+    justify-content: center;
+  }
+}

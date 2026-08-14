@@ -121,13 +121,46 @@ const resources = {
         index: "Índice de missões",
         selectedMission: "Missão selecionada",
         defined: "definidas",
+        openFile: "Abrir arquivo {{title}}",
+        openFileAction: "Abrir arquivo",
+        closeFile: "Fechar arquivo {{title}}",
+        close: "Fechar",
+        recordStatus: "Status do arquivo",
+        awaitingSelection: "Aguardando seleção",
+        selectPrompt:
+          "Selecione uma missão para consultar o registro técnico disponível.",
+        detailLabel: "Arquivo da missão {{title}}",
+        viewRepository: "Ver repositório",
+        openSystem: "Abrir sistema",
         engineeringEvidence: "Evidências de engenharia",
         technologies: "Tecnologias",
         technologiesPending: "Tecnologias aguardando confirmação.",
         thirdSlot: "Terceiro projeto a definir",
         status: {
           documenting: "Em documentação",
+          inDevelopment: "Em desenvolvimento",
+          operational: "Operacional",
+          paused: "Pausado",
+          caseStudy: "Estudo de caso",
+          planned: "Planejado",
           pending: "Evidência pendente",
+        },
+        sections: {
+          context: "Contexto",
+          problem: "Problema",
+          solution: "Solução",
+          requirements: "Requisitos",
+          architecture: "Arquitetura",
+          frontend: "Frontend",
+          backend: "Backend",
+          api: "API",
+          database: "Banco de dados",
+          testing: "Testes",
+          security: "Segurança",
+          documentation: "Documentação",
+          deployment: "Deploy",
+          challenges: "Desafios",
+          learnings: "Aprendizados",
         },
         evidence: {
           requirements: "Requisitos",
@@ -143,12 +176,31 @@ const resources = {
           pulseOps: {
             title: "PulseOps",
             summary:
-              "Arquivo reservado para a documentação técnica validada do PulseOps. Nenhuma decisão de arquitetura ou resultado será publicado sem confirmação.",
+              "Sistema de controle operacional de equipamentos médico-hospitalares.",
+            sections: {
+              context:
+                "Projeto direcionado à consulta e ao controle operacional de equipamentos médico-hospitalares.",
+              problem:
+                "O problema abordado está relacionado à consulta e ao controle operacional desses equipamentos.",
+            },
           },
           pradoEmDia: {
             title: "Prado em Dia",
             summary:
-              "Arquivo reservado para a documentação técnica validada do Prado em Dia. Requisitos, responsabilidades e evidências ainda serão confirmados.",
+              "Portal de transparência e acompanhamento administrativo para condomínio de pequeno porte.",
+            sections: {
+              context:
+                "Condomínio de pequeno porte com necessidade de centralizar informações administrativas e acompanhar sua gestão.",
+            },
+          },
+          rideWarsLeague: {
+            title: "Ride Wars League",
+            summary:
+              "Aplicação gamificada voltada ao ciclismo, com ranking, badges e desafios.",
+            sections: {
+              context:
+                "Projeto de produto gamificado aplicado ao ciclismo e à evolução da experiência entre versões.",
+            },
           },
         },
       },
@@ -365,13 +417,46 @@ const resources = {
         index: "Mission index",
         selectedMission: "Selected mission",
         defined: "defined",
+        openFile: "Open file {{title}}",
+        openFileAction: "Open file",
+        closeFile: "Close file {{title}}",
+        close: "Close",
+        recordStatus: "File status",
+        awaitingSelection: "Awaiting selection",
+        selectPrompt:
+          "Select a mission to review the available technical record.",
+        detailLabel: "Mission file {{title}}",
+        viewRepository: "View repository",
+        openSystem: "Open system",
         engineeringEvidence: "Engineering evidence",
         technologies: "Technologies",
         technologiesPending: "Technologies awaiting confirmation.",
         thirdSlot: "Third project to be defined",
         status: {
           documenting: "Being documented",
+          inDevelopment: "In development",
+          operational: "Operational",
+          paused: "Paused",
+          caseStudy: "Case study",
+          planned: "Planned",
           pending: "Evidence pending",
+        },
+        sections: {
+          context: "Context",
+          problem: "Problem",
+          solution: "Solution",
+          requirements: "Requirements",
+          architecture: "Architecture",
+          frontend: "Frontend",
+          backend: "Backend",
+          api: "API",
+          database: "Database",
+          testing: "Testing",
+          security: "Security",
+          documentation: "Documentation",
+          deployment: "Deployment",
+          challenges: "Challenges",
+          learnings: "Learnings",
         },
         evidence: {
           requirements: "Requirements",
@@ -387,12 +472,31 @@ const resources = {
           pulseOps: {
             title: "PulseOps",
             summary:
-              "Reserved file for validated PulseOps technical documentation. No architecture decision or outcome will be published without confirmation.",
+              "Operational control system for medical and hospital equipment.",
+            sections: {
+              context:
+                "Project focused on consulting and operational control of medical and hospital equipment.",
+              problem:
+                "The addressed problem relates to consulting and operational control of this equipment.",
+            },
           },
           pradoEmDia: {
             title: "Prado em Dia",
             summary:
-              "Reserved file for validated Prado em Dia technical documentation. Requirements, responsibilities and evidence are still awaiting confirmation.",
+              "Transparency and administrative tracking portal for a small condominium.",
+            sections: {
+              context:
+                "A small condominium needs to centralize administrative information and track its management.",
+            },
+          },
+          rideWarsLeague: {
+            title: "Ride Wars League",
+            summary:
+              "Gamified cycling application featuring rankings, badges and challenges.",
+            sections: {
+              context:
+                "A gamified cycling product exploring how the experience evolves between versions.",
+            },
           },
         },
       },

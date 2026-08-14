@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import { useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { missions } from "../../data/missions";
@@ -8,55 +8,70 @@ import { MissionDetail } from "./MissionDetail";
 export function MissionFiles() {
   const { t } = useTranslation();
   const titleId = useId();
-  const [selectedMissionId, setSelectedMissionId] = useState(missions[0].id);
-  const selectedMission =
-    missions.find(({ id }) => id === selectedMissionId) ?? missions[0];
+  const detailId = useId();
+  const missionControls = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [selectedMissionId, setSelectedMissionId] = useState<string | null>(
+    null,
+  );
+  const selectedMission = missions.find(
+    ({ id }) => id === selectedMissionId,
+  );
+
+  const closeMission = () => {
+    if (!selectedMission) return;
+
+    const selectedControl = missionControls.current[selectedMission.id];
+    setSelectedMissionId(null);
+    selectedControl?.focus();
+  };
 
   return (
-    <section
-      aria-labelledby={titleId}
-      className="border border-mission-amber/35 bg-[rgba(3,6,4,.94)] shadow-[0_22px_60px_rgba(0,0,0,.32)]"
-    >
-      <div className="flex items-center justify-between gap-4 border-b border-mission-amber/25 px-5 py-4">
-        <h2
-          className="font-heading text-xl font-semibold uppercase tracking-[.14em] text-mission-amber"
-          id={titleId}
-        >
-          {t("missions.title")}
-        </h2>
-        <span className="font-terminal text-xs uppercase tracking-[.14em] text-[var(--color-text-muted)]">
-          02 / 03 {t("missions.defined")}
+    <section aria-labelledby={titleId} className="mission-files">
+      <div className="mission-files__header">
+        <div>
+          <span className="mission-files__eyebrow">PROJECT ARCHIVE // 03</span>
+          <h2 id={titleId}>{t("missions.title")}</h2>
+        </div>
+        <span className="mission-files__count">
+          03 / 03 {t("missions.defined")}
         </span>
       </div>
 
-      <div className="grid grid-cols-[300px_minmax(0,1fr)] gap-4 p-4 max-[900px]:grid-cols-1">
-        <div>
-          <span className="mb-3 block font-terminal text-xs uppercase tracking-[.14em] text-[var(--color-text-muted)]">
-            {t("missions.index")}
-          </span>
-          <div className="grid gap-2">
+      <div className="mission-files__layout">
+        <div className="mission-files__index">
+          <span className="mission-files__index-label">{t("missions.index")}</span>
+          <ul aria-label={t("missions.index")} className="mission-files__list">
             {missions.map((mission) => (
-              <MissionCard
-                active={mission.id === selectedMission.id}
-                key={mission.id}
-                mission={mission}
-                onSelect={setSelectedMissionId}
-              />
+              <li key={mission.id}>
+                <MissionCard
+                  active={mission.id === selectedMission?.id}
+                  buttonRef={(element) => {
+                    missionControls.current[mission.id] = element;
+                  }}
+                  detailId={detailId}
+                  mission={mission}
+                  onSelect={setSelectedMissionId}
+                />
+              </li>
             ))}
-
-            <div
-              aria-label={t("missions.thirdSlot")}
-              className="border border-dashed border-[var(--hud-border)] p-4 text-[var(--hud-text-muted)]"
-            >
-              <span className="font-terminal text-xs tracking-[.16em]">MF-03</span>
-              <strong className="mt-3 block text-xs uppercase tracking-[.12em]">
-                {t("missions.thirdSlot")}
-              </strong>
-            </div>
-          </div>
+          </ul>
         </div>
 
-        <MissionDetail mission={selectedMission} />
+        <div className="mission-files__workspace">
+          {selectedMission ? (
+            <MissionDetail
+              detailId={detailId}
+              mission={selectedMission}
+              onClose={closeMission}
+            />
+          ) : (
+            <div className="mission-files__idle" id={detailId}>
+              <span aria-hidden="true" className="mission-files__idle-reticle" />
+              <span>{t("missions.awaitingSelection")}</span>
+              <p>{t("missions.selectPrompt")}</p>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
