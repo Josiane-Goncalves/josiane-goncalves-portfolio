@@ -17,6 +17,9 @@ export function AliaModule() {
       title={t("alia.title")}
       variant="ai"
     >
+      <p className="font-terminal text-xs uppercase tracking-[.12em] text-[var(--color-ai-bright)]">
+        {t("alia.fullName")}
+      </p>
       <p className="max-w-2xl text-base leading-7 text-[var(--color-text-muted)]">
         {t("alia.description")}
       </p>
@@ -37,6 +40,8 @@ export function AliaModule() {
 
       <div className="mt-6 border-l-2 border-alia-violet pl-4 text-sm leading-6 text-[var(--color-text-muted)]">
         <p>{t("alia.humanReview")}</p>
+        <p>{t("alia.humanValidation")}</p>
+        <p>{t("alia.humanDecision")}</p>
         <p>{t("alia.noAutonomy")}</p>
       </div>
     </HudPanel>

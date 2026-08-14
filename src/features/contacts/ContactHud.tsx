@@ -1,6 +1,9 @@
 import { useTranslation } from "react-i18next";
 
-const channels = ["GITHUB", "LINKEDIN", "EMAIL"];
+import {
+  contactChannels,
+  professionalProfile,
+} from "../../data/professional";
 
 export function ContactHud() {
   const { t } = useTranslation();
@@ -13,21 +16,27 @@ export function ContactHud() {
     >
       <div className="contact-hud__identity">
         <span>{t("shell.contactHud")}</span>
-        <strong>{t("shell.contactPending")}</strong>
+        <strong>{t("profile.availability")}</strong>
       </div>
 
       <ul aria-label={t("shell.contactChannels")}>
-        {channels.map((channel) => (
-          <li key={channel}>
-            {channel} // {t("shell.pending")}
+        {contactChannels.map(({ external, href, id, label, value }) => (
+          <li key={id}>
+            <a
+              aria-label={`${label}: ${value}`}
+              href={href}
+              rel={external ? "noopener noreferrer" : undefined}
+              target={external ? "_blank" : undefined}
+            >
+              {label} // {value}
+            </a>
           </li>
         ))}
-        <li>
-          {t("shell.curriculum")} // {t("shell.pending")}
-        </li>
       </ul>
 
-      <span className="contact-hud__location">{t("shell.location")}</span>
+      <span className="contact-hud__location">
+        {professionalProfile.location}
+      </span>
     </footer>
   );
 }

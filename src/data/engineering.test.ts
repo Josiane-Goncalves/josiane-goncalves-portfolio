@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   aliaWorkflows,
   coreTechnologies,
-  engineeringTracks,
+  engineeringAreas,
   systemStatuses,
 } from "./engineering";
 
@@ -23,8 +23,24 @@ describe("engineering data", () => {
   });
 
   it("uses unique stable identifiers", () => {
-    expectUnique(engineeringTracks.map(({ id }) => id));
+    expectUnique(engineeringAreas.map(({ id }) => id));
     expectUnique(systemStatuses.map(({ id }) => id));
     expectUnique(aliaWorkflows.map(({ id }) => id));
+  });
+
+  it("groups the approved engineering capabilities without scores", () => {
+    expect(engineeringAreas.map(({ id }) => id)).toEqual([
+      "frontend",
+      "backend",
+      "data",
+      "engineering",
+      "delivery",
+    ]);
+    expect(
+      engineeringAreas.flatMap(({ technologies }) => technologies),
+    ).toContain("React Router");
+    expect(
+      engineeringAreas.flatMap(({ capabilities }) => capabilities),
+    ).toContain("tddWhenApplicable");
   });
 });

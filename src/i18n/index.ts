@@ -35,9 +35,13 @@ const resources = {
       profile: {
         role: "Desenvolvedora de Software Júnior",
         description:
-          "Apaixonado por construir aplicações robustas, escaláveis e eficientes. Focado em código limpo, arquitetura de software e experiências digitais de qualidade.",
+          "Olá, eu sou Josiane Gonçalves. Sou Desenvolvedora de Software Júnior e construo aplicações pensando além da interface: requisitos, regras de negócio, APIs, dados, testes, documentação e entrega. Minha experiência profissional em ambientes críticos e Engenharia Clínica também influencia a forma como analiso problemas, organizo processos e desenvolvo soluções.",
         country: "Brasil",
-        focus: "Full Stack",
+        focus: "Desenvolvimento de Software | Front-end + Back-end em evolução",
+        locationLabel: "Localização",
+        focusLabel: "Foco",
+        statusLabel: "Status",
+        availability: "Disponível para oportunidades",
       },
 
       stats: {
@@ -226,6 +230,99 @@ const resources = {
           security: "Segurança",
           deploy: "Deploy",
         },
+        areas: {
+          frontend: "Frontend",
+          backend: "Backend / APIs",
+          data: "Data",
+          engineering: "Engineering",
+          delivery: "Environment / Delivery",
+        },
+        capabilities: {
+          restApis: "APIs REST",
+          frontendBackendIntegration: "Integração front-end/backend",
+          validation: "Validação",
+          dataModeling: "Modelagem de dados",
+          requirements: "Requisitos",
+          businessRules: "Regras de negócio",
+          technicalDocumentation: "Documentação técnica",
+          componentization: "Componentização",
+          testingFundamentals: "Fundamentos de testes",
+          tddWhenApplicable: "TDD quando aplicável",
+        },
+      },
+
+      professional: {
+        trajectoryMapped: "Trajetória mapeada",
+        trajectory:
+          "Minha experiência em saúde e Engenharia Clínica reúne problemas reais, processos, sistemas corporativos e ambientes críticos. Esse contexto acompanha minha formação em Análise e Desenvolvimento de Sistemas e o desenvolvimento dos meus projetos de software.",
+        experienceTitle: "Experiência profissional",
+        educationTitle: "Formação",
+        workflowTitle: "Engineering Workflow",
+        incrementalTitle: "Desenvolvimento incremental",
+        tddWhenApplicable: "TDD quando aplicável.",
+        experiences: {
+          spdm: {
+            track: "Engineering Clinical Operations",
+            role: "Auxiliar Técnico em Equipamentos Médicos",
+            period: "abr/2020 — atual",
+            summary:
+              "Instalação e suporte técnico, diagnóstico inicial de falhas, acompanhamento de equipamentos, orientação de usuários, registros, controle de movimentação e rastreabilidade. O conhecimento desse domínio contribuiu para identificar o problema que originou o PulseOps.",
+          },
+          umc: {
+            track: "Critical Operations",
+            role: "Técnica de Enfermagem",
+            period: "mai/2025 — jan/2026",
+            summary:
+              "Utilização de sistemas corporativos, registro e validação de informações, atuação com dados sensíveis, organização, comunicação multidisciplinar e resolução de problemas em ambiente crítico e de alta demanda.",
+          },
+        },
+        skills: {
+          technicalSupport: "Suporte técnico",
+          failureAnalysis: "Análise de falhas",
+          userTraining: "Treinamento de usuários",
+          records: "Registro de informações",
+          movementControl: "Controle de movimentação",
+          traceability: "Rastreabilidade",
+          corporateSystems: "Sistemas corporativos",
+          dataAccuracy: "Precisão de dados",
+          sensitiveInformation: "Informações sensíveis",
+          organization: "Organização",
+          multidisciplinaryCommunication: "Comunicação multidisciplinar",
+          problemSolving: "Resolução de problemas",
+          highDemandEnvironment: "Ambiente de alta demanda",
+        },
+        education: {
+          ads: {
+            course: "Tecnologia em Análise e Desenvolvimento de Sistemas",
+            status: "Concluído em 2026",
+          },
+          nursing: {
+            course: "Técnico em Enfermagem",
+            status: "Concluído",
+          },
+        },
+        workflow: {
+          discovery: "Discovery",
+          requirements: "Requisitos",
+          businessRules: "Regras de negócio",
+          modeling: "Modelagem",
+          test: "Teste",
+          implementation: "Implementação",
+          refactor: "Refatoração",
+          validation: "Validação",
+          documentation: "Documentação",
+          delivery: "Entrega",
+        },
+        practices: {
+          requirements: "Requisitos",
+          businessRules: "Regras de negócio",
+          acceptanceCriteria: "Critérios de aceitação",
+          documentation: "Documentação",
+          smallDeliveries: "Pequenas entregas",
+          tests: "Testes",
+          validation: "Validação antes de avançar",
+          versionControl: "Git/GitHub",
+        },
       },
 
       systemStatus: {
@@ -247,23 +344,31 @@ const resources = {
 
       alia: {
         title: "A.L.I.A.",
-        subsystem: "Subsistema de engenharia assistida por IA",
+        subsystem: "Subsistema de apoio à engenharia",
         supportMode: "Apoio supervisionado",
+        fullName: "Assistente Lógica de Implementação e Apoio",
         description:
-          "Ferramenta de apoio ao processo de engenharia para organizar análise, alternativas e verificações. Não substitui decisões técnicas nem validação humana.",
+          "IA aplicada ao desenvolvimento como apoio à pesquisa técnica, documentação, testes e investigação de erros, sempre com revisão e validação das soluções.",
         supportAreas: "Áreas de apoio",
-        humanReview: "Toda saída requer revisão humana.",
+        humanReview: "Revisão humana",
+        humanValidation: "Validação humana",
+        humanDecision: "Decisão humana",
         noAutonomy: "Nenhuma decisão autônoma ou interface de chatbot está ativa.",
         workflows: {
-          requirements: "Análise de requisitos",
-          architecture: "Exploração de arquitetura",
-          tests: "Apoio a testes",
+          technicalResearch: "Pesquisa técnica",
           documentation: "Apoio à documentação",
+          tests: "Apoio a testes",
+          errorInvestigation: "Investigação de erros",
+          alternativeAnalysis: "Análise de alternativas",
+          implementation: "Apoio à implementação",
         },
       },
 
       certifications: {
         title: "Certifications",
+        certification: "Certificação",
+        training: "Formações complementares",
+        recordsConfirmed: "Registros confirmados",
         verificationPending: "Verificação pendente",
         empty:
           "Credenciais verificadas aguardando conteúdo confirmado para publicação.",
@@ -283,7 +388,7 @@ const resources = {
         operativeRecord: "Registro da operadora",
         coreStack: "Stack principal",
         identitySignature: "Design // Build // Validate",
-        location: "Uberlândia // MG",
+        location: "Uberlândia // MG // Brasil",
         operativeName: "Operadora Josiane Gonçalves",
         visualChannel: "Canal visual",
         characterPlaceholder: "Espaço reservado para a personagem de Josiane Gonçalves",
@@ -331,9 +436,13 @@ const resources = {
       profile: {
         role: "Junior Software Developer",
         description:
-          "Passionate about building robust, scalable and efficient applications. Focused on clean code, software architecture and high-quality digital experiences.",
+          "Hello, I'm Josiane Gonçalves. I'm a Junior Software Developer, and I build applications while thinking beyond the interface: requirements, business rules, APIs, data, testing, documentation and delivery. My professional experience in critical environments and Clinical Engineering also influences how I analyze problems, organize processes and develop solutions.",
         country: "Brazil",
-        focus: "Full Stack",
+        focus: "Software Development | Front-end + Back-end evolving",
+        locationLabel: "Location",
+        focusLabel: "Focus",
+        statusLabel: "Status",
+        availability: "Open to opportunities",
       },
 
       stats: {
@@ -522,6 +631,99 @@ const resources = {
           security: "Security",
           deploy: "Deployment",
         },
+        areas: {
+          frontend: "Frontend",
+          backend: "Backend / APIs",
+          data: "Data",
+          engineering: "Engineering",
+          delivery: "Environment / Delivery",
+        },
+        capabilities: {
+          restApis: "REST APIs",
+          frontendBackendIntegration: "Front-end/backend integration",
+          validation: "Validation",
+          dataModeling: "Data modeling",
+          requirements: "Requirements",
+          businessRules: "Business rules",
+          technicalDocumentation: "Technical documentation",
+          componentization: "Componentization",
+          testingFundamentals: "Testing fundamentals",
+          tddWhenApplicable: "TDD when applicable",
+        },
+      },
+
+      professional: {
+        trajectoryMapped: "Trajectory mapped",
+        trajectory:
+          "My experience in healthcare and Clinical Engineering brings together real problems, processes, corporate systems and critical environments. This context accompanies my education in Systems Analysis and Development and the development of my software projects.",
+        experienceTitle: "Professional experience",
+        educationTitle: "Education",
+        workflowTitle: "Engineering Workflow",
+        incrementalTitle: "Incremental development",
+        tddWhenApplicable: "TDD when applicable.",
+        experiences: {
+          spdm: {
+            track: "Engineering Clinical Operations",
+            role: "Medical Equipment Technical Assistant",
+            period: "Apr/2020 — present",
+            summary:
+              "Technical installation and support, initial failure diagnosis, equipment monitoring, user guidance, records, movement control and traceability. Knowledge of this domain contributed to identifying the problem that originated PulseOps.",
+          },
+          umc: {
+            track: "Critical Operations",
+            role: "Nursing Technician",
+            period: "May/2025 — Jan/2026",
+            summary:
+              "Use of corporate systems, recording and validation of information, work with sensitive data, organization, multidisciplinary communication and problem solving in a critical, high-demand environment.",
+          },
+        },
+        skills: {
+          technicalSupport: "Technical support",
+          failureAnalysis: "Failure analysis",
+          userTraining: "User training",
+          records: "Information records",
+          movementControl: "Movement control",
+          traceability: "Traceability",
+          corporateSystems: "Corporate systems",
+          dataAccuracy: "Data accuracy",
+          sensitiveInformation: "Sensitive information",
+          organization: "Organization",
+          multidisciplinaryCommunication: "Multidisciplinary communication",
+          problemSolving: "Problem solving",
+          highDemandEnvironment: "High-demand environment",
+        },
+        education: {
+          ads: {
+            course: "Technology in Systems Analysis and Development",
+            status: "Completed in 2026",
+          },
+          nursing: {
+            course: "Nursing Technician",
+            status: "Completed",
+          },
+        },
+        workflow: {
+          discovery: "Discovery",
+          requirements: "Requirements",
+          businessRules: "Business rules",
+          modeling: "Modeling",
+          test: "Test",
+          implementation: "Implementation",
+          refactor: "Refactor",
+          validation: "Validation",
+          documentation: "Documentation",
+          delivery: "Delivery",
+        },
+        practices: {
+          requirements: "Requirements",
+          businessRules: "Business rules",
+          acceptanceCriteria: "Acceptance criteria",
+          documentation: "Documentation",
+          smallDeliveries: "Small deliveries",
+          tests: "Tests",
+          validation: "Validation before advancing",
+          versionControl: "Git/GitHub",
+        },
       },
 
       systemStatus: {
@@ -543,23 +745,31 @@ const resources = {
 
       alia: {
         title: "A.L.I.A.",
-        subsystem: "AI-assisted engineering subsystem",
+        subsystem: "Engineering support subsystem",
         supportMode: "Supervised support",
+        fullName: "Logical Implementation and Support Assistant",
         description:
-          "A support tool for organizing engineering analysis, alternatives and checks. It does not replace technical decisions or human validation.",
+          "AI applied to development as support for technical research, documentation, testing and error investigation, always with human review and validation of solutions.",
         supportAreas: "Support areas",
-        humanReview: "Every output requires human review.",
+        humanReview: "Human review",
+        humanValidation: "Human validation",
+        humanDecision: "Human decision",
         noAutonomy: "No autonomous decisions or chatbot interface are active.",
         workflows: {
-          requirements: "Requirements analysis",
-          architecture: "Architecture exploration",
-          tests: "Testing support",
+          technicalResearch: "Technical research",
           documentation: "Documentation support",
+          tests: "Testing support",
+          errorInvestigation: "Error investigation",
+          alternativeAnalysis: "Alternative analysis",
+          implementation: "Implementation support",
         },
       },
 
       certifications: {
         title: "Certifications",
+        certification: "Certification",
+        training: "Complementary training",
+        recordsConfirmed: "Confirmed records",
         verificationPending: "Verification pending",
         empty:
           "Verified credentials are awaiting confirmed content for publication.",
@@ -579,7 +789,7 @@ const resources = {
         operativeRecord: "Operator record",
         coreStack: "Core stack",
         identitySignature: "Design // Build // Validate",
-        location: "Uberlândia // MG",
+        location: "Uberlândia // MG // Brazil",
         operativeName: "Operator Josiane Gonçalves",
         visualChannel: "Visual channel",
         characterPlaceholder: "Reserved space for Josiane Gonçalves character artwork",

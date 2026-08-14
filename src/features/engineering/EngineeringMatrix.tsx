@@ -1,18 +1,13 @@
 import { useTranslation } from "react-i18next";
 
 import { HudPanel } from "../../components/HudPanel";
-import { StatusBadge } from "../../components/StatusBadge";
-import { coreTechnologies, engineeringTracks } from "../../data/engineering";
+import { coreTechnologies, engineeringAreas } from "../../data/engineering";
 
 export function EngineeringMatrix() {
   const { t } = useTranslation();
 
   return (
-    <HudPanel
-      className="h-full"
-      title={t("engineering.title")}
-      variant="system"
-    >
+    <HudPanel className="h-full" title={t("engineering.title")} variant="system">
       <h3 className="font-terminal text-xs uppercase tracking-[.16em] text-[var(--color-text-muted)]">
         {t("engineering.coreTechnologies")}
       </h3>
@@ -27,21 +22,38 @@ export function EngineeringMatrix() {
         ))}
       </ul>
 
-      <h3 className="mt-7 font-terminal text-xs uppercase tracking-[.16em] text-[var(--color-text-muted)]">
-        {t("engineering.coverage")}
-      </h3>
-      <ul className="mt-3 grid grid-cols-2 gap-2 max-[540px]:grid-cols-1">
-        {engineeringTracks.map(({ id, status, translationKey }) => (
-          <li className="border border-[var(--color-border-muted)] bg-[var(--color-surface-elevated)] p-3" key={id}>
-            <span className="block font-terminal text-xs uppercase tracking-[.08em] text-[var(--color-text)]">
-              {t(`engineering.tracks.${translationKey}`)}
-            </span>
-            <StatusBadge className="mt-3" status="mapping">
-              {t(`engineering.status.${status}`)}
-            </StatusBadge>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-7 grid gap-3">
+        {engineeringAreas.map(
+          ({ id, translationKey, technologies, capabilities }) => (
+            <section
+              className="border border-[var(--color-border-muted)] bg-[var(--color-surface-elevated)] p-4"
+              key={id}
+            >
+              <h3 className="font-terminal text-xs uppercase tracking-[.14em] text-[var(--color-system-bright)]">
+                {t(`engineering.areas.${translationKey}`)}
+              </h3>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {technologies.map((technology) => (
+                  <li
+                    className="border border-system-lime/25 px-2 py-1 font-terminal text-xs text-[var(--color-text)]"
+                    key={technology}
+                  >
+                    {technology}
+                  </li>
+                ))}
+                {capabilities.map((capability) => (
+                  <li
+                    className="border border-[var(--color-border-muted)] px-2 py-1 font-terminal text-xs text-[var(--color-text-muted)]"
+                    key={capability}
+                  >
+                    {t(`engineering.capabilities.${capability}`)}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ),
+        )}
+      </div>
     </HudPanel>
   );
 }
