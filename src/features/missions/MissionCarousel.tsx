@@ -2,6 +2,7 @@ import type { CSSProperties, KeyboardEvent, Ref } from "react";
 import { useTranslation } from "react-i18next";
 
 import type { Mission } from "../../data/missions";
+import { MissionMeter } from "./MissionMeter";
 
 type MissionCarouselProps = {
   activeIndex: number;
@@ -65,6 +66,12 @@ export function MissionCarousel({
       <div aria-hidden="true" className="mission-carousel__axis" />
 
       <div className="mission-carousel__viewport">
+        <div
+          aria-hidden="true"
+          className="mission-carousel__glow"
+          data-mission-glow={activeIndex + 1}
+          key={activeMission.id}
+        />
         <div className="mission-carousel__scene">
           <div
             className="mission-carousel__wheel"
@@ -161,9 +168,12 @@ export function MissionCarousel({
           <span aria-hidden="true">←</span> {t("missions.previous")}
         </button>
 
-        <span aria-live="polite" className="mission-carousel__counter">
-          {formatCounter(activeIndex + 1)} / {formatCounter(missions.length)}
-        </span>
+        <div className="mission-carousel__channel">
+          <MissionMeter activeIndex={activeIndex} total={missions.length} />
+          <span aria-live="polite" className="mission-carousel__counter">
+            {formatCounter(activeIndex + 1)} / {formatCounter(missions.length)}
+          </span>
+        </div>
 
         <button
           aria-label={t("missions.nextMission")}

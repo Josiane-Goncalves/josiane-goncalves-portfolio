@@ -45,9 +45,16 @@ describe("MissionFiles", () => {
   });
 
   it("starts with Mission 001 selected without opening its detail", () => {
-    render(<MissionFiles />);
+    const { container } = render(<MissionFiles />);
 
     expectSelectedMission("MISSION 001", "PulseOps", "01 / 03");
+    const missionMeter = container.querySelector("[data-mission-meter]");
+
+    expect(missionMeter).toHaveAttribute("aria-hidden", "true");
+    expect(missionMeter).toHaveAttribute("data-position", "1");
+    expect(missionMeter).not.toHaveAttribute("role", "progressbar");
+    expect(missionMeter).not.toHaveAttribute("aria-valuenow");
+    expect(missionMeter).not.toHaveAttribute("aria-valuemax");
     expect(
       screen.queryByRole("region", { name: "Arquivo da missão PulseOps" }),
     ).not.toBeInTheDocument();
@@ -55,11 +62,15 @@ describe("MissionFiles", () => {
 
   it("keeps Next synchronized with the index and carousel", async () => {
     const user = userEvent.setup();
-    render(<MissionFiles />);
+    const { container } = render(<MissionFiles />);
 
     await user.click(screen.getByRole("button", { name: "Próxima missão" }));
 
     expectSelectedMission("MISSION 002", "Prado em Dia", "02 / 03");
+    expect(container.querySelector("[data-mission-meter]")).toHaveAttribute(
+      "data-position",
+      "2",
+    );
   });
 
   it("keeps Previous synchronized and wraps Mission 001 to Mission 003", async () => {
