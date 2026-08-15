@@ -32,11 +32,15 @@ describe("CharacterStage", () => {
 
     expect(within(companion).getByText("A.L.I.A.")).toBeInTheDocument();
     expect(
-      within(companion).getByText("Assistente Lógica de Implementação e Apoio"),
-    ).toBeInTheDocument();
+      within(companion).queryByText("Assistente Lógica de Implementação e Apoio"),
+    ).not.toBeInTheDocument();
     expect(within(companion).queryByRole("button")).not.toBeInTheDocument();
     expect(within(companion).queryByRole("link")).not.toBeInTheDocument();
+    expect(within(companion).queryByRole("textbox")).not.toBeInTheDocument();
     expect(companion).toHaveAttribute("tabindex", "0");
+    expect(container.querySelector(".character-stage__viewport")).toContainElement(
+      companion,
+    );
     expect(container.querySelector(".character-stage__companion-frame")).not.toBeInTheDocument();
     expect(container.querySelector(".character-stage__frame-marker")).toHaveTextContent(
       "FRAME // 01",

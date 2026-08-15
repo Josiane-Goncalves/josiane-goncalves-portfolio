@@ -52,7 +52,6 @@ export function CharacterStage() {
           />
           <figcaption className="character-stage__alia-label">
             <strong>A.L.I.A.</strong>
-            <small>{t("alia.fullName")}</small>
           </figcaption>
         </figure>
       </div>
