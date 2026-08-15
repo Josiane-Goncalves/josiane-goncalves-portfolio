@@ -69,13 +69,21 @@ describe("engineering modules", () => {
     expect(screen.queryByText(/desenvolvedora? (?:na|da) (?:SPDM|UMC)/i)).not.toBeInTheDocument();
   });
 
-  it("combines education, certification and selected training without duplication", () => {
-    const { container } = render(<CertificationsPanel />);
+  it("presents factual education without quantitative or decorative progress in PT and EN", async () => {
+    const { container, rerender } = render(<CertificationsPanel />);
 
     expect(container.querySelector(".certifications-panel")).toHaveAttribute(
       "data-variant",
       "credential",
     );
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Formação & Certificações" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: "Formação" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: "Certificação" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Formações complementares" }),
+    ).toBeInTheDocument();
 
     expect(screen.getByText("Tecnologia em Análise e Desenvolvimento de Sistemas")).toBeInTheDocument();
     expect(screen.getByText("UniCV")).toBeInTheDocument();
@@ -83,9 +91,28 @@ describe("engineering modules", () => {
     expect(screen.getByText("Técnico em Enfermagem")).toBeInTheDocument();
     expect(screen.getByText("Escola Técnica Santa Edwiges")).toBeInTheDocument();
     expect(screen.getByText("AWS Certified Cloud Practitioner")).toBeInTheDocument();
-    expect(screen.getByText("Redes e Sistemas")).toBeInTheDocument();
-    expect(screen.getByText("Ada")).toBeInTheDocument();
+    expect(screen.getByText("Redes e Sistemas").closest("li")).toHaveTextContent(
+      "Ada",
+    );
     expect(screen.queryByText("Formação HTML Web Developer")).not.toBeInTheDocument();
+    expect(container.querySelector("[data-formation-trajectory]")).not.toBeInTheDocument();
+    expect(container.querySelector("[data-signal-bars]")).not.toBeInTheDocument();
+    expect(container.querySelector('[role="progressbar"]')).not.toBeInTheDocument();
+    expect(container).not.toHaveTextContent(/\d+%/);
+
+    await i18n.changeLanguage("en");
+    rerender(<CertificationsPanel />);
+
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Education & Certifications" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: "Education" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 3, name: "Certification" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Complementary training" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Completed in 2026")).toBeInTheDocument();
+    expect(screen.getByText("Completed")).toBeInTheDocument();
   });
 
   it("keeps Engineering Log focused on professional trajectory", () => {

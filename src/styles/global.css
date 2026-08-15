@@ -642,50 +642,27 @@
   line-height: 1.6;
 }
 
-.certifications-panel .hud-panel__body {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: auto minmax(0, 1fr);
-  align-items: stretch;
-  gap: 20px;
+.certifications-panel__body {
+  display: block;
+  padding: 0;
 }
 
-.certifications-panel .signal-bars {
-  color: var(--color-interface-bright);
-}
-
-.certifications-panel__education-list > li,
-.certifications-panel__primary-list > li {
-  border: 0;
-  border-top: 1px solid color-mix(in srgb, var(--color-interface) 30%, var(--color-border-muted));
-  border-left: 1px solid color-mix(in srgb, var(--color-interface) 22%, var(--color-border-muted));
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--color-interface) 4%, transparent), transparent 56%),
-    color-mix(in srgb, var(--color-surface-elevated) 88%, transparent);
-}
-
-.certifications-panel__primary-list > li {
-  border-top-color: color-mix(in srgb, var(--color-mission) 38%, var(--color-border-muted));
-  border-left-color: color-mix(in srgb, var(--color-mission) 28%, var(--color-border-muted));
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--color-mission) 4%, transparent), transparent 56%),
-    color-mix(in srgb, var(--color-surface-elevated) 88%, transparent);
-}
-
-.certifications-panel__education-list > li > span:first-of-type {
-  color: var(--color-interface-bright);
-}
-
-.certifications-panel__training-list > li {
-  border-left-color: color-mix(in srgb, var(--color-interface) 42%, var(--color-border-muted));
-}
-
-.certifications-panel__header-signal {
+.certifications-panel__header-meta {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.certifications-panel__records {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: 20px 22px;
+  padding: clamp(18px, 2.2vw, 28px);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-interface) 3%, transparent), transparent 52%);
 }
 
 .certifications-panel__education,
@@ -694,18 +671,146 @@
   min-width: 0;
 }
 
+.certifications-panel__records h3 {
+  margin: 0;
+  color: var(--color-interface-bright);
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.certifications-panel__primary h3 {
+  color: var(--color-mission-bright);
+}
+
+.certifications-panel__education-list,
+.certifications-panel__primary-list,
+.certifications-panel__training-list {
+  margin-top: 10px;
+  list-style: none;
+}
+
+.certifications-panel__education-list > li {
+  position: relative;
+  border-bottom: 1px solid var(--color-border-muted);
+  padding: 9px 0 9px 11px;
+}
+
+.certifications-panel__education-list > li::before {
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 1px;
+  background: color-mix(in srgb, var(--color-interface) 38%, var(--color-border-muted));
+  content: "";
+}
+
+.certifications-panel__education-list > li[data-primary]::before {
+  width: 2px;
+  background: var(--color-interface);
+}
+
+.certifications-panel__education-list strong,
+.certifications-panel__education-list span,
+.certifications-panel__education-list small,
+.certifications-panel__primary-list strong,
+.certifications-panel__primary-list span,
+.certifications-panel__training-list strong,
+.certifications-panel__training-list span {
+  display: block;
+}
+
+.certifications-panel__education-list strong {
+  color: var(--color-text);
+  font-family: var(--font-interface);
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.certifications-panel__education-list > li[data-primary] strong {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.certifications-panel__education-list span {
+  margin-top: 3px;
+  color: var(--color-interface-bright);
+  font-size: 0.8rem;
+}
+
+.certifications-panel__education-list small {
+  margin-top: 2px;
+  color: var(--color-text-muted);
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
+}
+
+.certifications-panel__primary-list > li {
+  border-left: 2px solid var(--color-mission);
+  border-bottom: 1px solid color-mix(in srgb, var(--color-mission) 24%, var(--color-border-muted));
+  padding: 10px 0 10px 12px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-mission) 5%, transparent), transparent 70%);
+}
+
+.certifications-panel__primary-list strong {
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.certifications-panel__primary-list span {
+  margin-top: 4px;
+  color: var(--color-mission-bright);
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
+}
+
 .certifications-panel__training {
-  display: grid;
-  margin-top: 0;
   grid-column: 1 / -1;
-  grid-template-rows: auto minmax(0, 1fr);
 }
 
 .certifications-panel__training-list {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: minmax(48px, 1fr);
-  align-content: stretch;
-  column-gap: 16px;
+  gap: 0 18px;
+}
+
+.certifications-panel__training-list > li {
+  position: relative;
+  min-width: 0;
+  border-bottom: 1px solid var(--color-border-muted);
+  padding: 7px 0 7px 11px;
+}
+
+.certifications-panel__training-list > li::before {
+  position: absolute;
+  top: 13px;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  background: var(--color-interface);
+  content: "";
+}
+
+.certifications-panel__training-list strong {
+  color: var(--color-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.certifications-panel__training-list span {
+  margin-top: 2px;
+  color: var(--color-text-muted);
+  font-family: var(--font-technical);
+  font-size: 0.75rem;
 }
 
 .signal-bars {
@@ -1750,18 +1855,6 @@
     height: auto;
   }
 
-  .certifications-panel .hud-panel__body {
-    grid-template-rows: auto;
-  }
-
-  .certifications-panel__training {
-    display: block;
-  }
-
-  .certifications-panel__training-list {
-    grid-auto-rows: auto;
-  }
-
   .app-shell__desktop-navigation {
     display: none;
   }
@@ -1864,12 +1957,12 @@
     height: 60px;
   }
 
-  .certifications-panel .hud-panel__body {
+  .certifications-panel__records {
     grid-template-columns: minmax(0, 1fr);
   }
 
   .certifications-panel__training {
-    margin-top: 24px;
+    grid-column: auto;
   }
 
   .certifications-panel__training-list {
