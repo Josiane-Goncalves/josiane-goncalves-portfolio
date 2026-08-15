@@ -23,7 +23,7 @@
   --color-danger: #e27568;
   --color-focus: #d6f58e;
 
-  /* Typography roles use resilient local system stacks. */
+  /* Fallbacks for the approved Rajdhani and Share Tech Mono families. */
   --font-display: "Arial Narrow", "Roboto Condensed", "Segoe UI", sans-serif;
   --font-interface: Inter, "Segoe UI", Roboto, Arial, sans-serif;
   --font-technical: "Cascadia Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
@@ -39,16 +39,4 @@
   --motion-standard: 220ms;
   --motion-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --shadow-elevated: 0 20px 50px rgb(0 0 0 / 32%);
-
-  /* Compatibility aliases while legacy components are migrated. */
-  --hud-system-lime: var(--color-system);
-  --hud-interface-cyan: var(--color-interface);
-  --hud-mission-amber: var(--color-mission);
-  --hud-alia-violet: var(--color-ai);
-  --hud-surface-deep: var(--color-background);
-  --hud-surface-panel: var(--color-surface);
-  --hud-border: var(--color-border-muted);
-  --hud-text: var(--color-text);
-  --hud-text-muted: var(--color-text-muted);
-  --hud-focus: var(--color-focus);
 }

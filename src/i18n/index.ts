@@ -7,117 +7,19 @@ const resources = {
       common: {
         profile: "Perfil",
         projects: "Projetos",
-        skills: "Habilidades",
         experience: "Experiência",
-        contact: "Contato",
-        condition: "Condição",
-        portfolioStats: "Estatísticas do portfólio",
-        systemLog: "Log do sistema",
-        techStack: "Tecnologias",
-        status: "Status",
-        stable: "Estável",
-        health: "Saúde",
-        optimal: "Ótimo",
-        location: "Localização",
-        focus: "Foco",
-        availability: "Disponibilidade",
-        available: "Disponível para oportunidades",
-        yearsExperience: "Anos de experiência",
-        autoRotationActive: "Rotação automática ativa",
-        rotationPaused: "Rotação pausada",
-        selectCategory: "Selecione uma categoria",
-        previousProject: "Projeto anterior",
-        nextProject: "Próximo projeto",
-        goToProject: "Ir para o projeto",
         languageSelector: "Selecionar idioma",
       },
 
       profile: {
         role: "Desenvolvedora de Software Júnior",
-        description:
-          "Olá, eu sou Josiane Gonçalves. Sou Desenvolvedora de Software Júnior e construo aplicações pensando além da interface: requisitos, regras de negócio, APIs, dados, testes, documentação e entrega. Minha experiência profissional em ambientes críticos e Engenharia Clínica também influencia a forma como analiso problemas, organizo processos e desenvolvo soluções.",
-        country: "Brasil",
-        focus: "Desenvolvimento de Software | Front-end + Back-end em evolução",
-        locationLabel: "Localização",
-        focusLabel: "Foco",
+        greeting: "Olá, eu sou a Josiane.",
+        trajectory:
+          "Minha trajetória une saúde, Engenharia Clínica e desenvolvimento de software. Depois de anos trabalhando com pessoas, equipamentos e processos críticos, passei a transformar problemas reais em soluções digitais.",
+        practice:
+          "Hoje desenvolvo aplicações com atenção a requisitos, arquitetura, testes, documentação e entregas incrementais.",
         statusLabel: "Status",
         availability: "Disponível para oportunidades",
-      },
-
-      stats: {
-        projects: "Projetos",
-        years: "Anos de experiência",
-        technologies: "Tecnologias",
-        satisfaction: "Satisfação",
-      },
-
-      skills: {
-        programming: "Programação",
-        systemDesign: "Arquitetura de sistemas",
-        backend: "Backend",
-        frontend: "Frontend",
-        databases: "Bancos de dados",
-        devops: "DevOps",
-        problemSolving: "Resolução de problemas",
-      },
-
-      experience: {
-        items: {
-          pda: {
-            period: "2022 — ATUALMENTE",
-            role: "DESENVOLVEDOR FULLSTACK SÊNIOR",
-            company: "PDA SOLUÇÕES",
-            description:
-              "Desenvolvimento de aplicações React e TypeScript, Nest.JS, CI/CD, WebSockets, integrações, soluções de impressão, sistemas WMS e plataformas corporativas.",
-          },
-
-          softwareOperations: {
-            period: "2020 — 2022",
-            role: "DESENVOLVEDOR FULL STACK",
-            company: "FREELANCER",
-            description:
-              "Desenvolvimento de APIs, dashboards, automações, autenticação e serviços internos.",
-          },
-        },
-      },
-
-      projects: {
-        wmsControl: {
-          title: "WMS Control",
-          status: "Status do armazém",
-          description:
-            "Painel operacional para conferência, impressão, rastreamento e gestão logística.",
-        },
-        dinoArchive: {
-          title: "Dino Archive",
-          status: "Ativos protegidos",
-          description:
-            "Aplicação full stack para catálogo e visualização de registros históricos.",
-        },
-        secureGate: {
-          title: "Secure Gate",
-          status: "Acesso permitido",
-          description:
-            "Serviço de autenticação com permissões, refresh token e trilha de auditoria.",
-        },
-        goRelay: {
-          title: "Go Relay",
-          status: "Canal online",
-          description:
-            "Serviço concorrente em Go para processamento e distribuição de mensagens.",
-        },
-        opsLogbook: {
-          title: "Ops Logbook",
-          status: "Registro de missão",
-          description:
-            "Painel interno para acompanhamento de tarefas, incidentes e indicadores.",
-        },
-        breachSimulator: {
-          title: "Breach Simulator",
-          status: "Falha de contenção",
-          description:
-            "Laboratório de arquitetura, segurança e observabilidade para microsserviços.",
-        },
       },
 
       missions: {
@@ -125,8 +27,6 @@ const resources = {
         index: "Índice de missões",
         carouselLabel: "Carrossel de missões",
         selectMission: "Selecionar missão {{title}}",
-        selectAction: "Selecionar",
-        currentMission: "Missão atual",
         repositoryAction: "GitHub // Repositório",
         repositoryPending: "URL do repositório pendente",
         repositoryUnavailable:
@@ -145,16 +45,10 @@ const resources = {
         closeFile: "Fechar arquivo {{title}}",
         close: "Fechar",
         recordStatus: "Status do arquivo",
-        awaitingSelection: "Aguardando seleção",
-        selectPrompt:
-          "Selecione uma missão para consultar o registro técnico disponível.",
         detailLabel: "Arquivo da missão {{title}}",
         viewRepository: "Ver repositório",
         openSystem: "Abrir sistema",
-        engineeringEvidence: "Evidências de engenharia",
         technologies: "Tecnologias",
-        technologiesPending: "Tecnologias aguardando confirmação.",
-        thirdSlot: "Terceiro projeto a definir",
         status: {
           documenting: "Em documentação",
           inDevelopment: "Em desenvolvimento",
@@ -477,23 +371,17 @@ const resources = {
         skipToContent: "Pular para o conteúdo",
         commandIndex: "Índice de comando",
         systemOnline: "Sistema online",
-        identityBrief: "Identidade",
         operativeRecord: "Registro da operadora",
         coreStack: "Stack principal",
-        identitySignature: "Design // Build // Validate",
-        location: "Uberlândia // MG // Brasil",
+        identitySignature: "Understand // Build // Validate",
         operativeName: "Operadora Josiane Gonçalves",
         visualChannel: "Canal visual",
         characterAlt:
           "Representação estilizada de Josiane Gonçalves segurando um notebook.",
-        characterPlaceholder: "Espaço reservado para a personagem de Josiane Gonçalves",
-        assetPending: "Asset visual pendente",
         contactHud: "Nó de contato",
-        contactPending: "Canais aguardando validação",
         contactChannels: "Canais de contato",
         curriculum: "Currículo",
         downloadResume: "Baixar currículo em PDF",
-        pending: "PENDENTE",
       },
     },
   },
@@ -503,117 +391,19 @@ const resources = {
       common: {
         profile: "Profile",
         projects: "Projects",
-        skills: "Skills",
         experience: "Experience",
-        contact: "Contact",
-        condition: "Condition",
-        portfolioStats: "Portfolio Stats",
-        systemLog: "System Log",
-        techStack: "Tech Stack",
-        status: "Status",
-        stable: "Stable",
-        health: "Health",
-        optimal: "Optimal",
-        location: "Location",
-        focus: "Focus",
-        availability: "Availability",
-        available: "Open to opportunities",
-        yearsExperience: "Years of experience",
-        autoRotationActive: "Auto rotation active",
-        rotationPaused: "Rotation paused",
-        selectCategory: "Select a category",
-        previousProject: "Previous project",
-        nextProject: "Next project",
-        goToProject: "Go to project",
         languageSelector: "Select language",
       },
 
       profile: {
         role: "Junior Software Developer",
-        description:
-          "Hello, I'm Josiane Gonçalves. I'm a Junior Software Developer, and I build applications while thinking beyond the interface: requirements, business rules, APIs, data, testing, documentation and delivery. My professional experience in critical environments and Clinical Engineering also influences how I analyze problems, organize processes and develop solutions.",
-        country: "Brazil",
-        focus: "Software Development | Front-end + Back-end evolving",
-        locationLabel: "Location",
-        focusLabel: "Focus",
+        greeting: "Hello, I'm Josiane.",
+        trajectory:
+          "My journey combines healthcare, Clinical Engineering and software development. After years working with people, equipment and critical processes, I began turning real-world problems into digital solutions.",
+        practice:
+          "Today I develop applications with attention to requirements, architecture, testing, documentation and incremental delivery.",
         statusLabel: "Status",
         availability: "Open to opportunities",
-      },
-
-      stats: {
-        projects: "Projects",
-        years: "Years of experience",
-        technologies: "Technologies",
-        satisfaction: "Satisfaction",
-      },
-
-      skills: {
-        programming: "Programming",
-        systemDesign: "System Design",
-        backend: "Backend",
-        frontend: "Frontend",
-        databases: "Databases",
-        devops: "DevOps",
-        problemSolving: "Problem Solving",
-      },
-
-      experience: {
-        items: {
-          pda: {
-            period: "2022 — PRESENT",
-            role: "SENIOR FULLSTACK DEVELOPER",
-            company: "PDA SOLUÇÕES",
-            description:
-              "Development of React and TypeScript applications, Nesjt.JS, CI/CD, WebSockets, integrations, printing solutions, WMS systems and enterprise platforms.",
-          },
-
-          softwareOperations: {
-            period: "2020 — 2022",
-            role: "FREELANCER",
-            company: "SOFTWARE OPERATIONS",
-            description:
-              "Development of APIs, dashboards, automations, authentication and internal services.",
-          },
-        },
-      },
-
-      projects: {
-        wmsControl: {
-          title: "WMS Control",
-          status: "Warehouse status",
-          description:
-            "Operational dashboard for checking, printing, tracking and logistics management.",
-        },
-        dinoArchive: {
-          title: "Dino Archive",
-          status: "Assets secured",
-          description:
-            "Full-stack application for cataloging and viewing historical records.",
-        },
-        secureGate: {
-          title: "Secure Gate",
-          status: "Access granted",
-          description:
-            "Authentication service with permissions, refresh tokens and audit trails.",
-        },
-        goRelay: {
-          title: "Go Relay",
-          status: "Channel online",
-          description:
-            "Concurrent Go service for message processing and distribution.",
-        },
-        opsLogbook: {
-          title: "Ops Logbook",
-          status: "Mission log",
-          description:
-            "Internal dashboard for tracking tasks, incidents and operational metrics.",
-        },
-        breachSimulator: {
-          title: "Breach Simulator",
-          status: "Containment breach",
-          description:
-            "Architecture, security and observability laboratory for microservices.",
-        },
       },
 
       missions: {
@@ -621,8 +411,6 @@ const resources = {
         index: "Mission index",
         carouselLabel: "Mission carousel",
         selectMission: "Select mission {{title}}",
-        selectAction: "Select",
-        currentMission: "Current mission",
         repositoryAction: "GitHub // Repository",
         repositoryPending: "Repository URL pending",
         repositoryUnavailable:
@@ -641,16 +429,10 @@ const resources = {
         closeFile: "Close file {{title}}",
         close: "Close",
         recordStatus: "File status",
-        awaitingSelection: "Awaiting selection",
-        selectPrompt:
-          "Select a mission to review the available technical record.",
         detailLabel: "Mission file {{title}}",
         viewRepository: "View repository",
         openSystem: "Open system",
-        engineeringEvidence: "Engineering evidence",
         technologies: "Technologies",
-        technologiesPending: "Technologies awaiting confirmation.",
-        thirdSlot: "Third project to be defined",
         status: {
           documenting: "Being documented",
           inDevelopment: "In development",
@@ -973,23 +755,17 @@ const resources = {
         skipToContent: "Skip to content",
         commandIndex: "Command index",
         systemOnline: "System online",
-        identityBrief: "Identity",
         operativeRecord: "Operator record",
         coreStack: "Core stack",
-        identitySignature: "Design // Build // Validate",
-        location: "Uberlândia // MG // Brazil",
+        identitySignature: "Understand // Build // Validate",
         operativeName: "Operator Josiane Gonçalves",
         visualChannel: "Visual channel",
         characterAlt:
           "Stylized representation of Josiane Gonçalves holding a laptop.",
-        characterPlaceholder: "Reserved space for Josiane Gonçalves character artwork",
-        assetPending: "Visual asset pending",
         contactHud: "Contact node",
-        contactPending: "Channels awaiting verification",
         contactChannels: "Contact channels",
         curriculum: "Résumé",
         downloadResume: "Download résumé PDF",
-        pending: "PENDING",
       },
     },
   },

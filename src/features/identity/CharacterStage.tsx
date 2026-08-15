@@ -30,8 +30,12 @@ export function CharacterStage() {
             alt={t("shell.characterAlt")}
             className="character-stage__asset"
             data-asset-state="ready"
+            decoding="async"
             draggable={false}
+            fetchPriority="high"
+            height="1536"
             src={josianeCharacter}
+            width="1024"
           />
         </div>
 
@@ -47,8 +51,11 @@ export function CharacterStage() {
           <img
             alt=""
             className="character-stage__alia-image"
+            decoding="async"
             draggable={false}
+            height="320"
             src={aliaMascot}
+            width="320"
           />
           <figcaption className="character-stage__alia-label">
             <strong>A.L.I.A.</strong>

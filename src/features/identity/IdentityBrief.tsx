@@ -29,7 +29,11 @@ export function IdentityBrief() {
         ))}
       </p>
 
-      <p className="identity-brief__summary">{t("profile.description")}</p>
+      <div className="identity-brief__summary">
+        <p>{t("profile.greeting")}</p>
+        <p>{t("profile.trajectory")}</p>
+        <p>{t("profile.practice")}</p>
+      </div>
 
       <div className="identity-brief__availability">
         <div>

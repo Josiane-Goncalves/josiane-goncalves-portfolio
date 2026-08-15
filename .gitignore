@@ -116,3 +116,4 @@ storybook-static/
 # Arquivos locais do projeto
 local/
 private/
+.vercel

@@ -227,14 +227,14 @@ describe("engineering modules", () => {
     expect(container.querySelector("[data-opportunity-radar]")).not.toBeInTheDocument();
     expect(screen.queryAllByText("Operacional")).toHaveLength(0);
     for (const value of [
-      "Pronta",
       "PT / EN",
       "03 projetos",
       "Matrix + Log",
-      "Integrada",
-      "Disponível",
     ]) {
       expect(screen.getByText(value)).toBeInTheDocument();
+    }
+    for (const redundantValue of ["Pronta", "Integrada", "Disponível"]) {
+      expect(screen.queryByText(redundantValue)).not.toBeInTheDocument();
     }
 
     await i18n.changeLanguage("en");
@@ -245,14 +245,14 @@ describe("engineering modules", () => {
     ).toBeInTheDocument();
 
     for (const value of [
-      "Ready",
       "PT / EN",
       "03 projects",
       "Matrix + Log",
-      "Integrated",
-      "Available",
     ]) {
       expect(screen.getByText(value)).toBeInTheDocument();
+    }
+    for (const redundantValue of ["Ready", "Integrated", "Available"]) {
+      expect(screen.queryByText(redundantValue)).not.toBeInTheDocument();
     }
   });
 

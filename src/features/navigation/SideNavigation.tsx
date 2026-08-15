@@ -54,11 +54,6 @@ export function SideNavigation() {
             );
           })}
         </ul>
-
-        <div className="game-navigation__status">
-          <span aria-hidden="true" />
-          {t("shell.systemOnline")}
-        </div>
       </nav>
     </aside>
   );

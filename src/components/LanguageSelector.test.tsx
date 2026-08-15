@@ -59,4 +59,16 @@ describe("LanguageSelector", () => {
 
     expect(localStorage.getItem("portfolio-language")).toBe("en");
   });
+
+  it("keeps the document language aligned with the selected interface", async () => {
+    const user = userEvent.setup();
+
+    render(<LanguageSelector />);
+
+    expect(document.documentElement).toHaveAttribute("lang", "pt-BR");
+
+    await user.click(screen.getByRole("button", { name: "EN" }));
+
+    expect(document.documentElement).toHaveAttribute("lang", "en");
+  });
 });

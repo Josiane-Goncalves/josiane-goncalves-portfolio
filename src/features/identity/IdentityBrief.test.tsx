@@ -17,6 +17,14 @@ describe("IdentityBrief", () => {
       screen.getByRole("heading", { level: 1, name: "JOSIANE GONÇALVES" }),
     ).toBeInTheDocument();
     expect(screen.getByText("Desenvolvedora de Software Júnior")).toBeInTheDocument();
+    expect(screen.getByText("Olá, eu sou a Josiane.")).toBeInTheDocument();
+    expect(
+      screen.getByText(/Minha trajetória une saúde, Engenharia Clínica/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Hoje desenvolvo aplicações com atenção a requisitos/),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Understand // Build // Validate")).toBeInTheDocument();
     expect(screen.getByText("Disponível para oportunidades")).toBeInTheDocument();
     expect(container.querySelector(".identity-brief__meta")).not.toBeInTheDocument();
     expect(container.querySelector("[data-opportunity-radar]")).toBeInTheDocument();

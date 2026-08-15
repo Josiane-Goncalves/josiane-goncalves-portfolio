@@ -54,7 +54,6 @@ export function AppShell({
             <span aria-hidden="true" />
             {t("shell.systemOnline")}
           </span>
-          <span>{t("shell.location")}</span>
           <LanguageSelector />
         </div>
       </header>

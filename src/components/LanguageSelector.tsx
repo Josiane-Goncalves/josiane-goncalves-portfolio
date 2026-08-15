@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 export function LanguageSelector() {
   const { i18n, t } = useTranslation();
 
   const currentLanguage = i18n.language.startsWith("en") ? "en" : "pt";
+
+  useEffect(() => {
+    document.documentElement.lang = currentLanguage === "en" ? "en" : "pt-BR";
+  }, [currentLanguage]);
 
   function handleChangeLanguage(language: "pt" | "en") {
     i18n.changeLanguage(language);

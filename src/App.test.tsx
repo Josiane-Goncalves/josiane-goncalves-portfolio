@@ -26,6 +26,8 @@ describe("App", () => {
     expect(
       screen.getByRole("region", { name: "Interface operacional principal" }),
     ).toBeInTheDocument();
+    expect(screen.getAllByText("Sistema online")).toHaveLength(1);
+    expect(screen.getAllByText("Uberlândia // MG // Brasil")).toHaveLength(1);
   });
 
   it("keeps every primary navigation anchor connected to a page target", () => {
