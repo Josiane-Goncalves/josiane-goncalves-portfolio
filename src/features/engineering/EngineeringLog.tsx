@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 import { HudPanel } from "../../components/HudPanel";
-import { StatusBadge } from "../../components/StatusBadge";
 import { professionalExperiences } from "../../data/professional";
+import { ExperienceIndicator } from "./ExperienceIndicator";
 
 export function EngineeringLog() {
   const { t } = useTranslation();
@@ -10,11 +10,7 @@ export function EngineeringLog() {
   return (
     <HudPanel
       className="engineering-log"
-      headerAccessory={
-        <StatusBadge status="operational">
-          {t("professional.trajectoryMapped")}
-        </StatusBadge>
-      }
+      headerAccessory={<ExperienceIndicator />}
       title={t("engineering.logTitle")}
       variant="system"
     >
@@ -22,7 +18,7 @@ export function EngineeringLog() {
         {t("professional.trajectory")}
       </p>
 
-      <section className="mt-7" aria-labelledby="experience-title">
+      <section className="engineering-log__timeline mt-7" aria-labelledby="experience-title">
         <h3
           className="font-terminal text-xs uppercase tracking-[.16em] text-[var(--color-mission-bright)]"
           id="experience-title"
@@ -33,9 +29,10 @@ export function EngineeringLog() {
           {professionalExperiences.map(
             ({ id, organization, skills, translationKey }) => (
               <li
-                className="border border-[var(--color-border-muted)] bg-[var(--color-surface-elevated)] p-4"
+                className="engineering-log__entry"
                 key={id}
               >
+                <span aria-hidden="true" className="engineering-log__node" />
                 <article>
                   <div className="flex items-start justify-between gap-4 max-[640px]:flex-col">
                     <div>
@@ -56,12 +53,9 @@ export function EngineeringLog() {
                   <p className="mt-4 max-w-3xl text-sm leading-6 text-[var(--color-text-muted)]">
                     {t(`professional.experiences.${translationKey}.summary`)}
                   </p>
-                  <ul className="mt-4 flex flex-wrap gap-2">
+                  <ul className="engineering-log__skills mt-4">
                     {skills.map((skill) => (
-                      <li
-                        className="border border-[var(--color-border-muted)] px-2 py-1 font-terminal text-xs text-[var(--color-text-muted)]"
-                        key={skill}
-                      >
+                      <li key={skill}>
                         {t(`professional.skills.${skill}`)}
                       </li>
                     ))}

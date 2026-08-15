@@ -69,8 +69,8 @@ describe("engineering modules", () => {
     expect(screen.queryByText("AWS // Fundamentals")).not.toBeInTheDocument();
   });
 
-  it("renders the three approved professional experiences", () => {
-    render(<EngineeringLog />);
+  it("renders the three approved professional experiences as an accessible field log", async () => {
+    const { container, rerender } = render(<EngineeringLog />);
 
     expect(screen.getByRole("heading", { name: /SPDM/i })).toBeInTheDocument();
     expect(screen.getByText("Auxiliar Técnico em Equipamentos Médicos")).toBeInTheDocument();
@@ -81,8 +81,38 @@ describe("engineering modules", () => {
     expect(screen.getByRole("heading", { name: "SMR — Socorro Médico e Resgate" })).toBeInTheDocument();
     expect(screen.getByText("Socorrista")).toBeInTheDocument();
     expect(screen.getByText("nov/2018 — abr/2021")).toBeInTheDocument();
+    expect(screen.getByText("Suporte técnico")).toBeInTheDocument();
+    expect(screen.getByText("Rastreabilidade")).toBeInTheDocument();
+
+    const entries = Array.from(
+      container.querySelectorAll(".engineering-log__entries > li"),
+    );
+    expect(entries.map((entry) => entry.querySelector("h4")?.textContent)).toEqual([
+      "SPDM — Associação Paulista para o Desenvolvimento da Medicina",
+      "Uberlândia Medical Center — UMC",
+      "SMR — Socorro Médico e Resgate",
+    ]);
+
+    const indicator = container.querySelector("[data-experience-indicator]");
+    expect(indicator).toHaveAttribute("aria-hidden", "true");
+    expect(indicator).toHaveTextContent("EXP");
+    expect(indicator).toHaveTextContent("03");
+    expect(container.querySelector("progress")).not.toBeInTheDocument();
+    expect(container.querySelector("meter")).not.toBeInTheDocument();
+    expect(container.querySelector('[role="progressbar"]')).not.toBeInTheDocument();
+    expect(container.querySelector("[aria-valuenow]")).not.toBeInTheDocument();
+    expect(container).not.toHaveTextContent(/\d+%/);
     expect(screen.queryByText(/PDA Soluções|Freelancer/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/desenvolvedora? (?:na|da) (?:SPDM|UMC)/i)).not.toBeInTheDocument();
+
+    await i18n.changeLanguage("en");
+    rerender(<EngineeringLog />);
+
+    expect(screen.getByText("Medical Equipment Technical Assistant")).toBeInTheDocument();
+    expect(screen.getByText("Apr/2020 — present")).toBeInTheDocument();
+    expect(screen.getByText("Nursing Technician")).toBeInTheDocument();
+    expect(screen.getByText("Emergency Responder")).toBeInTheDocument();
+    expect(screen.getByText("Pre-hospital / Emergency Operations")).toBeInTheDocument();
   });
 
   it("presents factual education without quantitative or decorative progress in PT and EN", async () => {
