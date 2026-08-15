@@ -31,7 +31,8 @@ export function ContactHud() {
               rel={external ? "noopener noreferrer" : undefined}
               target={external ? "_blank" : undefined}
             >
-              {label} // {value}
+              <span className="contact-hud__channel-label">{label}</span>
+              <strong className="contact-hud__channel-value">{value}</strong>
             </a>
           </li>
         ))}
@@ -43,7 +44,10 @@ export function ContactHud() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              {t("shell.curriculum")} // PDF
+              <span className="contact-hud__channel-label">
+                {t("shell.curriculum")}
+              </span>
+              <strong className="contact-hud__channel-value">PDF</strong>
             </a>
           </li>
         ) : null}

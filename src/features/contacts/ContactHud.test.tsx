@@ -41,7 +41,15 @@ describe("ContactHud", () => {
     expect(resume).toHaveAttribute("rel", "noopener noreferrer");
     expect(github).toHaveAttribute("rel", "noopener noreferrer");
     expect(linkedin).toHaveAttribute("rel", "noopener noreferrer");
+    expect(github).toHaveAttribute("target", "_blank");
+    expect(linkedin).toHaveAttribute("target", "_blank");
+    expect(screen.getByRole("link", { name: /email/i })).not.toHaveAttribute(
+      "target",
+    );
     expect(screen.getByText("Uberlândia // MG // Brasil")).toBeInTheDocument();
+    expect(
+      screen.getByText("Uberlândia // MG // Brasil").closest("a, button"),
+    ).toBeNull();
     expect(container.querySelector('a[href="#"]')).not.toBeInTheDocument();
   });
 
@@ -50,5 +58,25 @@ describe("ContactHud", () => {
 
     expect(container).not.toHaveTextContent(/telefone|phone|whatsapp|\+55/i);
     expect(container.querySelector('a[href="#"]')).not.toBeInTheDocument();
+  });
+
+  it("presents the contact node and availability in PT and EN", async () => {
+    const { rerender } = render(<ContactHud />);
+
+    expect(
+      screen.getByRole("contentinfo", { name: "Nó de contato" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Disponível para oportunidades")).toBeInTheDocument();
+
+    await i18n.changeLanguage("en");
+    rerender(<ContactHud />);
+
+    expect(
+      screen.getByRole("contentinfo", { name: "Contact node" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Open to opportunities")).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "Download résumé PDF" }),
+    ).toHaveAttribute("href", "/cv/josiane-goncalves-cv.pdf");
   });
 });
