@@ -16,7 +16,10 @@ export function ContactHud() {
     >
       <div className="contact-hud__identity">
         <span>{t("shell.contactHud")}</span>
-        <strong>{t("profile.availability")}</strong>
+        <strong>
+          <span aria-hidden="true" className="contact-hud__availability-dot" />
+          {t("profile.availability")}
+        </strong>
       </div>
 
       <ul aria-label={t("shell.contactChannels")}>
@@ -32,6 +35,18 @@ export function ContactHud() {
             </a>
           </li>
         ))}
+        {professionalProfile.resumeUrl ? (
+          <li>
+            <a
+              aria-label={t("shell.downloadResume")}
+              href={professionalProfile.resumeUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              {t("shell.curriculum")} // PDF
+            </a>
+          </li>
+        ) : null}
       </ul>
 
       <span className="contact-hud__location">

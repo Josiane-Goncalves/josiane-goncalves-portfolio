@@ -42,17 +42,17 @@ describe("App", () => {
     }
   });
 
-  it("composes the status modules in the system rail without regressions", () => {
+  it("keeps certifications accessible outside the system rail", () => {
     render(<App />);
     const systemRail = screen.getByRole("complementary", {
       name: "Módulos do sistema",
     });
+    const certificationPanels = screen.getAllByRole("region", {
+      name: "Formação & Certificações",
+    });
+    const [certifications] = certificationPanels;
 
-    for (const moduleTitle of [
-      "System Status",
-      "A.L.I.A.",
-      "Certifications",
-    ]) {
+    for (const moduleTitle of ["System Overview", "A.L.I.A."]) {
       expect(
         within(systemRail).getByRole("heading", {
           level: 2,
@@ -60,6 +60,26 @@ describe("App", () => {
         }),
       ).toBeInTheDocument();
     }
+
+    for (const moduleTitle of ["Quick Access", "Soft Skills"]) {
+      expect(
+        within(systemRail).getByRole("heading", { name: moduleTitle }),
+      ).toBeInTheDocument();
+    }
+
+    expect(certificationPanels).toHaveLength(1);
+    expect(systemRail).not.toContainElement(certifications);
+    expect(certifications).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: "Representação estilizada de Josiane Gonçalves segurando um notebook.",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("figure", {
+        name: "Representação da A.L.I.A., assistente de apoio ao desenvolvimento.",
+      }),
+    ).toBeInTheDocument();
 
     expect(
       screen.getByRole("heading", { level: 2, name: "Mission Files" }),
@@ -70,5 +90,23 @@ describe("App", () => {
     expect(
       screen.getByRole("heading", { level: 2, name: "Engineering Log" }),
     ).toBeInTheDocument();
+  });
+
+  it("renders each health-tech hero module once without the retired stage label", () => {
+    render(<App />);
+
+    for (const title of ["CONDITION", "SINAL CLÍNICO"]) {
+      expect(
+        screen.getAllByRole("heading", { level: 2, name: title }),
+      ).toHaveLength(1);
+    }
+
+    expect(screen.getByText("STABLE")).toBeInTheDocument();
+    expect(screen.getByText("HEALTH + TECH LINKED")).toBeInTheDocument();
+    expect(screen.queryByText("Palco pronto")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Engineering Process" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("contentinfo")).toHaveAttribute("id", "contact");
   });
 });

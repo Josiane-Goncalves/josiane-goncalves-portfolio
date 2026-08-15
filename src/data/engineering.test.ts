@@ -4,7 +4,7 @@ import {
   aliaWorkflows,
   coreTechnologies,
   engineeringAreas,
-  systemStatuses,
+  systemOverview,
 } from "./engineering";
 
 function expectUnique(values: readonly string[]) {
@@ -24,7 +24,7 @@ describe("engineering data", () => {
 
   it("uses unique stable identifiers", () => {
     expectUnique(engineeringAreas.map(({ id }) => id));
-    expectUnique(systemStatuses.map(({ id }) => id));
+    expectUnique(systemOverview.map(({ id }) => id));
     expectUnique(aliaWorkflows.map(({ id }) => id));
   });
 
@@ -33,6 +33,7 @@ describe("engineering data", () => {
       "frontend",
       "backend",
       "data",
+      "cloud",
       "engineering",
       "delivery",
     ]);
@@ -42,5 +43,26 @@ describe("engineering data", () => {
     expect(
       engineeringAreas.flatMap(({ capabilities }) => capabilities),
     ).toContain("tddWhenApplicable");
+    expect(
+      engineeringAreas.find(({ id }) => id === "cloud")?.technologies,
+    ).toEqual(["AWS", "Linux"]);
+    expect(
+      engineeringAreas.find(({ id }) => id === "delivery")?.technologies,
+    ).not.toContain("Linux");
+  });
+
+  it("reports every currently available system module with a factual status", () => {
+    const values = Object.fromEntries(
+      systemOverview.map(({ id, valueKey }) => [id, valueKey]),
+    );
+
+    expect(values).toEqual({
+      interface: "ready",
+      languages: "bilingual",
+      missions: "threeProjects",
+      engineering: "matrixAndLog",
+      character: "integrated",
+      contact: "available",
+    });
   });
 });

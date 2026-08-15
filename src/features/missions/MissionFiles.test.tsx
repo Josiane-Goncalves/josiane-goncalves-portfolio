@@ -5,105 +5,138 @@ import { beforeEach, describe, expect, it } from "vitest";
 import i18n from "../../i18n";
 import { MissionFiles } from "./MissionFiles";
 
+function getMissionIndex() {
+  return screen.getByRole("list", { name: "Índice de missões" });
+}
+
+function getCarousel() {
+  return screen.getByRole("region", { name: "Carrossel de missões" });
+}
+
+function expectSelectedMission(code: string, title: string, counter: string) {
+  expect(
+    within(getCarousel()).getByRole("article", {
+      name: `${code} // ${title}`,
+    }),
+  ).toHaveAttribute("aria-current", "true");
+  expect(within(getCarousel()).getByText(counter)).toBeInTheDocument();
+}
+
 describe("MissionFiles", () => {
   beforeEach(async () => {
     await i18n.changeLanguage("pt");
   });
 
-  it("renders exactly the three approved mission entries", () => {
+  it("renders the three approved missions in the index and carousel", () => {
     render(<MissionFiles />);
 
-    const index = screen.getByRole("list", { name: "Índice de missões" });
-    const controls = within(index).getAllByRole("button");
+    const indexEntries = within(getMissionIndex()).getAllByRole("listitem");
+    const carouselArticles = within(getCarousel()).getAllByRole("article");
 
-    expect(controls).toHaveLength(3);
+    expect(indexEntries).toHaveLength(3);
+    expect(carouselArticles).toHaveLength(3);
+    for (const title of ["PulseOps", "Prado em Dia", "Ride Wars League"]) {
+      expect(
+        within(getMissionIndex()).getByText(title),
+      ).toBeInTheDocument();
+    }
+    expect(within(getMissionIndex()).getAllByRole("link")).toHaveLength(3);
+    expect(screen.queryByText(/terceiro projeto a definir/i)).not.toBeInTheDocument();
+  });
+
+  it("starts with Mission 001 selected without opening its detail", () => {
+    render(<MissionFiles />);
+
+    expectSelectedMission("MISSION 001", "PulseOps", "01 / 03");
     expect(
-      screen.getByRole("button", { name: "Abrir arquivo PulseOps" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "Abrir arquivo Prado em Dia" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "Abrir arquivo Ride Wars League" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.queryByText(/terceiro projeto a definir/i),
+      screen.queryByRole("region", { name: "Arquivo da missão PulseOps" }),
     ).not.toBeInTheDocument();
   });
 
-  it("opens a mission detail as an accessible inline expansion", async () => {
+  it("keeps Next synchronized with the index and carousel", async () => {
     const user = userEvent.setup();
     render(<MissionFiles />);
 
-    const pulseOpsControl = screen.getByRole("button", {
-      name: "Abrir arquivo PulseOps",
-    });
+    await user.click(screen.getByRole("button", { name: "Próxima missão" }));
 
-    expect(pulseOpsControl).toHaveAttribute("aria-expanded", "false");
-    await user.click(pulseOpsControl);
-
-    expect(pulseOpsControl).toHaveAttribute("aria-expanded", "true");
-    expect(
-      screen.getByRole("heading", { level: 3, name: "PulseOps" }),
-    ).toBeInTheDocument();
-    const detail = screen.getByRole("region", {
-      name: "Arquivo da missão PulseOps",
-    });
-    expect(within(detail).getByText(/^MISSION 001/)).toBeInTheDocument();
+    expectSelectedMission("MISSION 002", "Prado em Dia", "02 / 03");
   });
 
-  it("switches missions and exposes their factual documentation status", async () => {
+  it("keeps Previous synchronized and wraps Mission 001 to Mission 003", async () => {
+    const user = userEvent.setup();
+    render(<MissionFiles />);
+
+    await user.click(screen.getByRole("button", { name: "Missão anterior" }));
+
+    expectSelectedMission("MISSION 003", "Ride Wars League", "03 / 03");
+  });
+
+  it("wraps Mission 003 to Mission 001 with Next", async () => {
     const user = userEvent.setup();
     render(<MissionFiles />);
 
     await user.click(
-      screen.getByRole("button", { name: "Abrir arquivo Prado em Dia" }),
-    );
-    expect(
-      screen.getByRole("heading", { level: 3, name: "Prado em Dia" }),
-    ).toBeInTheDocument();
-
-    await user.click(
-      screen.getByRole("button", { name: "Abrir arquivo Ride Wars League" }),
-    );
-    const detail = screen.getByRole("region", {
-      name: "Arquivo da missão Ride Wars League",
-    });
-
-    expect(
-      within(detail).getByRole("heading", {
-        level: 3,
-        name: "Ride Wars League",
+      within(getCarousel()).getByRole("button", {
+        name: "Selecionar missão Ride Wars League",
       }),
-    ).toBeInTheDocument();
-    expect(within(detail).getByText("Em documentação")).toBeInTheDocument();
+    );
+    await user.click(screen.getByRole("button", { name: "Próxima missão" }));
+
+    expectSelectedMission("MISSION 001", "PulseOps", "01 / 03");
   });
 
-  it("closes the detail and returns focus to the mission control", async () => {
+  it("rotates directly to a mission selected from the carousel", async () => {
     const user = userEvent.setup();
     render(<MissionFiles />);
 
-    const control = screen.getByRole("button", {
-      name: "Abrir arquivo PulseOps",
-    });
-    await user.click(control);
     await user.click(
-      screen.getByRole("button", { name: "Fechar arquivo PulseOps" }),
+      within(getCarousel()).getByRole("button", {
+        name: "Selecionar missão Ride Wars League",
+      }),
+    );
+
+    expectSelectedMission("MISSION 003", "Ride Wars League", "03 / 03");
+  });
+
+  it("opens the selected file and preserves selection after closing", async () => {
+    const user = userEvent.setup();
+    render(<MissionFiles />);
+
+    await user.click(
+      within(getCarousel()).getByRole("button", {
+        name: "Selecionar missão Prado em Dia",
+      }),
+    );
+    await user.click(
+      within(getCarousel()).getByRole("button", {
+        name: "Abrir arquivo Prado em Dia",
+      }),
     );
 
     expect(
-      screen.queryByRole("heading", { level: 3, name: "PulseOps" }),
-    ).not.toBeInTheDocument();
-    expect(control).toHaveFocus();
-    expect(control).toHaveAttribute("aria-expanded", "false");
+      screen.getByRole("region", { name: "Arquivo da missão Prado em Dia" }),
+    ).toBeInTheDocument();
+
+    await user.click(
+      screen.getByRole("button", { name: "Fechar arquivo Prado em Dia" }),
+    );
+
+    expectSelectedMission("MISSION 002", "Prado em Dia", "02 / 03");
+    expect(
+      within(getCarousel()).getByRole("button", {
+        name: "Abrir arquivo Prado em Dia",
+      }),
+    ).toHaveFocus();
   });
 
-  it("omits unconfirmed sections, technologies and links", async () => {
+  it("opens only the sections and links backed by confirmed data", async () => {
     const user = userEvent.setup();
     render(<MissionFiles />);
 
     await user.click(
-      screen.getByRole("button", { name: "Abrir arquivo PulseOps" }),
+      within(getCarousel()).getByRole("button", {
+        name: "Abrir arquivo PulseOps",
+      }),
     );
     const detail = screen.getByRole("region", {
       name: "Arquivo da missão PulseOps",
@@ -118,6 +151,14 @@ describe("MissionFiles", () => {
     expect(
       within(detail).queryByRole("heading", { name: "Tecnologias" }),
     ).not.toBeInTheDocument();
-    expect(within(detail).queryByRole("link")).not.toBeInTheDocument();
+    const repository = within(detail).getByRole("link", {
+      name: "Ver repositório",
+    });
+    expect(repository).toHaveAttribute(
+      "href",
+      "https://github.com/Josiane-Goncalves/pulseops",
+    );
+    expect(repository).toHaveAttribute("target", "_blank");
+    expect(repository).toHaveAttribute("rel", "noopener noreferrer");
   });
 });

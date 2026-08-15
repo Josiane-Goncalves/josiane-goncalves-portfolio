@@ -1,44 +1,27 @@
-import type { Ref } from "react";
 import { useTranslation } from "react-i18next";
 
 import type { Mission } from "../../data/missions";
 
 type MissionCardProps = {
   active: boolean;
-  buttonRef?: Ref<HTMLButtonElement>;
-  detailId: string;
   mission: Mission;
-  onSelect: (missionId: string) => void;
 };
 
-export function MissionCard({
-  active,
-  buttonRef,
-  detailId,
-  mission,
-  onSelect,
-}: MissionCardProps) {
+export function MissionCard({ active, mission }: MissionCardProps) {
   const { t } = useTranslation();
   const translationPath = `missions.items.${mission.translationKey}`;
   const title = t(`${translationPath}.title`);
 
-  return (
-    <button
-      aria-controls={detailId}
-      aria-expanded={active}
-      aria-label={t("missions.openFile", { title })}
-      className="mission-card"
-      data-active={active || undefined}
-      onClick={() => onSelect(mission.id)}
-      ref={buttonRef}
-      type="button"
-    >
+  const content = (
+    <>
       <span className="mission-card__topline">
         <span className="mission-card__code">{mission.code}</span>
-        <span className="mission-card__status">
-          <span aria-hidden="true">◐</span>
-          {t(`missions.status.${mission.status}`)}
-        </span>
+        {mission.status ? (
+          <span className="mission-card__status">
+            <span aria-hidden="true">◐</span>
+            {t(`missions.status.${mission.status}`)}
+          </span>
+        ) : null}
       </span>
 
       <strong className="mission-card__title">{title}</strong>
@@ -53,8 +36,38 @@ export function MissionCard({
       ) : null}
 
       <span aria-hidden="true" className="mission-card__action">
-        {t("missions.openFileAction")} <span>→</span>
+        {mission.repositoryUrl
+          ? t("missions.repositoryAction")
+          : t("missions.repositoryPending")}
+        {mission.repositoryUrl ? <span>↗</span> : null}
       </span>
-    </button>
+    </>
+  );
+
+  if (mission.repositoryUrl) {
+    return (
+      <a
+        aria-current={active ? "true" : undefined}
+        aria-label={t("missions.openRepositoryOnGithub", { title })}
+        className="mission-card"
+        data-active={active || undefined}
+        href={mission.repositoryUrl}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <article
+      aria-current={active ? "true" : undefined}
+      aria-label={t("missions.repositoryUnavailable", { title })}
+      className="mission-card"
+      data-active={active || undefined}
+    >
+      {content}
+    </article>
   );
 }

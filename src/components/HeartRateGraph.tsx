@@ -1,30 +1,44 @@
-import React from "react";
+const ecgPath = `
+  M 0 58 L 26 58
+  C 34 58, 38 47, 47 47 C 56 47, 60 58, 69 58
+  L 88 58 L 95 64 L 101 15 L 109 72 L 118 58 L 143 58
+  C 153 58, 158 41, 171 41 C 184 41, 190 58, 204 58 L 220 58
+  L 246 58
+  C 254 58, 258 47, 267 47 C 276 47, 280 58, 289 58
+  L 308 58 L 315 64 L 321 15 L 329 72 L 338 58 L 363 58
+  C 373 58, 378 41, 391 41 C 404 41, 410 58, 424 58 L 440 58
+  L 466 58
+  C 474 58, 478 47, 487 47 C 496 47, 500 58, 509 58
+  L 528 58 L 535 64 L 541 15 L 549 72 L 558 58 L 583 58
+  C 593 58, 598 41, 611 41 C 624 41, 630 58, 644 58 L 660 58
+`;
 
 export function HeartRateGraph() {
   return (
-    <div className="relative h-14 overflow-hidden border border-[#454a36] bg-[#0a0d0a]">
-      <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(159,201,107,.12)_1px,transparent_1px),linear-gradient(to_bottom,rgba(159,201,107,.10)_1px,transparent_1px)] bg-size-[12px_100%,100%_12px]" />
+    <div aria-hidden="true" className="clinical-signal__graph">
+      <div className="clinical-signal__grid" />
 
       <svg
-        viewBox="0 0 320 64"
+        aria-hidden="true"
+        className="heartbeat-track"
+        focusable="false"
         preserveAspectRatio="none"
-        className="heartbeat-track absolute inset-y-0 left-0 h-full w-[200%]"
+        viewBox="0 0 660 96"
       >
         <path
-          d="
-            M0 42 L18 42 L24 42 L28 32 L32 48 L36 8 L42 58 L48 42 L80 42
-            L98 42 L104 42 L108 32 L112 48 L116 8 L122 58 L128 42 L160 42
-            L178 42 L184 42 L188 32 L192 48 L196 8 L202 58 L208 42 L240 42
-            L258 42 L264 42 L268 32 L272 48 L276 8 L282 58 L288 42 L320 42
-          "
+          className="heartbeat-line heartbeat-line--base"
+          d={ecgPath}
           fill="none"
-          stroke="#9fc96b"
           strokeWidth="2.5"
-          className="heartbeat-line"
+        />
+        <path
+          className="heartbeat-line heartbeat-scan"
+          d={ecgPath}
+          fill="none"
+          pathLength="1"
+          strokeWidth="3"
         />
       </svg>
-
-      <div className="heartbeat-scan absolute top-0 h-full w-10 bg-[linear-gradient(90deg,transparent,rgba(159,201,107,.16),transparent)]" />
     </div>
   );
 }

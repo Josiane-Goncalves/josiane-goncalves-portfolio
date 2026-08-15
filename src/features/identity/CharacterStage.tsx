@@ -35,9 +35,14 @@ export function CharacterStage() {
           />
         </div>
 
+        <div aria-hidden="true" className="character-stage__frame-marker">
+          <span>FRAME // 01</span>
+        </div>
+
         <figure
-          aria-label={`A.L.I.A. ${t("alia.fullName")}`}
+          aria-label={t("alia.mascotAriaLabel")}
           className="character-stage__alia"
+          tabIndex={0}
         >
           <img
             alt=""
@@ -54,11 +59,6 @@ export function CharacterStage() {
 
       <div aria-hidden="true" className="character-stage__bracket character-stage__bracket--top" />
       <div aria-hidden="true" className="character-stage__bracket character-stage__bracket--bottom" />
-
-      <div className="character-stage__footer">
-        <span>FRAME // 01</span>
-        <span>{t("shell.stageReady")}</span>
-      </div>
     </section>
   );
 }

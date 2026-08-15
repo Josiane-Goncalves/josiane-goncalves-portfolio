@@ -43,7 +43,7 @@ export type Mission = {
   slug: string;
   code: `MISSION ${string}`;
   translationKey: MissionTranslationKey;
-  status: MissionStatus;
+  status?: MissionStatus;
   technologies: readonly string[];
   sections: readonly MissionSectionKey[];
   versions?: readonly MissionVersion[];
@@ -57,26 +57,26 @@ export const missions: readonly Mission[] = [
     slug: "pulseops",
     code: "MISSION 001",
     translationKey: "pulseOps",
-    status: "documenting",
     technologies: [],
     sections: ["context", "problem"],
+    repositoryUrl: "https://github.com/Josiane-Goncalves/pulseops",
   },
   {
     id: "prado-em-dia",
     slug: "prado-em-dia",
     code: "MISSION 002",
     translationKey: "pradoEmDia",
-    status: "documenting",
     technologies: [],
     sections: ["context"],
+    repositoryUrl: "https://github.com/Josiane-Goncalves/prado-em-dia",
   },
   {
     id: "ride-wars-league",
     slug: "ride-wars-league",
     code: "MISSION 003",
     translationKey: "rideWarsLeague",
-    status: "documenting",
     technologies: [],
     sections: ["context"],
+    repositoryUrl: "https://github.com/Josiane-Goncalves/ride-wars-league",
   },
 ];

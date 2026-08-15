@@ -20,14 +20,16 @@ describe("professional data", () => {
     ]);
   });
 
-  it("contains only the two approved professional experiences", () => {
+  it("contains the three approved professional experiences", () => {
     expect(professionalExperiences.map(({ id }) => id)).toEqual([
       "spdm",
       "umc",
+      "smr",
     ]);
     expect(professionalExperiences.map(({ organization }) => organization)).toEqual([
       "SPDM — Associação Paulista para o Desenvolvimento da Medicina",
       "Uberlândia Medical Center — UMC",
+      "SMR — Socorro Médico e Resgate",
     ]);
   });
 
@@ -38,10 +40,20 @@ describe("professional data", () => {
     expect(
       credentials.find(({ type }) => type === "certification")?.name,
     ).toBe("AWS Certified Cloud Practitioner");
+    expect(credentials).toContainEqual(
+      expect.objectContaining({
+        id: "networks-ada",
+        name: "Redes e Sistemas",
+        issuer: "Ada",
+      }),
+    );
+    expect(credentials.some(({ id }) => id === "html-dio")).toBe(false);
   });
 
-  it("does not invent credential or résumé URLs", () => {
+  it("keeps credential URLs absent and exposes the approved résumé path", () => {
     expect(credentials.every(({ credentialUrl }) => credentialUrl === undefined)).toBe(true);
-    expect(professionalProfile.resumeUrl).toBeUndefined();
+    expect(professionalProfile.resumeUrl).toBe(
+      "/cv/josiane-goncalves-cv.pdf",
+    );
   });
 });

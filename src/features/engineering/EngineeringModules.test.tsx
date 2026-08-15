@@ -6,6 +6,7 @@ import { AliaModule } from "../alia/AliaModule";
 import { CertificationsPanel } from "../certifications/CertificationsPanel";
 import { EngineeringLog } from "./EngineeringLog";
 import { EngineeringMatrix } from "./EngineeringMatrix";
+import { EngineeringProcess } from "./EngineeringProcess";
 import { SystemStatus } from "../status/SystemStatus";
 
 describe("engineering modules", () => {
@@ -26,15 +27,33 @@ describe("engineering modules", () => {
       "Frontend",
       "Backend / APIs",
       "Data",
+      "Cloud / Infrastructure",
       "Engineering",
       "Environment / Delivery",
     ]) {
       expect(screen.getByRole("heading", { level: 3, name: area })).toBeInTheDocument();
     }
+    expect(screen.getByText("AWS")).toBeInTheDocument();
+    expect(screen.getByText("AWS // Fundamentos")).toBeInTheDocument();
     expect(screen.getByText("TDD quando aplicável")).toBeInTheDocument();
+
+    expect(container.querySelectorAll("[data-signal-bars]")).toHaveLength(6);
+    expect(container.querySelector('[role="progressbar"]')).not.toBeInTheDocument();
+
+    for (const area of [
+      "Frontend",
+      "Backend / APIs",
+      "Data",
+      "Cloud / Infrastructure",
+      "Engineering",
+      "Environment / Delivery",
+    ]) {
+      const areaSection = screen.getByRole("heading", { level: 3, name: area }).closest("section");
+      expect(areaSection?.querySelectorAll("[data-signal-bars]")).toHaveLength(1);
+    }
   });
 
-  it("renders only the two approved professional experiences", () => {
+  it("renders the three approved professional experiences", () => {
     render(<EngineeringLog />);
 
     expect(screen.getByRole("heading", { name: /SPDM/i })).toBeInTheDocument();
@@ -43,22 +62,119 @@ describe("engineering modules", () => {
     expect(screen.getByRole("heading", { name: /Uberlândia Medical Center/i })).toBeInTheDocument();
     expect(screen.getByText("Técnica de Enfermagem")).toBeInTheDocument();
     expect(screen.getByText("mai/2025 — jan/2026")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "SMR — Socorro Médico e Resgate" })).toBeInTheDocument();
+    expect(screen.getByText("Socorrista")).toBeInTheDocument();
+    expect(screen.getByText("nov/2018 — abr/2021")).toBeInTheDocument();
     expect(screen.queryByText(/PDA Soluções|Freelancer/i)).not.toBeInTheDocument();
     expect(screen.queryByText(/desenvolvedora? (?:na|da) (?:SPDM|UMC)/i)).not.toBeInTheDocument();
   });
 
-  it("renders the approved education and engineering workflow", () => {
-    render(<EngineeringLog />);
+  it("combines education, certification and selected training without duplication", () => {
+    render(<CertificationsPanel />);
 
     expect(screen.getByText("Tecnologia em Análise e Desenvolvimento de Sistemas")).toBeInTheDocument();
     expect(screen.getByText("UniCV")).toBeInTheDocument();
     expect(screen.getByText("Concluído em 2026")).toBeInTheDocument();
     expect(screen.getByText("Técnico em Enfermagem")).toBeInTheDocument();
     expect(screen.getByText("Escola Técnica Santa Edwiges")).toBeInTheDocument();
-    expect(screen.getByText("TDD quando aplicável.")).toBeInTheDocument();
+    expect(screen.getByText("AWS Certified Cloud Practitioner")).toBeInTheDocument();
+    expect(screen.getByText("Redes e Sistemas")).toBeInTheDocument();
+    expect(screen.getByText("Ada")).toBeInTheDocument();
+    expect(screen.queryByText("Formação HTML Web Developer")).not.toBeInTheDocument();
+  });
+
+  it("keeps Engineering Log focused on professional trajectory", () => {
+    render(<EngineeringLog />);
+
+    expect(
+      screen.queryByRole("heading", { name: "Formação" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "Engineering Workflow" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText("UniCV")).not.toBeInTheDocument();
+  });
+
+  it("renders the translated Engineering Process without duplicating it in the log", async () => {
+    const { rerender } = render(<EngineeringProcess />);
+
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Engineering Process" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/Parto do problema e do contexto de uso/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 3,
+        name: "Desenvolvimento incremental",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        level: 3,
+        name: "TDD // Quando aplicável",
+      }),
+    ).toBeInTheDocument();
     expect(screen.getByText("RED")).toBeInTheDocument();
     expect(screen.getByText("GREEN")).toBeInTheDocument();
     expect(screen.getByText("REFACTOR")).toBeInTheDocument();
+    expect(screen.getByText("RED").closest("li")).toHaveAttribute("data-step", "red");
+    expect(screen.getByText("GREEN").closest("li")).toHaveAttribute("data-step", "green");
+    expect(screen.getByText("REFACTOR").closest("li")).toHaveAttribute("data-step", "refactor");
+    expect(
+      screen.getByText(/Divido o desenvolvimento em entregas pequenas e verificáveis/),
+    ).toBeInTheDocument();
+
+    await i18n.changeLanguage("en");
+    rerender(<EngineeringProcess />);
+
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Incremental Delivery" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/I start from the problem and usage context/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/I divide development into small, verifiable deliveries/),
+    ).toBeInTheDocument();
+  });
+
+  it("presents factual portfolio information in System Overview for PT and EN", async () => {
+    const { container, rerender } = render(<SystemStatus />);
+
+    expect(
+      screen.getByRole("heading", { level: 2, name: "System Overview" }),
+    ).toBeInTheDocument();
+    expect(container.querySelector("[data-system-radar]")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
+    expect(screen.queryAllByText("Operacional")).toHaveLength(0);
+    for (const value of [
+      "Pronta",
+      "PT / EN",
+      "03 projetos",
+      "Matrix + Log",
+      "Integrada",
+      "Disponível",
+    ]) {
+      expect(screen.getByText(value)).toBeInTheDocument();
+    }
+
+    await i18n.changeLanguage("en");
+    rerender(<SystemStatus />);
+
+    for (const value of [
+      "Ready",
+      "PT / EN",
+      "03 projects",
+      "Matrix + Log",
+      "Integrated",
+      "Available",
+    ]) {
+      expect(screen.getByText(value)).toBeInTheDocument();
+    }
   });
 
   it("separates the professional certification from complementary training", () => {

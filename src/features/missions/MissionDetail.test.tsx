@@ -22,10 +22,13 @@ describe("MissionDetail", () => {
       />,
     );
 
-    expect(screen.getByRole("link", { name: "Ver repositório" })).toHaveAttribute(
+    const repository = screen.getByRole("link", { name: "Ver repositório" });
+    expect(repository).toHaveAttribute(
       "href",
       "https://example.com/repository",
     );
+    expect(repository).toHaveAttribute("target", "_blank");
+    expect(repository).toHaveAttribute("rel", "noopener noreferrer");
     expect(
       screen.queryByRole("link", { name: "Abrir sistema" }),
     ).not.toBeInTheDocument();

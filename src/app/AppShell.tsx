@@ -12,6 +12,10 @@ type AppShellProps = PropsWithChildren<{
   systemStatus: ReactNode;
   alia: ReactNode;
   certifications: ReactNode;
+  condition: ReactNode;
+  clinicalSignal: ReactNode;
+  quickContact: ReactNode;
+  softSkills: ReactNode;
 }>;
 
 export function AppShell({
@@ -20,6 +24,10 @@ export function AppShell({
   systemStatus,
   alia,
   certifications,
+  condition,
+  clinicalSignal,
+  quickContact,
+  softSkills,
   children,
 }: AppShellProps) {
   const { t } = useTranslation();
@@ -59,14 +67,26 @@ export function AppShell({
           <div className="app-shell__left" id="profile">
             {identity}
             <SideNavigation />
+
+            <div className="app-shell__mobile-navigation">
+              <MobileNavigation />
+            </div>
+
+            <div className="app-shell__condition">{condition}</div>
           </div>
 
-          <div className="app-shell__stage" id="character">
-            {characterStage}
-          </div>
+          <div className="app-shell__center">
+            <div className="app-shell__stage" id="character">
+              {characterStage}
+            </div>
 
-          <div className="app-shell__mobile-navigation">
-            <MobileNavigation />
+            <div className="app-shell__clinical-signal">
+              {clinicalSignal}
+            </div>
+
+            <div className="app-shell__certifications" id="certifications">
+              {certifications}
+            </div>
           </div>
 
           <aside
@@ -74,8 +94,9 @@ export function AppShell({
             className="app-shell__rail"
           >
             <div id="status">{systemStatus}</div>
+            <div>{quickContact}</div>
             <div id="alia">{alia}</div>
-            <div id="certifications">{certifications}</div>
+            <div>{softSkills}</div>
           </aside>
         </section>
 

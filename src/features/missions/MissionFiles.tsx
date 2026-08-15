@@ -1,28 +1,57 @@
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { missions } from "../../data/missions";
 import { MissionCard } from "./MissionCard";
+import { MissionCarousel } from "./MissionCarousel";
 import { MissionDetail } from "./MissionDetail";
+
+function normalizeIndex(value: number, total: number) {
+  return ((value % total) + total) % total;
+}
+
+function getNearestRotationStep(
+  currentStep: number,
+  targetIndex: number,
+  total: number,
+) {
+  const currentIndex = normalizeIndex(currentStep, total);
+  let distance = targetIndex - currentIndex;
+
+  if (distance > total / 2) distance -= total;
+  if (distance < -total / 2) distance += total;
+
+  return currentStep + distance;
+}
 
 export function MissionFiles() {
   const { t } = useTranslation();
   const titleId = useId();
   const detailId = useId();
-  const missionControls = useRef<Record<string, HTMLButtonElement | null>>({});
-  const [selectedMissionId, setSelectedMissionId] = useState<string | null>(
-    null,
-  );
-  const selectedMission = missions.find(
-    ({ id }) => id === selectedMissionId,
-  );
+  const openButtonRef = useRef<HTMLButtonElement | null>(null);
+  const shouldRestoreOpenFocus = useRef(false);
+  const [rotationStep, setRotationStep] = useState(0);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const activeIndex = normalizeIndex(rotationStep, missions.length);
+  const selectedMission = missions[activeIndex];
+
+  useEffect(() => {
+    if (!isDetailOpen && shouldRestoreOpenFocus.current) {
+      shouldRestoreOpenFocus.current = false;
+      openButtonRef.current?.focus();
+    }
+  }, [isDetailOpen]);
+
+  const selectMission = (index: number) => {
+    setRotationStep((currentStep) =>
+      getNearestRotationStep(currentStep, index, missions.length),
+    );
+    setIsDetailOpen(false);
+  };
 
   const closeMission = () => {
-    if (!selectedMission) return;
-
-    const selectedControl = missionControls.current[selectedMission.id];
-    setSelectedMissionId(null);
-    selectedControl?.focus();
+    shouldRestoreOpenFocus.current = true;
+    setIsDetailOpen(false);
   };
 
   return (
@@ -39,18 +68,15 @@ export function MissionFiles() {
 
       <div className="mission-files__layout">
         <div className="mission-files__index">
-          <span className="mission-files__index-label">{t("missions.index")}</span>
+          <span className="mission-files__index-label">
+            {t("missions.index")}
+          </span>
           <ul aria-label={t("missions.index")} className="mission-files__list">
             {missions.map((mission) => (
               <li key={mission.id}>
                 <MissionCard
-                  active={mission.id === selectedMission?.id}
-                  buttonRef={(element) => {
-                    missionControls.current[mission.id] = element;
-                  }}
-                  detailId={detailId}
+                  active={mission.id === selectedMission.id}
                   mission={mission}
-                  onSelect={setSelectedMissionId}
                 />
               </li>
             ))}
@@ -58,18 +84,26 @@ export function MissionFiles() {
         </div>
 
         <div className="mission-files__workspace">
-          {selectedMission ? (
+          {isDetailOpen ? (
             <MissionDetail
               detailId={detailId}
               mission={selectedMission}
               onClose={closeMission}
             />
           ) : (
-            <div className="mission-files__idle" id={detailId}>
-              <span aria-hidden="true" className="mission-files__idle-reticle" />
-              <span>{t("missions.awaitingSelection")}</span>
-              <p>{t("missions.selectPrompt")}</p>
-            </div>
+            <MissionCarousel
+              activeIndex={activeIndex}
+              detailId={detailId}
+              missions={missions}
+              onNext={() => setRotationStep((currentStep) => currentStep + 1)}
+              onOpen={() => setIsDetailOpen(true)}
+              onPrevious={() =>
+                setRotationStep((currentStep) => currentStep - 1)
+              }
+              onSelect={selectMission}
+              openButtonRef={openButtonRef}
+              rotationStep={rotationStep}
+            />
           )}
         </div>
       </div>

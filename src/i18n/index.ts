@@ -123,6 +123,21 @@ const resources = {
       missions: {
         title: "Mission Files",
         index: "Índice de missões",
+        carouselLabel: "Carrossel de missões",
+        selectMission: "Selecionar missão {{title}}",
+        selectAction: "Selecionar",
+        currentMission: "Missão atual",
+        repositoryAction: "GitHub // Repositório",
+        repositoryPending: "URL do repositório pendente",
+        repositoryUnavailable:
+          "Repositório de {{title}} aguardando URL confirmada",
+        openRepositoryOnGithub:
+          "Abrir repositório do {{title}} no GitHub",
+        currentMissionLabel: "{{code}} // {{title}} selecionada",
+        previousMission: "Missão anterior",
+        nextMission: "Próxima missão",
+        previous: "Anterior",
+        next: "Próxima",
         selectedMission: "Missão selecionada",
         defined: "definidas",
         openFile: "Abrir arquivo {{title}}",
@@ -234,6 +249,7 @@ const resources = {
           frontend: "Frontend",
           backend: "Backend / APIs",
           data: "Data",
+          cloud: "Cloud / Infrastructure",
           engineering: "Engineering",
           delivery: "Environment / Delivery",
         },
@@ -248,6 +264,7 @@ const resources = {
           componentization: "Componentização",
           testingFundamentals: "Fundamentos de testes",
           tddWhenApplicable: "TDD quando aplicável",
+          awsFundamentals: "AWS // Fundamentos",
         },
       },
 
@@ -257,9 +274,19 @@ const resources = {
           "Minha experiência em saúde e Engenharia Clínica reúne problemas reais, processos, sistemas corporativos e ambientes críticos. Esse contexto acompanha minha formação em Análise e Desenvolvimento de Sistemas e o desenvolvimento dos meus projetos de software.",
         experienceTitle: "Experiência profissional",
         educationTitle: "Formação",
+        processTitle: "Engineering Process",
         workflowTitle: "Engineering Workflow",
+        workflowDescription:
+          "Parto do problema e do contexto de uso para definir requisitos, regras de negócio e critérios de aceitação. A implementação é conduzida em etapas pequenas, acompanhadas por testes, validação e documentação antes da entrega.",
         incrementalTitle: "Desenvolvimento incremental",
+        incrementalDescription:
+          "Divido o desenvolvimento em entregas pequenas e verificáveis. Cada ciclo possui escopo e critérios de aceitação definidos; implemento, testo, valido o resultado e só então avanço para a próxima entrega.",
+        incrementalStatement:
+          "O desenvolvimento avança em pequenas entregas verificáveis.",
+        whenApplicable: "Quando aplicável",
         tddWhenApplicable: "TDD quando aplicável.",
+        tddDescription:
+          "Testes orientam a implementação quando o comportamento pode ser definido antes do código.",
         experiences: {
           spdm: {
             track: "Engineering Clinical Operations",
@@ -274,6 +301,13 @@ const resources = {
             period: "mai/2025 — jan/2026",
             summary:
               "Utilização de sistemas corporativos, registro e validação de informações, atuação com dados sensíveis, organização, comunicação multidisciplinar e resolução de problemas em ambiente crítico e de alta demanda.",
+          },
+          smr: {
+            track: "Pre-hospital / Emergency Operations",
+            role: "Socorrista",
+            period: "nov/2018 — abr/2021",
+            summary:
+              "Atendimento pré-hospitalar em situações de urgência e emergência, avaliação inicial de vítimas, estabilização clínica, aplicação de protocolos de atendimento e segurança e trabalho integrado com equipes de resgate e saúde.",
           },
         },
         skills: {
@@ -290,6 +324,12 @@ const resources = {
           multidisciplinaryCommunication: "Comunicação multidisciplinar",
           problemSolving: "Resolução de problemas",
           highDemandEnvironment: "Ambiente de alta demanda",
+          criticalDecisionMaking: "Decisão em contexto crítico",
+          protocolExecution: "Execução de protocolos",
+          rapidAssessment: "Avaliação rápida de cenário",
+          teamCommunication: "Comunicação em equipe",
+          safety: "Segurança",
+          prioritization: "Priorização",
         },
         education: {
           ads: {
@@ -307,38 +347,68 @@ const resources = {
           businessRules: "Regras de negócio",
           modeling: "Modelagem",
           test: "Teste",
+          testing: "Testes",
           implementation: "Implementação",
           refactor: "Refatoração",
           validation: "Validação",
           documentation: "Documentação",
           delivery: "Entrega",
         },
+        workflowGroups: {
+          discovery: "Discovery",
+          define: "Definir",
+          build: "Construir",
+          verify: "Verificar",
+          document: "Documentar",
+          deliver: "Entregar",
+        },
         practices: {
+          problem: "Problema",
+          context: "Contexto",
           requirements: "Requisitos",
           businessRules: "Regras de negócio",
           acceptanceCriteria: "Critérios de aceitação",
+          modeling: "Modelagem",
           documentation: "Documentação",
           smallDeliveries: "Pequenas entregas",
+          implementation: "Implementação",
+          componentization: "Componentização",
           tests: "Testes",
           validation: "Validação antes de avançar",
+          refactor: "Refatoração",
+          technicalDocumentation: "Documentação técnica",
+          decisions: "Decisões",
           versionControl: "Git/GitHub",
+          build: "Build",
+          deploymentWhenApplicable: "Deploy quando aplicável",
+        },
+        incrementalCycle: {
+          define: "Definir",
+          implement: "Implementar",
+          test: "Testar",
+          validate: "Validar",
+          refine: "Refinar",
+          nextDelivery: "Próxima entrega",
         },
       },
 
       systemStatus: {
-        title: "System Status",
-        status: {
-          operational: "Operacional",
-          documenting: "Em documentação",
-          pending: "Pendente",
-        },
+        title: "System Overview",
         items: {
           interface: "Interface",
-          languages: "Idiomas PT/EN",
+          languages: "Idiomas",
           missions: "Mission Files",
-          evidence: "Evidências técnicas",
-          visualAsset: "Asset da personagem",
-          contacts: "Canais de contato",
+          engineering: "Engenharia",
+          character: "Personagem",
+          contact: "Contato",
+        },
+        values: {
+          ready: "Pronta",
+          bilingual: "PT / EN",
+          threeProjects: "03 projetos",
+          matrixAndLog: "Matrix + Log",
+          integrated: "Integrada",
+          available: "Disponível",
         },
       },
 
@@ -347,6 +417,8 @@ const resources = {
         subsystem: "Subsistema de apoio à engenharia",
         supportMode: "Apoio supervisionado",
         fullName: "Assistente Lógica de Implementação e Apoio",
+        mascotAriaLabel:
+          "Representação da A.L.I.A., assistente de apoio ao desenvolvimento.",
         description:
           "IA aplicada ao desenvolvimento como apoio à pesquisa técnica, documentação, testes e investigação de erros, sempre com revisão e validação das soluções.",
         supportAreas: "Áreas de apoio",
@@ -364,14 +436,47 @@ const resources = {
         },
       },
 
+      quickContact: {
+        title: "Quick Access",
+        navigationLabel: "Acesso rápido",
+        viewContacts: "Ver contatos",
+      },
+
+      softSkills: {
+        title: "Soft Skills",
+        items: {
+          problemSolving: "Resolução de Problemas",
+          adaptability: "Adaptabilidade",
+          teamwork: "Trabalho em Equipe",
+          communication: "Comunicação",
+          proactivity: "Proatividade",
+          emotionalIntelligence: "Inteligência Emocional",
+        },
+      },
+
       certifications: {
-        title: "Certifications",
+        title: "Formação & Certificações",
+        education: "Formação",
         certification: "Certificação",
         training: "Formações complementares",
         recordsConfirmed: "Registros confirmados",
         verificationPending: "Verificação pendente",
         empty:
           "Credenciais verificadas aguardando conteúdo confirmado para publicação.",
+      },
+
+      healthTech: {
+        condition: {
+          title: "CONDITION",
+          status: "STABLE",
+          link: "HEALTH + TECH LINKED",
+        },
+        clinicalSignal: {
+          signalLabel: "SINAL CLÍNICO",
+          signalCaption:
+            "Experiência em saúde aplicada à engenharia de software.",
+          signalState: "SINAL // REGULAR",
+        },
       },
 
       shell: {
@@ -395,11 +500,11 @@ const resources = {
           "Representação estilizada de Josiane Gonçalves segurando um notebook.",
         characterPlaceholder: "Espaço reservado para a personagem de Josiane Gonçalves",
         assetPending: "Asset visual pendente",
-        stageReady: "Palco pronto",
         contactHud: "HUD de contatos",
         contactPending: "Canais aguardando validação",
         contactChannels: "Canais de contato",
         curriculum: "Currículo",
+        downloadResume: "Baixar currículo em PDF",
         pending: "PENDENTE",
       },
     },
@@ -526,6 +631,21 @@ const resources = {
       missions: {
         title: "Mission Files",
         index: "Mission index",
+        carouselLabel: "Mission carousel",
+        selectMission: "Select mission {{title}}",
+        selectAction: "Select",
+        currentMission: "Current mission",
+        repositoryAction: "GitHub // Repository",
+        repositoryPending: "Repository URL pending",
+        repositoryUnavailable:
+          "{{title}} repository awaiting a confirmed URL",
+        openRepositoryOnGithub:
+          "Open {{title}} repository on GitHub",
+        currentMissionLabel: "{{code}} // {{title}} selected",
+        previousMission: "Previous mission",
+        nextMission: "Next mission",
+        previous: "Previous",
+        next: "Next",
         selectedMission: "Selected mission",
         defined: "defined",
         openFile: "Open file {{title}}",
@@ -637,6 +757,7 @@ const resources = {
           frontend: "Frontend",
           backend: "Backend / APIs",
           data: "Data",
+          cloud: "Cloud / Infrastructure",
           engineering: "Engineering",
           delivery: "Environment / Delivery",
         },
@@ -651,6 +772,7 @@ const resources = {
           componentization: "Componentization",
           testingFundamentals: "Testing fundamentals",
           tddWhenApplicable: "TDD when applicable",
+          awsFundamentals: "AWS // Fundamentals",
         },
       },
 
@@ -660,9 +782,19 @@ const resources = {
           "My experience in healthcare and Clinical Engineering brings together real problems, processes, corporate systems and critical environments. This context accompanies my education in Systems Analysis and Development and the development of my software projects.",
         experienceTitle: "Professional experience",
         educationTitle: "Education",
+        processTitle: "Engineering Process",
         workflowTitle: "Engineering Workflow",
-        incrementalTitle: "Incremental development",
+        workflowDescription:
+          "I start from the problem and usage context to define requirements, business rules and acceptance criteria. Implementation is carried out in small steps, supported by testing, validation and documentation before delivery.",
+        incrementalTitle: "Incremental Delivery",
+        incrementalDescription:
+          "I divide development into small, verifiable deliveries. Each cycle has a defined scope and acceptance criteria; I implement, test and validate the result before moving to the next delivery.",
+        incrementalStatement:
+          "Development advances through small, verifiable deliveries.",
+        whenApplicable: "When applicable",
         tddWhenApplicable: "TDD when applicable.",
+        tddDescription:
+          "Tests guide implementation when behavior can be defined before the code.",
         experiences: {
           spdm: {
             track: "Engineering Clinical Operations",
@@ -677,6 +809,13 @@ const resources = {
             period: "May/2025 — Jan/2026",
             summary:
               "Use of corporate systems, recording and validation of information, work with sensitive data, organization, multidisciplinary communication and problem solving in a critical, high-demand environment.",
+          },
+          smr: {
+            track: "Pre-hospital / Emergency Operations",
+            role: "Emergency Responder",
+            period: "Nov/2018 — Apr/2021",
+            summary:
+              "Pre-hospital care in urgent and emergency situations, initial victim assessment, clinical stabilization, application of care and safety protocols, and integrated work with rescue and healthcare teams.",
           },
         },
         skills: {
@@ -693,6 +832,12 @@ const resources = {
           multidisciplinaryCommunication: "Multidisciplinary communication",
           problemSolving: "Problem solving",
           highDemandEnvironment: "High-demand environment",
+          criticalDecisionMaking: "Decision-making in critical contexts",
+          protocolExecution: "Protocol execution",
+          rapidAssessment: "Rapid scenario assessment",
+          teamCommunication: "Team communication",
+          safety: "Safety",
+          prioritization: "Prioritization",
         },
         education: {
           ads: {
@@ -710,38 +855,68 @@ const resources = {
           businessRules: "Business rules",
           modeling: "Modeling",
           test: "Test",
+          testing: "Testing",
           implementation: "Implementation",
           refactor: "Refactor",
           validation: "Validation",
           documentation: "Documentation",
           delivery: "Delivery",
         },
+        workflowGroups: {
+          discovery: "Discovery",
+          define: "Define",
+          build: "Build",
+          verify: "Verify",
+          document: "Document",
+          deliver: "Deliver",
+        },
         practices: {
+          problem: "Problem",
+          context: "Context",
           requirements: "Requirements",
           businessRules: "Business rules",
           acceptanceCriteria: "Acceptance criteria",
+          modeling: "Modeling",
           documentation: "Documentation",
           smallDeliveries: "Small deliveries",
+          implementation: "Implementation",
+          componentization: "Componentization",
           tests: "Tests",
           validation: "Validation before advancing",
+          refactor: "Refactor",
+          technicalDocumentation: "Technical documentation",
+          decisions: "Decisions",
           versionControl: "Git/GitHub",
+          build: "Build",
+          deploymentWhenApplicable: "Deploy when applicable",
+        },
+        incrementalCycle: {
+          define: "Define",
+          implement: "Implement",
+          test: "Test",
+          validate: "Validate",
+          refine: "Refine",
+          nextDelivery: "Next delivery",
         },
       },
 
       systemStatus: {
-        title: "System Status",
-        status: {
-          operational: "Operational",
-          documenting: "Being documented",
-          pending: "Pending",
-        },
+        title: "System Overview",
         items: {
           interface: "Interface",
-          languages: "PT/EN languages",
+          languages: "Languages",
           missions: "Mission Files",
-          evidence: "Technical evidence",
-          visualAsset: "Character asset",
-          contacts: "Contact channels",
+          engineering: "Engineering",
+          character: "Character",
+          contact: "Contact",
+        },
+        values: {
+          ready: "Ready",
+          bilingual: "PT / EN",
+          threeProjects: "03 projects",
+          matrixAndLog: "Matrix + Log",
+          integrated: "Integrated",
+          available: "Available",
         },
       },
 
@@ -750,6 +925,8 @@ const resources = {
         subsystem: "Engineering support subsystem",
         supportMode: "Supervised support",
         fullName: "Logical Implementation and Support Assistant",
+        mascotAriaLabel:
+          "Representation of A.L.I.A., development support assistant.",
         description:
           "AI applied to development as support for technical research, documentation, testing and error investigation, always with human review and validation of solutions.",
         supportAreas: "Support areas",
@@ -767,14 +944,47 @@ const resources = {
         },
       },
 
+      quickContact: {
+        title: "Quick Access",
+        navigationLabel: "Quick access",
+        viewContacts: "View contacts",
+      },
+
+      softSkills: {
+        title: "Soft Skills",
+        items: {
+          problemSolving: "Problem Solving",
+          adaptability: "Adaptability",
+          teamwork: "Teamwork",
+          communication: "Communication",
+          proactivity: "Proactivity",
+          emotionalIntelligence: "Emotional Intelligence",
+        },
+      },
+
       certifications: {
-        title: "Certifications",
+        title: "Education & Certifications",
+        education: "Education",
         certification: "Certification",
         training: "Complementary training",
         recordsConfirmed: "Confirmed records",
         verificationPending: "Verification pending",
         empty:
           "Verified credentials are awaiting confirmed content for publication.",
+      },
+
+      healthTech: {
+        condition: {
+          title: "CONDITION",
+          status: "STABLE",
+          link: "HEALTH + TECH LINKED",
+        },
+        clinicalSignal: {
+          signalLabel: "CLINICAL SIGNAL",
+          signalCaption:
+            "Healthcare experience applied to software engineering.",
+          signalState: "SIGNAL // REGULAR",
+        },
       },
 
       shell: {
@@ -798,11 +1008,11 @@ const resources = {
           "Stylized representation of Josiane Gonçalves holding a laptop.",
         characterPlaceholder: "Reserved space for Josiane Gonçalves character artwork",
         assetPending: "Visual asset pending",
-        stageReady: "Stage ready",
         contactHud: "Contact HUD",
         contactPending: "Channels awaiting verification",
         contactChannels: "Contact channels",
         curriculum: "Résumé",
+        downloadResume: "Download résumé PDF",
         pending: "PENDING",
       },
     },

@@ -9,7 +9,7 @@ export function AliaModule() {
 
   return (
     <HudPanel
-      className="h-full"
+      className="alia-module"
       eyebrow={t("alia.subsystem")}
       headerAccessory={
         <StatusBadge status="operational">{t("alia.supportMode")}</StatusBadge>
@@ -38,10 +38,11 @@ export function AliaModule() {
         ))}
       </ul>
 
-      <div className="mt-6 border-l-2 border-alia-violet pl-4 text-sm leading-6 text-[var(--color-text-muted)]">
-        <p>{t("alia.humanReview")}</p>
-        <p>{t("alia.humanValidation")}</p>
-        <p>{t("alia.humanDecision")}</p>
+      <div className="alia-module__guardrails">
+        <p>
+          {t("alia.humanReview")} // {t("alia.humanValidation")} //{" "}
+          {t("alia.humanDecision")}
+        </p>
         <p>{t("alia.noAutonomy")}</p>
       </div>
     </HudPanel>

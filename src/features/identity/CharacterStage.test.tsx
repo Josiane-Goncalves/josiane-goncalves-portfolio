@@ -24,10 +24,10 @@ describe("CharacterStage", () => {
     expect(character.getAttribute("src")).toContain("josiane-character");
   });
 
-  it("renders A.L.I.A. as an accessible, non-interactive companion", () => {
-    const { container } = render(<CharacterStage />);
+  it("keeps FRAME // 01 separate from the translated A.L.I.A. figure", async () => {
+    const { container, rerender } = render(<CharacterStage />);
     const companion = screen.getByRole("figure", {
-      name: "A.L.I.A. Assistente Lógica de Implementação e Apoio",
+      name: "Representação da A.L.I.A., assistente de apoio ao desenvolvimento.",
     });
 
     expect(within(companion).getByText("A.L.I.A.")).toBeInTheDocument();
@@ -36,10 +36,24 @@ describe("CharacterStage", () => {
     ).toBeInTheDocument();
     expect(within(companion).queryByRole("button")).not.toBeInTheDocument();
     expect(within(companion).queryByRole("link")).not.toBeInTheDocument();
+    expect(companion).toHaveAttribute("tabindex", "0");
+    expect(container.querySelector(".character-stage__companion-frame")).not.toBeInTheDocument();
+    expect(container.querySelector(".character-stage__frame-marker")).toHaveTextContent(
+      "FRAME // 01",
+    );
 
     const mascot = companion.querySelector("img");
     expect(mascot).toHaveAttribute("alt", "");
     expect(mascot?.getAttribute("src")).toContain("alia-mascot");
     expect(container.querySelectorAll("h1")).toHaveLength(0);
+
+    await i18n.changeLanguage("en");
+    rerender(<CharacterStage />);
+
+    expect(
+      screen.getByRole("figure", {
+        name: "Representation of A.L.I.A., development support assistant.",
+      }),
+    ).toBeInTheDocument();
   });
 });

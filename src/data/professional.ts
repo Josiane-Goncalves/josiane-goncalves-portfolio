@@ -9,6 +9,7 @@ export const professionalProfile: ProfessionalProfile = {
   fullName: "JOSIANE GONÇALVES",
   location: "Uberlândia // MG // Brasil",
   primaryStack: ["React", "TypeScript", "Node.js", "APIs", "PostgreSQL"],
+  resumeUrl: "/cv/josiane-goncalves-cv.pdf",
 };
 
 export const contactChannels = [
@@ -64,6 +65,28 @@ export const professionalExperiences = [
       "highDemandEnvironment",
     ],
   },
+  {
+    id: "smr",
+    organization: "SMR — Socorro Médico e Resgate",
+    translationKey: "smr",
+    skills: [
+      "criticalDecisionMaking",
+      "protocolExecution",
+      "rapidAssessment",
+      "teamCommunication",
+      "safety",
+      "prioritization",
+    ],
+  },
+] as const;
+
+export const softSkills = [
+  "problemSolving",
+  "adaptability",
+  "teamwork",
+  "communication",
+  "proactivity",
+  "emotionalIntelligence",
 ] as const;
 
 export const education = [
@@ -116,10 +139,10 @@ export const credentials: readonly Credential[] = [
     issuer: "Cisco Networking Academy",
   },
   {
-    id: "html-dio",
+    id: "networks-ada",
     type: "training",
-    name: "Formação HTML Web Developer",
-    issuer: "DIO",
+    name: "Redes e Sistemas",
+    issuer: "Ada",
   },
   {
     id: "lgpd-health",
@@ -128,28 +151,25 @@ export const credentials: readonly Credential[] = [
   },
 ];
 
-export const engineeringWorkflow = [
+export const engineeringProcessSteps = [
   "discovery",
   "requirements",
   "businessRules",
   "modeling",
-  "test",
   "implementation",
-  "refactor",
+  "testing",
   "validation",
   "documentation",
   "delivery",
 ] as const;
 
-export const incrementalPractices = [
-  "requirements",
-  "businessRules",
-  "acceptanceCriteria",
-  "documentation",
-  "smallDeliveries",
-  "tests",
-  "validation",
-  "versionControl",
+export const incrementalCycle = [
+  "define",
+  "implement",
+  "test",
+  "validate",
+  "refine",
+  "nextDelivery",
 ] as const;
 
 export const tddCycle = ["RED", "GREEN", "REFACTOR"] as const;

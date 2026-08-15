@@ -31,6 +31,12 @@ export const engineeringAreas = [
     capabilities: ["dataModeling"],
   },
   {
+    id: "cloud",
+    translationKey: "cloud",
+    technologies: ["AWS", "Linux"],
+    capabilities: ["awsFundamentals"],
+  },
+  {
     id: "engineering",
     translationKey: "engineering",
     technologies: ["Git", "GitHub"],
@@ -46,18 +52,22 @@ export const engineeringAreas = [
   {
     id: "delivery",
     translationKey: "delivery",
-    technologies: ["Linux", "npm", "ESLint", "Vercel"],
+    technologies: ["npm", "ESLint", "Vercel"],
     capabilities: [],
   },
 ] as const;
 
-export const systemStatuses = [
-  { id: "interface", translationKey: "interface", status: "operational" },
-  { id: "languages", translationKey: "languages", status: "operational" },
-  { id: "missions", translationKey: "missions", status: "documenting" },
-  { id: "evidence", translationKey: "evidence", status: "pending" },
-  { id: "visualAsset", translationKey: "visualAsset", status: "pending" },
-  { id: "contacts", translationKey: "contacts", status: "operational" },
+export const systemOverview = [
+  { id: "interface", translationKey: "interface", valueKey: "ready" },
+  { id: "languages", translationKey: "languages", valueKey: "bilingual" },
+  { id: "missions", translationKey: "missions", valueKey: "threeProjects" },
+  {
+    id: "engineering",
+    translationKey: "engineering",
+    valueKey: "matrixAndLog",
+  },
+  { id: "character", translationKey: "character", valueKey: "integrated" },
+  { id: "contact", translationKey: "contact", valueKey: "available" },
 ] as const;
 
 export const aliaWorkflows = [

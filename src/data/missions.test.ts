@@ -27,7 +27,9 @@ describe("mission data", () => {
 
   it("uses valid statuses and technology values", () => {
     for (const mission of missions) {
-      expect(missionStatuses).toContain(mission.status);
+      if (mission.status) {
+        expect(missionStatuses).toContain(mission.status);
+      }
       expect(new Set(mission.technologies).size).toBe(
         mission.technologies.length,
       );
@@ -36,6 +38,10 @@ describe("mission data", () => {
         expect(technology.trim()).not.toBe("");
       }
     }
+  });
+
+  it("does not label portfolio documentation progress as project status", () => {
+    expect(missions.every(({ status }) => status !== "documenting")).toBe(true);
   });
 
   it("only accepts valid optional project links", () => {
@@ -47,6 +53,17 @@ describe("mission data", () => {
         }
       }
     }
+  });
+
+  it("publishes the three confirmed GitHub repositories", () => {
+    expect(
+      Object.fromEntries(missions.map(({ id, repositoryUrl }) => [id, repositoryUrl])),
+    ).toEqual({
+      pulseops: "https://github.com/Josiane-Goncalves/pulseops",
+      "prado-em-dia": "https://github.com/Josiane-Goncalves/prado-em-dia",
+      "ride-wars-league": "https://github.com/Josiane-Goncalves/ride-wars-league",
+    });
+    expect(missions.every(({ repositoryUrl }) => Boolean(repositoryUrl))).toBe(true);
   });
 
   it("references available mission content in both languages", () => {

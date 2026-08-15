@@ -60,12 +60,14 @@ export function MissionDetail({
         </button>
       </header>
 
-      <div className="mission-detail__meta">
-        <span>{t("missions.recordStatus")}</span>
-        <StatusBadge status={statusTones[mission.status]}>
-          {t(`missions.status.${mission.status}`)}
-        </StatusBadge>
-      </div>
+      {mission.status ? (
+        <div className="mission-detail__meta">
+          <span>{t("missions.recordStatus")}</span>
+          <StatusBadge status={statusTones[mission.status]}>
+            {t(`missions.status.${mission.status}`)}
+          </StatusBadge>
+        </div>
+      ) : null}
 
       <p className="mission-detail__summary">
         {t(`${translationPath}.summary`)}
@@ -94,12 +96,20 @@ export function MissionDetail({
       {mission.repositoryUrl || mission.liveUrl ? (
         <div className="mission-detail__links">
           {mission.repositoryUrl ? (
-            <a href={mission.repositoryUrl} rel="noreferrer" target="_blank">
+            <a
+              href={mission.repositoryUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               {t("missions.viewRepository")}
             </a>
           ) : null}
           {mission.liveUrl ? (
-            <a href={mission.liveUrl} rel="noreferrer" target="_blank">
+            <a
+              href={mission.liveUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               {t("missions.openSystem")}
             </a>
           ) : null}
