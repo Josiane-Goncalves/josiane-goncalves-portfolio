@@ -1,6 +1,7 @@
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
 
+import { OpportunityRadar } from "../../components/OpportunityRadar";
 import { professionalProfile } from "../../data/professional";
 
 export function IdentityBrief() {
@@ -30,20 +31,13 @@ export function IdentityBrief() {
 
       <p className="identity-brief__summary">{t("profile.description")}</p>
 
-      <dl className="identity-brief__meta">
+      <div className="identity-brief__availability">
         <div>
-          <dt>{t("profile.locationLabel")}</dt>
-          <dd>{professionalProfile.location}</dd>
+          <span>{t("profile.statusLabel")}</span>
+          <strong>{t("profile.availability")}</strong>
         </div>
-        <div>
-          <dt>{t("profile.focusLabel")}</dt>
-          <dd>{t("profile.focus")}</dd>
-        </div>
-        <div>
-          <dt>{t("profile.statusLabel")}</dt>
-          <dd>{t("profile.availability")}</dd>
-        </div>
-      </dl>
+        <OpportunityRadar />
+      </div>
 
       <span className="identity-brief__signature">
         {t("shell.identitySignature")}

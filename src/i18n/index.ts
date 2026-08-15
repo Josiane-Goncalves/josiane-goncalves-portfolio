@@ -393,7 +393,7 @@ const resources = {
       },
 
       systemStatus: {
-        title: "System Overview",
+        title: "VISÃO DO SISTEMA",
         items: {
           interface: "Interface",
           languages: "Idiomas",
@@ -420,26 +420,13 @@ const resources = {
         mascotAriaLabel:
           "Representação da A.L.I.A., assistente de apoio ao desenvolvimento.",
         description:
-          "IA aplicada ao desenvolvimento como apoio à pesquisa técnica, documentação, testes e investigação de erros, sempre com revisão e validação das soluções.",
-        supportAreas: "Áreas de apoio",
-        humanReview: "Revisão humana",
-        humanValidation: "Validação humana",
-        humanDecision: "Decisão humana",
-        noAutonomy: "Nenhuma decisão autônoma ou interface de chatbot está ativa.",
-        workflows: {
-          technicalResearch: "Pesquisa técnica",
-          documentation: "Apoio à documentação",
-          tests: "Apoio a testes",
-          errorInvestigation: "Investigação de erros",
-          alternativeAnalysis: "Análise de alternativas",
-          implementation: "Apoio à implementação",
-        },
+          "IA aplicada ao desenvolvimento como apoio à pesquisa técnica, documentação, testes e investigação de erros.",
       },
 
       quickContact: {
-        title: "Quick Access",
+        title: "ACESSO RÁPIDO",
         navigationLabel: "Acesso rápido",
-        viewContacts: "Ver contatos",
+        resumeLabel: "Currículo",
       },
 
       softSkills: {
@@ -901,7 +888,7 @@ const resources = {
       },
 
       systemStatus: {
-        title: "System Overview",
+        title: "SYSTEM OVERVIEW",
         items: {
           interface: "Interface",
           languages: "Languages",
@@ -928,26 +915,13 @@ const resources = {
         mascotAriaLabel:
           "Representation of A.L.I.A., development support assistant.",
         description:
-          "AI applied to development as support for technical research, documentation, testing and error investigation, always with human review and validation of solutions.",
-        supportAreas: "Support areas",
-        humanReview: "Human review",
-        humanValidation: "Human validation",
-        humanDecision: "Human decision",
-        noAutonomy: "No autonomous decisions or chatbot interface are active.",
-        workflows: {
-          technicalResearch: "Technical research",
-          documentation: "Documentation support",
-          tests: "Testing support",
-          errorInvestigation: "Error investigation",
-          alternativeAnalysis: "Alternative analysis",
-          implementation: "Implementation support",
-        },
+          "AI used in development to support technical research, documentation, testing and error investigation.",
       },
 
       quickContact: {
-        title: "Quick Access",
+        title: "QUICK ACCESS",
         navigationLabel: "Quick access",
-        viewContacts: "View contacts",
+        resumeLabel: "CV",
       },
 
       softSkills: {

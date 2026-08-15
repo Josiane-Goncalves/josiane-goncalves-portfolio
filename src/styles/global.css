@@ -290,8 +290,7 @@
   list-style: none;
 }
 
-.quick-contact__links a,
-.quick-contact__full-link {
+.quick-contact__links a {
   display: flex;
   min-height: 40px;
   align-items: center;
@@ -311,20 +310,11 @@
 }
 
 .quick-contact__links a:hover,
-.quick-contact__links a:focus-visible,
-.quick-contact__full-link:hover,
-.quick-contact__full-link:focus-visible {
+.quick-contact__links a:focus-visible {
   border-color: var(--color-system);
   box-shadow: inset 2px 0 0 var(--color-system);
   color: var(--color-system-bright);
   transform: translateY(-1px);
-}
-
-.quick-contact__full-link {
-  justify-content: space-between;
-  border-color: transparent;
-  border-top-color: var(--color-border-muted);
-  padding: 7px 4px 0;
 }
 
 .soft-skills__list {
@@ -368,19 +358,6 @@
 
 .alia-module .hud-panel__body > h3 {
   margin-top: 16px;
-}
-
-.alia-module__guardrails {
-  margin-top: 16px;
-  border-left: 2px solid var(--color-ai);
-  padding-left: 12px;
-  color: var(--color-text-muted);
-  font-size: 0.8125rem;
-  line-height: 1.55;
-}
-
-.alia-module__guardrails p + p {
-  margin-top: 6px;
 }
 
 @media (max-width: 540px) {
@@ -876,18 +853,18 @@
   line-height: 1.65;
 }
 
-.identity-brief__meta {
-  display: grid;
-  gap: 8px;
+.identity-brief__availability {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   margin-top: 20px;
-}
-
-.identity-brief__meta > div {
   border-left: 1px solid var(--color-border-muted);
   padding-left: 10px;
 }
 
-.identity-brief__meta dt {
+.identity-brief__availability span {
+  display: block;
   color: var(--color-text-muted);
   font-family: var(--font-technical);
   font-size: var(--text-interface);
@@ -895,11 +872,14 @@
   text-transform: uppercase;
 }
 
-.identity-brief__meta dd {
+.identity-brief__availability strong {
+  display: block;
   margin-top: 2px;
-  color: var(--color-text);
+  color: var(--color-system-bright);
   font-size: 0.8rem;
+  font-weight: 600;
   line-height: 1.45;
+  text-transform: uppercase;
 }
 
 .identity-brief__signature {

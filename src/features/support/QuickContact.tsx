@@ -33,16 +33,12 @@ export function QuickContact() {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                CV
+                {t("quickContact.resumeLabel")}
               </a>
             </li>
           ) : null}
         </ul>
       </nav>
-      <a className="quick-contact__full-link" href="#contact">
-        {t("quickContact.viewContacts")}
-        <span aria-hidden="true">→</span>
-      </a>
     </HudPanel>
   );
 }

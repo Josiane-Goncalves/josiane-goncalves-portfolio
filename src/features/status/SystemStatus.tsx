@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 
 import { HudPanel } from "../../components/HudPanel";
-import { SystemRadar } from "../../components/SystemRadar";
 import { systemOverview } from "../../data/engineering";
 
 export function SystemStatus() {
@@ -10,7 +9,6 @@ export function SystemStatus() {
   return (
     <HudPanel
       bodyClassName="hud-panel__body--flush"
-      headerAccessory={<SystemRadar />}
       title={t("systemStatus.title")}
       variant="system"
     >

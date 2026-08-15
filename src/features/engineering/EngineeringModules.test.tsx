@@ -144,12 +144,9 @@ describe("engineering modules", () => {
     const { container, rerender } = render(<SystemStatus />);
 
     expect(
-      screen.getByRole("heading", { level: 2, name: "System Overview" }),
+      screen.getByRole("heading", { level: 2, name: "VISÃO DO SISTEMA" }),
     ).toBeInTheDocument();
-    expect(container.querySelector("[data-system-radar]")).toHaveAttribute(
-      "aria-hidden",
-      "true",
-    );
+    expect(container.querySelector("[data-opportunity-radar]")).not.toBeInTheDocument();
     expect(screen.queryAllByText("Operacional")).toHaveLength(0);
     for (const value of [
       "Pronta",
@@ -164,6 +161,10 @@ describe("engineering modules", () => {
 
     await i18n.changeLanguage("en");
     rerender(<SystemStatus />);
+
+    expect(
+      screen.getByRole("heading", { level: 2, name: "SYSTEM OVERVIEW" }),
+    ).toBeInTheDocument();
 
     for (const value of [
       "Ready",
@@ -191,13 +192,16 @@ describe("engineering modules", () => {
     expect(screen.queryByRole("link")).not.toBeInTheDocument();
   });
 
-  it("presents A.L.I.A. as supervised implementation support", () => {
+  it("presents A.L.I.A. as concise implementation support", () => {
     render(<AliaModule />);
 
     expect(screen.getByText("Assistente Lógica de Implementação e Apoio")).toBeInTheDocument();
-    expect(screen.getByText(/revisão humana/i)).toBeInTheDocument();
-    expect(screen.getByText(/validação humana/i)).toBeInTheDocument();
-    expect(screen.getByText(/decisão humana/i)).toBeInTheDocument();
+    expect(screen.getByText(/IA aplicada ao desenvolvimento como apoio/)).toBeInTheDocument();
+    expect(screen.queryByText(/revisão humana/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/validação humana/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/decisão humana/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/chatbot/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("Áreas de apoio")).not.toBeInTheDocument();
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
   });
 });

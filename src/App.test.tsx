@@ -52,7 +52,7 @@ describe("App", () => {
     });
     const [certifications] = certificationPanels;
 
-    for (const moduleTitle of ["System Overview", "A.L.I.A."]) {
+    for (const moduleTitle of ["VISÃO DO SISTEMA", "A.L.I.A."]) {
       expect(
         within(systemRail).getByRole("heading", {
           level: 2,
@@ -61,7 +61,7 @@ describe("App", () => {
       ).toBeInTheDocument();
     }
 
-    for (const moduleTitle of ["Quick Access", "Soft Skills"]) {
+    for (const moduleTitle of ["ACESSO RÁPIDO", "Soft Skills"]) {
       expect(
         within(systemRail).getByRole("heading", { name: moduleTitle }),
       ).toBeInTheDocument();

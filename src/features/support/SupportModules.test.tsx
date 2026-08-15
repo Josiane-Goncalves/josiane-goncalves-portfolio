@@ -10,10 +10,13 @@ describe("support modules", () => {
     await i18n.changeLanguage("pt");
   });
 
-  it("provides direct quick-contact destinations and the full HUD anchor", () => {
-    render(<QuickContact />);
+  it("translates Quick Access and provides direct destinations without a redundant HUD anchor", async () => {
+    const { rerender } = render(<QuickContact />);
 
     const navigation = screen.getByRole("navigation", { name: "Acesso rápido" });
+    expect(
+      screen.getByRole("heading", { level: 2, name: "ACESSO RÁPIDO" }),
+    ).toBeInTheDocument();
     expect(within(navigation).getByRole("link", { name: "LinkedIn" })).toHaveAttribute(
       "href",
       "https://www.linkedin.com/in/josianecgoncalves",
@@ -30,18 +33,24 @@ describe("support modules", () => {
       "href",
       "mailto:josypropy@gmail.com",
     );
-    expect(within(navigation).getByRole("link", { name: "CV" })).toHaveAttribute(
+    expect(within(navigation).getByRole("link", { name: "Currículo" })).toHaveAttribute(
       "href",
       "/cv/josiane-goncalves-cv.pdf",
     );
-    expect(within(navigation).getByRole("link", { name: "CV" })).toHaveAttribute(
+    expect(within(navigation).getByRole("link", { name: "Currículo" })).toHaveAttribute(
       "target",
       "_blank",
     );
-    expect(screen.getByRole("link", { name: "Ver contatos" })).toHaveAttribute(
-      "href",
-      "#contact",
-    );
+    expect(screen.queryByRole("link", { name: "Ver contatos" })).not.toBeInTheDocument();
+
+    await i18n.changeLanguage("en");
+    rerender(<QuickContact />);
+
+    const englishNavigation = screen.getByRole("navigation", { name: "Quick access" });
+    expect(
+      screen.getByRole("heading", { level: 2, name: "QUICK ACCESS" }),
+    ).toBeInTheDocument();
+    expect(within(englishNavigation).getByRole("link", { name: "CV" })).toBeInTheDocument();
   });
 
   it("renders factual soft skills with one decorative signal and no score", async () => {

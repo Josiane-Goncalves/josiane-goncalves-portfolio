@@ -1,9 +1,9 @@
-export function SystemRadar() {
+export function OpportunityRadar() {
   return (
     <span
       aria-hidden="true"
       className="system-radar"
-      data-system-radar=""
+      data-opportunity-radar=""
     >
       <span className="system-radar__ring system-radar__ring--outer" />
       <span className="system-radar__ring system-radar__ring--inner" />
