@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 import { HudPanel } from "../../components/HudPanel";
-import { SignalBars } from "../../components/SignalBars";
 import { softSkills } from "../../data/professional";
+import { InsightsWaves } from "./InsightsWaves";
 
 export function SoftSkillsPanel() {
   const { t } = useTranslation();
@@ -11,15 +11,20 @@ export function SoftSkillsPanel() {
     <HudPanel
       bodyClassName="soft-skills__body"
       className="soft-skills"
+      headerAccessory={
+        <span className="soft-skills__insights-label">
+          {t("softSkills.insightsLabel")}
+        </span>
+      }
       title={t("softSkills.title")}
-      variant="neutral"
+      variant="system"
     >
+      <InsightsWaves />
       <ul className="soft-skills__list">
         {softSkills.map((skill) => (
           <li key={skill}>{t(`softSkills.items.${skill}`)}</li>
         ))}
       </ul>
-      <SignalBars pattern={2} size="wide" />
     </HudPanel>
   );
 }

@@ -431,6 +431,7 @@ const resources = {
 
       softSkills: {
         title: "Soft Skills",
+        insightsLabel: "Insights humanos // 01",
         items: {
           problemSolving: "Resolução de Problemas",
           adaptability: "Adaptabilidade",
@@ -926,6 +927,7 @@ const resources = {
 
       softSkills: {
         title: "Soft Skills",
+        insightsLabel: "Human insights // 01",
         items: {
           problemSolving: "Problem Solving",
           adaptability: "Adaptability",

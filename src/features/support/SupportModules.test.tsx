@@ -53,7 +53,7 @@ describe("support modules", () => {
     expect(within(englishNavigation).getByRole("link", { name: "CV" })).toBeInTheDocument();
   });
 
-  it("renders factual soft skills with one decorative signal and no score", async () => {
+  it("renders factual soft skills with decorative insight waves and no progress semantics", async () => {
     const { container, rerender } = render(<SoftSkillsPanel />);
 
     for (const skill of [
@@ -66,17 +66,23 @@ describe("support modules", () => {
     ]) {
       expect(screen.getByText(skill)).toBeInTheDocument();
     }
-    expect(container.querySelectorAll("[data-signal-bars]")).toHaveLength(1);
-    expect(container.querySelector("[data-signal-bars]")).toHaveAttribute("aria-hidden", "true");
+    expect(container.querySelector("[data-signal-bars]")).not.toBeInTheDocument();
+    expect(container.querySelector("[data-insights-waves]")).toBeInTheDocument();
+    expect(container.querySelector("[data-insights-waves] svg")).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
     expect(container).not.toHaveTextContent(/\d+%/);
     expect(container.querySelector('[role="progressbar"]')).not.toBeInTheDocument();
-    expect(
-      screen.queryByText("Competências desenvolvidas em ambientes técnicos e críticos."),
-    ).not.toBeInTheDocument();
+    expect(container.querySelector("meter")).not.toBeInTheDocument();
+    expect(container.querySelector("[aria-valuenow]")).not.toBeInTheDocument();
+    expect(screen.getByText("Insights humanos // 01")).toBeInTheDocument();
 
     await i18n.changeLanguage("en");
     rerender(<SoftSkillsPanel />);
     expect(screen.getByRole("heading", { name: "Soft Skills" })).toBeInTheDocument();
+    expect(screen.getByText("Human insights // 01")).toBeInTheDocument();
     expect(screen.getByText("Problem Solving")).toBeInTheDocument();
+    expect(screen.getByText("Emotional Intelligence")).toBeInTheDocument();
   });
 });
