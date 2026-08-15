@@ -14,13 +14,8 @@ describe("engineering modules", () => {
     await i18n.changeLanguage("pt");
   });
 
-  it("renders the confirmed engineering areas without arbitrary scores", () => {
-    const { container } = render(
-      <>
-        <SystemStatus />
-        <EngineeringMatrix />
-      </>,
-    );
+  it("renders the confirmed engineering areas as decorative signal activity", async () => {
+    const { container, rerender } = render(<EngineeringMatrix />);
 
     expect(container).not.toHaveTextContent(/\d+%/);
     for (const area of [
@@ -34,11 +29,23 @@ describe("engineering modules", () => {
       expect(screen.getByRole("heading", { level: 3, name: area })).toBeInTheDocument();
     }
     expect(screen.getByText("AWS")).toBeInTheDocument();
-    expect(screen.getByText("AWS // Fundamentos")).toBeInTheDocument();
+    expect(screen.getByText("Linux")).toBeInTheDocument();
+    expect(screen.queryByText("AWS // Fundamentos")).not.toBeInTheDocument();
+    expect(screen.queryByText("Tecnologias principais")).not.toBeInTheDocument();
     expect(screen.getByText("TDD quando aplicável")).toBeInTheDocument();
 
-    expect(container.querySelectorAll("[data-signal-bars]")).toHaveLength(6);
+    const signals = container.querySelectorAll("[data-signal-bars]");
+
+    expect(signals).toHaveLength(6);
+    for (const signal of signals) {
+      expect(signal).toHaveAttribute("aria-hidden", "true");
+    }
     expect(container.querySelector('[role="progressbar"]')).not.toBeInTheDocument();
+    expect(container.querySelector("progress")).not.toBeInTheDocument();
+    expect(container.querySelector("[aria-valuenow]")).not.toBeInTheDocument();
+    expect(container.querySelector("[aria-valuemin]")).not.toBeInTheDocument();
+    expect(container.querySelector("[aria-valuemax]")).not.toBeInTheDocument();
+    expect(container.querySelector("[data-score]")).not.toBeInTheDocument();
 
     for (const area of [
       "Frontend",
@@ -51,6 +58,15 @@ describe("engineering modules", () => {
       const areaSection = screen.getByRole("heading", { level: 3, name: area }).closest("section");
       expect(areaSection?.querySelectorAll("[data-signal-bars]")).toHaveLength(1);
     }
+
+    await i18n.changeLanguage("en");
+    rerender(<EngineeringMatrix />);
+
+    expect(
+      screen.getByRole("heading", { level: 3, name: "Cloud / Infrastructure" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Data modeling")).toBeInTheDocument();
+    expect(screen.queryByText("AWS // Fundamentals")).not.toBeInTheDocument();
   });
 
   it("renders the three approved professional experiences", () => {

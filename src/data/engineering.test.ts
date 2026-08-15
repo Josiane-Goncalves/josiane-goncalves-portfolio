@@ -47,6 +47,9 @@ describe("engineering data", () => {
       engineeringAreas.find(({ id }) => id === "cloud")?.technologies,
     ).toEqual(["AWS", "Linux"]);
     expect(
+      engineeringAreas.find(({ id }) => id === "cloud")?.capabilities,
+    ).toEqual([]);
+    expect(
       engineeringAreas.find(({ id }) => id === "delivery")?.technologies,
     ).not.toContain("Linux");
   });

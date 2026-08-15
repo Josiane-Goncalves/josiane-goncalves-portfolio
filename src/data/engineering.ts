@@ -34,7 +34,7 @@ export const engineeringAreas = [
     id: "cloud",
     translationKey: "cloud",
     technologies: ["AWS", "Linux"],
-    capabilities: ["awsFundamentals"],
+    capabilities: [],
   },
   {
     id: "engineering",

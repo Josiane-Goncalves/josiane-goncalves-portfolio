@@ -17,31 +17,35 @@ export function EngineeringMatrix() {
         {engineeringAreas.map(
           ({ id, translationKey, technologies, capabilities }, index) => (
             <section
+              aria-labelledby={`engineering-area-${id}`}
               className="engineering-matrix__area"
+              data-engineering-area={id}
               key={id}
             >
               <div className="engineering-matrix__area-header">
-                <h3>{t(`engineering.areas.${translationKey}`)}</h3>
-                <SignalBars pattern={index} size="wide" />
+                <h3 id={`engineering-area-${id}`}>
+                  <span aria-hidden="true">0{index + 1}</span>
+                  {t(`engineering.areas.${translationKey}`)}
+                </h3>
+                <span aria-hidden="true" className="engineering-matrix__trace" />
               </div>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {technologies.map((technology) => (
-                  <li
-                    className="border border-system-lime/25 px-2 py-1 font-terminal text-xs text-[var(--color-text)]"
-                    key={technology}
-                  >
-                    {technology}
-                  </li>
-                ))}
-                {capabilities.map((capability) => (
-                  <li
-                    className="border border-[var(--color-border-muted)] px-2 py-1 font-terminal text-xs text-[var(--color-text-muted)]"
-                    key={capability}
-                  >
-                    {t(`engineering.capabilities.${capability}`)}
-                  </li>
-                ))}
-              </ul>
+              <div className="engineering-matrix__area-body">
+                <ul className="engineering-matrix__technologies">
+                  {technologies.map((technology) => (
+                    <li data-kind="technology" key={technology}>
+                      {technology}
+                    </li>
+                  ))}
+                  {capabilities.map((capability) => (
+                    <li data-kind="capability" key={capability}>
+                      {t(`engineering.capabilities.${capability}`)}
+                    </li>
+                  ))}
+                </ul>
+                <div className="engineering-matrix__activity">
+                  <SignalBars pattern={index} size="wide" />
+                </div>
+              </div>
             </section>
           ),
         )}
