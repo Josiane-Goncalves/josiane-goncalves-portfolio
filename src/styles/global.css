@@ -13,6 +13,7 @@
   --color-panel: var(--color-surface);
   --color-metal: var(--color-border);
   --color-system-lime: var(--color-system);
+  --color-interface-cyan: var(--color-interface);
   --color-mission-amber: var(--color-mission);
   --color-alia-violet: var(--color-ai);
 }
@@ -43,14 +44,21 @@
 
 .hud-panel {
   --panel-accent: var(--color-border);
+  --panel-secondary-accent: var(--panel-accent);
+  --frame-cut: 10px;
+  --frame-segment: 44px;
   position: relative;
   min-width: 0;
-  border: 1px solid color-mix(in srgb, var(--panel-accent) 52%, var(--color-border-muted));
+  border: 1px solid color-mix(in srgb, var(--panel-accent) 42%, var(--color-border-muted));
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--panel-accent) 4%, transparent), transparent 38%),
+    radial-gradient(circle at 0 0, color-mix(in srgb, var(--panel-accent) 7%, transparent), transparent 34%),
+    linear-gradient(135deg, color-mix(in srgb, var(--panel-accent) 3%, transparent), transparent 42%),
     var(--color-surface-translucent);
-  box-shadow: var(--shadow-elevated);
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--panel-accent) 10%, transparent),
+    inset 0 0 24px color-mix(in srgb, var(--panel-accent) 3%, transparent),
+    0 16px 36px rgb(0 0 0 / 22%);
+  clip-path: polygon(0 0, calc(100% - var(--frame-cut)) 0, 100% var(--frame-cut), 100% 100%, var(--frame-cut) 100%, 0 calc(100% - var(--frame-cut)));
 }
 
 .hud-panel::before,
@@ -58,23 +66,25 @@
   content: "";
   position: absolute;
   z-index: 1;
-  width: 44px;
-  border-top: 2px solid var(--panel-accent);
+  width: var(--frame-segment);
   pointer-events: none;
 }
 
 .hud-panel::before {
   top: -1px;
   left: 18px;
+  border-top: 2px solid var(--panel-accent);
 }
 
 .hud-panel::after {
   right: 18px;
   bottom: -1px;
+  border-top: 1px solid var(--panel-secondary-accent);
 }
 
 .hud-panel[data-variant="system"] {
-  --panel-accent: var(--color-system);
+  --panel-accent: var(--color-interface);
+  --panel-secondary-accent: var(--color-system);
 }
 
 .hud-panel[data-variant="mission"] {
@@ -83,6 +93,11 @@
 
 .hud-panel[data-variant="ai"] {
   --panel-accent: var(--color-ai);
+}
+
+.hud-panel[data-variant="credential"] {
+  --panel-accent: var(--color-interface);
+  --panel-secondary-accent: var(--color-mission);
 }
 
 .hud-panel__corner {
@@ -115,7 +130,13 @@
   justify-content: space-between;
   gap: 20px;
   border-bottom: 1px solid color-mix(in srgb, var(--panel-accent) 24%, var(--color-border-muted));
+  background: linear-gradient(90deg, color-mix(in srgb, var(--panel-accent) 5%, transparent), transparent 58%);
   padding: 16px 20px;
+}
+
+.hud-panel__header > div:first-child {
+  min-width: 0;
+  flex: 1;
 }
 
 .hud-panel__eyebrow {
@@ -130,7 +151,10 @@
 }
 
 .hud-panel__title {
+  display: flex;
   margin: 0;
+  align-items: center;
+  gap: 12px;
   color: var(--panel-accent);
   font-family: var(--font-display);
   font-size: var(--text-title);
@@ -138,6 +162,15 @@
   letter-spacing: 0.1em;
   line-height: 1.1;
   text-transform: uppercase;
+}
+
+.hud-panel__title::after {
+  min-width: 24px;
+  max-width: 112px;
+  height: 1px;
+  flex: 1 1 72px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--panel-accent) 62%, transparent), transparent);
+  content: "";
 }
 
 .hud-panel__accessory {
@@ -191,7 +224,7 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  color: var(--color-system-bright);
+  color: var(--color-interface-bright);
   font-family: var(--font-terminal);
   font-size: 0.75rem;
   letter-spacing: 0.08em;
@@ -201,7 +234,7 @@
 }
 
 .system-overview__value > span {
-  color: var(--color-mission-bright);
+  color: var(--color-system-bright);
   font-size: 0.6rem;
 }
 
@@ -295,7 +328,7 @@
   min-height: 40px;
   align-items: center;
   justify-content: center;
-  border: 1px solid color-mix(in srgb, var(--color-system) 28%, var(--color-border-muted));
+  border: 1px solid color-mix(in srgb, var(--color-interface) 32%, var(--color-border-muted));
   color: var(--color-text-muted);
   font-family: var(--font-technical);
   font-size: 0.75rem;
@@ -311,9 +344,9 @@
 
 .quick-contact__links a:hover,
 .quick-contact__links a:focus-visible {
-  border-color: var(--color-system);
-  box-shadow: inset 2px 0 0 var(--color-system);
-  color: var(--color-system-bright);
+  border-color: var(--color-interface);
+  box-shadow: inset 2px 0 0 var(--color-interface);
+  color: var(--color-interface-bright);
   transform: translateY(-1px);
 }
 
@@ -325,8 +358,10 @@
 }
 
 .soft-skills__list li {
-  border: 1px solid var(--color-border-muted);
-  padding: 6px 8px;
+  border: 0;
+  border-left: 1px solid color-mix(in srgb, var(--color-interface) 28%, var(--color-border-muted));
+  border-bottom: 1px solid var(--color-border-muted);
+  padding: 5px 8px;
   color: var(--color-text);
   font-family: var(--font-technical);
   font-size: 0.75rem;
@@ -361,6 +396,15 @@
 }
 
 @media (max-width: 540px) {
+  .hud-panel {
+    --frame-cut: 8px;
+    --frame-segment: 30px;
+  }
+
+  .hud-panel__title::after {
+    max-width: 52px;
+  }
+
   .hud-panel__header {
     align-items: flex-start;
     flex-direction: column;
@@ -430,9 +474,13 @@
   align-items: center;
   gap: 18px;
   border: 1px solid var(--color-border-muted);
-  border-bottom-color: color-mix(in srgb, var(--color-system) 38%, var(--color-border-muted));
-  background: var(--color-surface-translucent);
-  box-shadow: var(--shadow-elevated);
+  border-bottom-color: color-mix(in srgb, var(--color-interface) 46%, var(--color-border-muted));
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-interface) 4%, transparent), transparent 48%),
+    var(--color-surface-translucent);
+  box-shadow:
+    inset 0 -1px 0 color-mix(in srgb, var(--color-interface) 9%, transparent),
+    0 12px 30px rgb(0 0 0 / 24%);
   padding: 8px 14px;
   font-family: var(--font-technical);
   font-size: var(--text-interface);
@@ -447,7 +495,7 @@
 }
 
 .system-header__interface {
-  color: var(--color-system-bright);
+  color: var(--color-interface-bright);
   text-align: center;
 }
 
@@ -602,6 +650,36 @@
   gap: 20px;
 }
 
+.certifications-panel .signal-bars {
+  color: var(--color-interface-bright);
+}
+
+.certifications-panel__education-list > li,
+.certifications-panel__primary-list > li {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-interface) 30%, var(--color-border-muted));
+  border-left: 1px solid color-mix(in srgb, var(--color-interface) 22%, var(--color-border-muted));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-interface) 4%, transparent), transparent 56%),
+    color-mix(in srgb, var(--color-surface-elevated) 88%, transparent);
+}
+
+.certifications-panel__primary-list > li {
+  border-top-color: color-mix(in srgb, var(--color-mission) 38%, var(--color-border-muted));
+  border-left-color: color-mix(in srgb, var(--color-mission) 28%, var(--color-border-muted));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-mission) 4%, transparent), transparent 56%),
+    color-mix(in srgb, var(--color-surface-elevated) 88%, transparent);
+}
+
+.certifications-panel__education-list > li > span:first-of-type {
+  color: var(--color-interface-bright);
+}
+
+.certifications-panel__training-list > li {
+  border-left-color: color-mix(in srgb, var(--color-interface) 42%, var(--color-border-muted));
+}
+
 .certifications-panel__header-signal {
   display: flex;
   align-items: center;
@@ -689,10 +767,24 @@
 }
 
 .engineering-matrix__area {
+  position: relative;
   min-width: 0;
-  border: 1px solid var(--color-border-muted);
-  background: var(--color-surface-elevated);
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-interface) 28%, var(--color-border-muted));
+  border-left: 1px solid color-mix(in srgb, var(--color-interface) 20%, var(--color-border-muted));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-interface) 4%, transparent), transparent 52%),
+    color-mix(in srgb, var(--color-surface-elevated) 90%, transparent);
   padding: 14px;
+}
+
+.engineering-matrix__area::after {
+  position: absolute;
+  top: -1px;
+  right: 12px;
+  width: 28px;
+  border-top: 1px solid var(--color-interface);
+  content: "";
 }
 
 .engineering-matrix__area-header {
@@ -700,16 +792,26 @@
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  border-bottom: 1px solid color-mix(in srgb, var(--color-system) 24%, var(--color-border-muted));
+  border-bottom: 1px solid color-mix(in srgb, var(--color-interface) 24%, var(--color-border-muted));
   padding-bottom: 8px;
 }
 
 .engineering-matrix__area-header h3 {
-  color: var(--color-system-bright);
+  color: var(--color-interface-bright);
   font-family: var(--font-technical);
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.engineering-matrix .signal-bars {
+  color: var(--color-interface-bright);
+}
+
+.engineering-matrix__area > ul > li {
+  border-width: 0 0 1px;
+  border-color: color-mix(in srgb, var(--color-interface) 24%, var(--color-border-muted));
+  padding-inline: 2px;
 }
 
 @keyframes signal-bar-shift {
@@ -737,10 +839,22 @@
 }
 
 .app-shell__rail .hud-panel {
+  --frame-segment: 32px;
   height: auto;
   border-color: color-mix(in srgb, var(--panel-accent) 32%, var(--color-border-muted));
   box-shadow: none;
   clip-path: none;
+}
+
+.engineering-matrix,
+.engineering-log,
+.engineering-process {
+  --frame-segment: clamp(54px, 7vw, 88px);
+  border-color: color-mix(in srgb, var(--color-interface) 46%, var(--color-border-muted));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-interface) 12%, transparent),
+    inset 0 0 30px color-mix(in srgb, var(--color-interface) 3%, transparent),
+    0 18px 42px rgb(0 0 0 / 24%);
 }
 
 .app-shell__mobile-navigation {
@@ -771,6 +885,25 @@
   grid-column: 1 / -1;
 }
 
+.engineering-log__entries > li {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-interface) 28%, var(--color-border-muted));
+  border-left: 1px solid color-mix(in srgb, var(--color-interface) 18%, var(--color-border-muted));
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--color-interface) 4%, transparent), transparent 54%),
+    color-mix(in srgb, var(--color-surface-elevated) 90%, transparent);
+}
+
+.engineering-log__entries h4 + p {
+  color: var(--color-interface-bright);
+}
+
+.engineering-log__entries article > ul > li {
+  border-width: 0 0 1px;
+  border-color: var(--color-border-muted);
+  padding-inline: 2px;
+}
+
 .app-shell__anchor {
   display: block;
   position: relative;
@@ -779,6 +912,7 @@
 }
 
 .identity-brief {
+  position: relative;
   display: flex;
   min-height: 330px;
   flex-direction: column;
@@ -789,6 +923,27 @@
     var(--color-surface-translucent);
   padding: clamp(20px, 2.2vw, 34px);
   container-type: inline-size;
+}
+
+.identity-brief::before,
+.identity-brief::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.identity-brief::before {
+  top: 0;
+  left: 20px;
+  width: 54px;
+  border-top: 1px solid var(--color-system);
+}
+
+.identity-brief::after {
+  right: 0;
+  bottom: -1px;
+  width: 34px;
+  border-bottom: 1px solid var(--color-system-bright);
 }
 
 .identity-brief__eyebrow,
@@ -1348,9 +1503,11 @@
   grid-template-columns: minmax(210px, 0.7fr) minmax(0, 1.8fr) auto;
   align-items: center;
   gap: 18px;
-  border: 1px solid var(--color-border-muted);
-  border-top-color: color-mix(in srgb, var(--color-system) 35%, var(--color-border-muted));
-  background: var(--color-surface-translucent);
+  border: 1px solid color-mix(in srgb, var(--color-interface) 28%, var(--color-border-muted));
+  border-top-color: color-mix(in srgb, var(--color-interface) 58%, var(--color-border-muted));
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-interface) 5%, transparent), transparent 46%),
+    var(--color-surface-translucent);
   padding: 10px 14px;
   isolation: isolate;
 }
@@ -1362,16 +1519,28 @@
   z-index: 2;
   width: 22%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, var(--color-system-bright), transparent);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--color-system) 52%, transparent);
+  background: linear-gradient(90deg, transparent, var(--color-interface-bright), transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-interface) 48%, transparent);
   content: "";
   animation: contact-hud-sweep 7.8s linear infinite;
   pointer-events: none;
 }
 
+.contact-hud::after {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 18px;
+  height: 12px;
+  border-right: 1px solid var(--color-interface);
+  border-bottom: 1px solid var(--color-interface);
+  content: "";
+  pointer-events: none;
+}
+
 .contact-hud__identity span,
 .contact-hud__location {
-  color: var(--color-mission-bright);
+  color: var(--color-interface-bright);
   font-family: var(--font-technical);
   font-size: var(--text-interface);
   letter-spacing: 0.12em;
@@ -1414,7 +1583,7 @@
 
 .contact-hud li {
   position: relative;
-  border: 1px solid color-mix(in srgb, var(--color-system) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-interface) 24%, transparent);
   padding: 6px 9px;
   color: var(--color-text-muted);
   font-family: var(--font-technical);
@@ -1432,7 +1601,7 @@
   bottom: 7px;
   left: -1px;
   width: 2px;
-  background: var(--color-system);
+  background: var(--color-interface);
   opacity: 0;
   content: "";
   transition: opacity var(--motion-fast) var(--motion-ease);
@@ -1448,8 +1617,8 @@
 
 .contact-hud li:hover,
 .contact-hud li:focus-within {
-  border-color: color-mix(in srgb, var(--color-system) 48%, var(--color-border-muted));
-  box-shadow: inset 3px 0 0 var(--color-system);
+  border-color: color-mix(in srgb, var(--color-interface) 58%, var(--color-border-muted));
+  box-shadow: inset 3px 0 0 var(--color-interface);
   transform: translateY(-2px);
 }
 
@@ -1460,7 +1629,7 @@
 
 .contact-hud a:hover,
 .contact-hud a:focus-visible {
-  color: var(--color-system-bright);
+  color: var(--color-interface-bright);
 }
 
 .contact-hud__location {
@@ -2128,12 +2297,12 @@
   min-width: 0;
   padding: clamp(18px, 2.2vw, 28px);
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--color-system) 4%, transparent), transparent 46%),
+    linear-gradient(135deg, color-mix(in srgb, var(--color-interface) 4%, transparent), transparent 46%),
     var(--color-surface-elevated);
 }
 
 .engineering-process__sections h3 {
-  color: var(--color-system-bright);
+  color: var(--color-interface-bright);
   font-family: var(--font-technical);
   font-size: 0.8rem;
   letter-spacing: 0.14em;
@@ -2170,30 +2339,36 @@
 }
 
 .engineering-process__sequence li > span:first-child {
-  border: 1px solid color-mix(in srgb, var(--color-system) 30%, var(--color-border-muted));
+  border: 0;
+  border-left: 1px solid color-mix(in srgb, var(--color-interface) 38%, var(--color-border-muted));
+  border-bottom: 1px solid color-mix(in srgb, var(--color-interface) 26%, var(--color-border-muted));
   padding: 7px 9px;
-  background: color-mix(in srgb, var(--color-system) 5%, transparent);
+  background: color-mix(in srgb, var(--color-interface) 4%, transparent);
   color: var(--color-text);
 }
 
 .engineering-process__sequence[data-variant="mission"] li > span:first-child {
-  border-color: color-mix(in srgb, var(--color-mission) 36%, var(--color-border-muted));
+  border-left-color: color-mix(in srgb, var(--color-mission) 44%, var(--color-border-muted));
+  border-bottom-color: color-mix(in srgb, var(--color-mission) 30%, var(--color-border-muted));
   background: color-mix(in srgb, var(--color-mission) 5%, transparent);
   color: var(--color-mission-bright);
 }
 
 .engineering-process__sequence li[data-step="red"] > span:first-child {
-  border-color: color-mix(in srgb, var(--color-danger) 55%, var(--color-border-muted));
+  border-left-color: color-mix(in srgb, var(--color-danger) 58%, var(--color-border-muted));
+  border-bottom-color: color-mix(in srgb, var(--color-danger) 38%, var(--color-border-muted));
   color: var(--color-danger);
 }
 
 .engineering-process__sequence li[data-step="green"] > span:first-child {
-  border-color: color-mix(in srgb, var(--color-system) 52%, var(--color-border-muted));
+  border-left-color: color-mix(in srgb, var(--color-system) 54%, var(--color-border-muted));
+  border-bottom-color: color-mix(in srgb, var(--color-system) 36%, var(--color-border-muted));
   color: var(--color-system-bright);
 }
 
 .engineering-process__sequence li[data-step="refactor"] > span:first-child {
-  border-color: color-mix(in srgb, var(--color-mission) 52%, var(--color-border-muted));
+  border-left-color: color-mix(in srgb, var(--color-mission) 54%, var(--color-border-muted));
+  border-bottom-color: color-mix(in srgb, var(--color-mission) 36%, var(--color-border-muted));
   color: var(--color-mission-bright);
 }
 
@@ -2335,20 +2510,23 @@
 .mission-files {
   position: relative;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--color-mission) 42%, var(--color-border-muted));
+  border: 1px solid color-mix(in srgb, var(--color-mission) 36%, var(--color-border-muted));
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--color-mission) 5%, transparent), transparent 28%),
     var(--color-surface-translucent);
-  box-shadow: var(--shadow-elevated);
-  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-mission) 12%, transparent),
+    inset 0 0 30px color-mix(in srgb, var(--color-mission) 3%, transparent),
+    0 18px 42px rgb(0 0 0 / 24%);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 }
 
 .mission-files::before,
 .mission-files::after {
   position: absolute;
   z-index: 2;
-  width: 72px;
-  height: 2px;
+  width: 64px;
+  height: 1px;
   background: var(--color-mission-bright);
   content: "";
   pointer-events: none;
@@ -2377,6 +2555,11 @@
     color-mix(in srgb, var(--color-surface-elevated) 84%, transparent);
 }
 
+.mission-files__header > div {
+  min-width: 0;
+  flex: 1;
+}
+
 .mission-files__eyebrow,
 .mission-files__count,
 .mission-files__index-label {
@@ -2389,7 +2572,10 @@
 }
 
 .mission-files__header h2 {
+  display: flex;
   margin-top: 4px;
+  align-items: center;
+  gap: 14px;
   color: var(--color-mission-bright);
   font-family: var(--font-heading);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
@@ -2397,6 +2583,15 @@
   letter-spacing: 0.12em;
   line-height: 1;
   text-transform: uppercase;
+}
+
+.mission-files__header h2::after {
+  min-width: 28px;
+  max-width: 132px;
+  height: 1px;
+  flex: 1 1 84px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--color-mission) 68%, transparent), transparent);
+  content: "";
 }
 
 .mission-files__count {

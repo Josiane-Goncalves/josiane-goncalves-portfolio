@@ -70,7 +70,12 @@ describe("engineering modules", () => {
   });
 
   it("combines education, certification and selected training without duplication", () => {
-    render(<CertificationsPanel />);
+    const { container } = render(<CertificationsPanel />);
+
+    expect(container.querySelector(".certifications-panel")).toHaveAttribute(
+      "data-variant",
+      "credential",
+    );
 
     expect(screen.getByText("Tecnologia em Análise e Desenvolvimento de Sistemas")).toBeInTheDocument();
     expect(screen.getByText("UniCV")).toBeInTheDocument();

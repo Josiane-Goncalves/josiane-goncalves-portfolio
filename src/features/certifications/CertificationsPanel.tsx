@@ -24,7 +24,7 @@ export function CertificationsPanel() {
         </div>
       }
       title={t("certifications.title")}
-      variant="neutral"
+      variant="credential"
     >
       <div
         aria-label={t("certifications.education")}

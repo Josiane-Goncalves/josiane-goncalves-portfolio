@@ -11,6 +11,8 @@
 
   --color-system: #9dcc50;
   --color-system-bright: #c7eb7b;
+  --color-interface: #63aebd;
+  --color-interface-bright: #a6d6de;
   --color-mission: #d6a64d;
   --color-mission-bright: #f1ca79;
   --color-ai: #a38bd8;
@@ -40,6 +42,7 @@
 
   /* Compatibility aliases while legacy components are migrated. */
   --hud-system-lime: var(--color-system);
+  --hud-interface-cyan: var(--color-interface);
   --hud-mission-amber: var(--color-mission);
   --hud-alia-violet: var(--color-ai);
   --hud-surface-deep: var(--color-background);

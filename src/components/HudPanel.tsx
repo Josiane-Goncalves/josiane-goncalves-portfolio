@@ -1,6 +1,11 @@
 import { useId, type PropsWithChildren, type ReactNode } from "react";
 
-export type HudPanelVariant = "system" | "mission" | "ai" | "neutral";
+export type HudPanelVariant =
+  | "system"
+  | "mission"
+  | "ai"
+  | "credential"
+  | "neutral";
 
 type HudPanelProps = PropsWithChildren<{
   title: string;

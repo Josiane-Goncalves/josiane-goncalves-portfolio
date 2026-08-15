@@ -5,7 +5,13 @@ import { HudPanel, type HudPanelVariant } from "./HudPanel";
 import { StatusBadge, type StatusTone } from "./StatusBadge";
 
 describe("HudPanel", () => {
-  it.each<HudPanelVariant>(["system", "mission", "ai", "neutral"])(
+  it.each<HudPanelVariant>([
+    "system",
+    "mission",
+    "ai",
+    "credential",
+    "neutral",
+  ])(
     "exposes the %s semantic variant without changing heading structure",
     (variant) => {
       const title = `${variant} panel`;

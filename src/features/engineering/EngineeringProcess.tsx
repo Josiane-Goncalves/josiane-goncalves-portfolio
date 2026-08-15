@@ -48,7 +48,7 @@ export function EngineeringProcess() {
     <HudPanel
       className="engineering-process"
       title={t("professional.processTitle")}
-      variant="neutral"
+      variant="system"
     >
       <div className="engineering-process__sections">
         <section aria-labelledby="engineering-workflow-title">

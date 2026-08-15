@@ -16,7 +16,7 @@ export function EngineeringLog() {
         </StatusBadge>
       }
       title={t("engineering.logTitle")}
-      variant="neutral"
+      variant="system"
     >
       <p className="max-w-4xl text-base leading-7 text-[var(--color-text-muted)]">
         {t("professional.trajectory")}
