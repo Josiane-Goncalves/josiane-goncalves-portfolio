@@ -14,11 +14,11 @@ describe("MissionCard repository access", () => {
     render(<MissionCard active mission={missions[0]} />);
 
     const link = screen.getByRole("link", {
-      name: "Abrir repositório do PulseOps no GitHub",
+      name: "Abrir repositório do cuidarbem no GitHub",
     });
     expect(link).toHaveAttribute(
       "href",
-      "https://github.com/Josiane-Goncalves/pulseops",
+      "https://github.com/Josiane-Goncalves/cuidarbem.git",
     );
     expect(link).toHaveAttribute("target", "_blank");
     expect(link).toHaveAttribute("rel", "noopener noreferrer");
@@ -41,7 +41,7 @@ describe("MissionCard repository access", () => {
       <>{missions.map((mission) => <MissionCard active={false} key={mission.id} mission={mission} />)}</>,
     );
 
-    for (const title of ["PulseOps", "Prado em Dia", "Ride Wars League"]) {
+    for (const title of ["cuidarbem", "Prado em Dia", "Ride Wars League"]) {
       expect(
         screen.getByRole("link", {
           name: `Abrir repositório do ${title} no GitHub`,
@@ -54,7 +54,7 @@ describe("MissionCard repository access", () => {
       <>{missions.map((mission) => <MissionCard active={false} key={mission.id} mission={mission} />)}</>,
     );
     expect(
-      screen.getByRole("link", { name: "Open PulseOps repository on GitHub" }),
+      screen.getByRole("link", { name: "Open cuidarbem repository on GitHub" }),
     ).toBeInTheDocument();
   });
 });
